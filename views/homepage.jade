@@ -104,9 +104,13 @@ block body
         url: "/user"
       })
         .done(function( data ) {
-          $('#show').html(data[0].email);
+          //List em all
+          $('#show').append('<ul></ul>');
+          for (var i=0; i <= data.length; i++) {
+              $('#show ul').append('<li>id:' + data[i].id + ' / email:' + data[i].email + '</li>');
+            }
+          //- $('#show').html(data[2].email);
         })
         .fail(function( err ){
-          console.log(err);
-          console.log('xx');
+          $('#show').append('failed:' + err );
         });

@@ -34,7 +34,9 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
+  'get /user': 'UserController.me',
+  'get /user/list': 'UserController.list'
 
   /***************************************************************************
   *                                                                          *
