@@ -9,7 +9,7 @@
 module.exports = {
 
   attributes: require('waterlock').models.user.attributes({
-    
+    skilllevel: 'string'
     /* e.g.
     nickname: 'string'
     */
@@ -17,5 +17,8 @@ module.exports = {
   }),
   
   beforeCreate: require('waterlock').models.user.beforeCreate,
-  beforeUpdate: require('waterlock').models.user.beforeUpdate
+  beforeUpdate: require('waterlock').models.user.beforeUpdate,
+  afterCreate: function(values, cb) {
+    cb();
+  }
 };

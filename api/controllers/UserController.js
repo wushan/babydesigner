@@ -14,6 +14,13 @@ module.exports = require('waterlock').actions.user({
   
     }
   */
+  register: function ( req, res ) {
+  	User.findOrCreate({ email: req.query.email }, { email: req.query.email }).exec(function createFindCB(error, createdOrFoundRecords){
+	  console.log(createdOrFoundRecords);
+	});
+
+  	return res.send('catch');
+  },
   me: function ( req, res ) {
   	//GET ID
   	res.redirect('./tony');
