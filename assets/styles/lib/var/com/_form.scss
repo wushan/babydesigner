@@ -1,0 +1,317 @@
+//ControlGroup
+.controlgroup {
+  margin-bottom: .5em;
+  @extend .clr;
+  label {
+    font-size: 1.1em;
+    line-height: 44px;
+    @include breakpoint(1280px) {
+      width: 140px;
+      display: inline-block;
+      float: left;
+    }
+  }
+  .controls {
+    @include breakpoint(1280px) {
+      margin-left: 140px;
+    }
+    &.small {
+      width: 50%;
+      margin: 0 auto;
+    }
+    .status {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .vertify {
+      display: inline-block;
+      vertical-align: middle;
+      img {
+        display: block;
+      }
+    }
+  }
+}
+textarea {
+  width: 95%;
+  border: 1px solid $gray;
+  box-sizing: border-box;
+  height: 44px;
+  background-color: #FFF;
+  padding: 2%;
+  outline: none;
+  min-height: 200px;
+  color: #a8a8a8;
+  &:focus {
+    border: 1px solid #eeeeee;
+    background-color: #eeeeee;
+    color: #d0021b;
+  }
+}
+input,input[type=search] {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid $gray;
+  box-sizing: border-box;
+  height: 44px;
+  background-color:#FFF;
+  padding: 0 1em;
+  outline: none;
+  color:#000;
+  margin: 0 0 1em 0;
+  &:focus {
+    border: 1px solid #eeeeee;
+    background-color: #eeeeee;
+    color: #d0021b;
+  }
+  &.search-form{
+    background-color: #000;
+    border: none;
+    color: #FFF;
+    width: 60%;
+    float: none;
+    outline: none;
+  }
+  &.search-news{
+    background-color: #FFF;
+    border:none;
+    color: #000;
+    width: 63%;
+    float: left;
+    outline: none;
+    margin: 0 0 0 0;
+  }
+  &.speed{
+    width: 100%;
+    border: 1px solid $gray;
+  }
+}
+input[type=radio] {
+  width: auto;
+  height: auto;
+  padding: 0 1em;
+  margin: 1em 1em 1em .3em;
+}
+input[type=checkbox] {
+  width: auto;
+  height: auto;
+  padding: 0 1em;
+  margin: 1em 1em 1em .3em;
+}
+//Select
+
+  select {
+    width: 96%;
+    border: none;
+    border-bottom: 1px solid $gray;
+    height: 44px;
+    background-color:#FFF;
+    padding: 0 2%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 0;
+    color: $darkgray;
+    border-radius: 0;
+  }
+  select::-ms-expand {
+    display: none;
+  }
+  @-moz-document url-prefix() {
+    .select-wrapper {
+      //background-color: #ffffff;
+      background-image: url("../images/components/select-arrow.png");
+      background-position: 97% center;
+      background-repeat: no-repeat;
+      background-color: $smokygray;
+      select {
+        width: 110%;
+        background-image: url("../images/components/select-arrow.png");
+        background-position: 88% center;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+  select {
+    background-color: #FFF;
+    background-image: url("../images/components/select-arrow.png");
+    background-position: 97% center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid $gray;
+    height: 44px;
+    padding: 0 1em;
+    margin: 0 0 1em 0;
+    &:focus {
+      outline: none;
+    }
+  }
+  select {
+    &.news-select{
+      background-color: #FFF;
+      background-image: url("../images/components/select-arrow02.jpg");
+      background-position: 95% center;
+      background-repeat: no-repeat;
+      box-sizing: border-box;
+      width: 100%;
+      border-radius:3px;
+      border:1px solid #d0021b;
+      height: 44px;
+      padding: 0 2em;
+      margin:1em 0;
+      color: #d0021b;
+      &:focus {
+        outline: none;
+      }
+    }
+    &.year-select{
+      background-color: #FFF;
+      background-image: url("../images/components/select-arrow03.jpg");
+      background-position: 95% center;
+      background-repeat: no-repeat;
+      box-sizing: border-box;
+      width: 100%;
+      border-radius:3px;
+      border:1px solid #adadad;
+      height: 44px;
+      padding: 0 3em;
+      margin: 0 0 1em 0;
+      color: #000;
+      &:focus {
+        outline: none;
+      }
+    }
+    &.share-select{
+      background-color: #FFF;
+      background-image: url("../images/components/select-arrow03.jpg");
+      background-position: 95% center;
+      background-repeat: no-repeat;
+      box-sizing: border-box;
+      width: 100%;
+      border-radius:3px;
+      border:1px solid #adadad;
+      height: 44px;
+      padding: 0 1em;
+      margin: 0 0 1em 0;
+      color: #000;
+      &:focus {
+        outline: none;
+      }
+    }
+    &.table-select{
+      background-color: #FFF;
+      background-image: url("../images/components/select-arrow03.jpg");
+      background-position: 95% center;
+      background-repeat: no-repeat;
+      box-sizing: border-box;
+      width: 100%;
+      border-radius:3px;
+      border:1px solid #adadad;
+      height: 44px;
+      padding: 0 1em;
+      margin: 0;
+      color: #000;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  .select-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    border: 0;
+    outline: none;
+    background-color: $smokygray;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    border: 1px solid $gray;
+    &:focus {
+
+    }
+  }
+
+//Placehoder
+::-webkit-input-placeholder { /* WebKit browsers */ color: $gray; }
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ color: $gray; opacity: 1; }
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */ color: $gray; opacity: 1; }
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */ color: $gray; }
+
+
+
+@include susy-breakpoint(320px, 12) {
+input,input[type=search] {
+  &.search-form{
+    width: 80%;
+    float: left;
+  }
+}
+  select {
+    &.news-select{
+      margin: 1em 0;
+      padding: 0 1em;
+    }
+    &.year-select{
+      margin: 0 0 1em 0;
+      padding: 0 1em;
+    }
+    &.share-select{
+      margin: 0 0 1em 0;
+      padding: 0 1em;
+    }
+    &.table-select{
+      margin: 0;
+      padding: 0 1em;
+    }
+  }
+}
+@include susy-breakpoint(768px, 12) {
+  select {
+    &.news-select{
+      margin: 1em 0;
+      padding: 0 1em;
+    }
+    &.year-select{
+      margin: 0 0 1em 0;
+      padding: 0 1em;
+    }
+    &.share-select{
+      margin: 0 0 1em 0;
+      padding: 0 1em;
+    }
+    &.table-select{
+      margin: 0;
+      padding: 0 1em;
+    }
+  }
+}
+@include susy-breakpoint(1024px, 12) {
+input,input[type=search] {
+  &.search-form{
+    width: 80%;
+    float: left;
+  }
+}
+select {
+  &.news-select{
+    margin:0 0 1em 0;
+    padding: 0 2em;
+  }
+  &.year-select{
+    margin: 0 0 1em 1em;
+    padding: 0 3em;
+  }
+  &.share-select{
+    margin: 0 0 1em 0;
+    padding: 0 1em;
+  }
+  &.table-select{
+    margin: 0;
+    padding: 0 1em;
+  }
+}
+}
