@@ -35,10 +35,17 @@ module.exports.routes = {
   '/': {
     view: 'homepage'
   },
-  //Register
-  'get /register': { view: 'register' },
-  'get /user': 'UserController.me',
-  'get /user/list': 'UserController.list'
+  'get /login': {
+       view: 'login'
+  },
+
+  'post /login': 'AuthController.login',
+
+  '/logout': 'AuthController.logout',
+
+  'get /signup': {
+    view: 'signup'
+  }
 
   /***************************************************************************
   *                                                                          *

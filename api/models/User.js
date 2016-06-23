@@ -1,24 +1,41 @@
 /**
- * User
+ * User.js
  *
- * @module      :: Model
- * @description :: This is the base user model
- * @docs        :: http://waterlock.ninja/documentation
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
-module.exports = {
+var bcrypt = require('bcrypt');
 
-  attributes: require('waterlock').models.user.attributes({
-    skilllevel: 'string'
-    /* e.g.
-    nickname: 'string'
-    */
-    
-  }),
-  
-  beforeCreate: require('waterlock').models.user.beforeCreate,
-  beforeUpdate: require('waterlock').models.user.beforeUpdate,
-  afterCreate: function(values, cb) {
-    cb();
-  }
+module.exports = {
+    attributes: {
+        email: {
+            type: 'email',
+            required: true,
+            unique: true
+        },
+        password: {
+            type: 'string',
+            minLength: 6,
+            required: true
+        },
+        toJSON: function() {
+            var obj = this.toObject();
+            delete obj.password;
+            return obj;
+        }
+    },
+    beforeCreate: function(user, cb) {
+        bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash(user.password, salt, function(err, hash) {
+                if (err) {
+                    console.log(err);
+                    cb(err);
+                } else {
+                    user.password = hash;
+                    cb();
+                }
+            });
+        });
+    }
 };
