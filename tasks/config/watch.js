@@ -15,43 +15,24 @@
  *
  */
  
-// module.exports = function(grunt) {
-
-//   grunt.config.set('watch', {
-//     assets: {
-
-//       // Assets to watch:
-//       files: ['assets/**/*', 'tasks/pipeline.js', '!**/node_modules/**'],
-
-//       // When assets are changed:
-//       tasks: ['syncAssets' , 'linkAssets' ]
-//     }
-//   });
-
-//   grunt.loadNpmTasks('grunt-contrib-watch');
-// };
-
 module.exports = function(grunt) {
 
-     grunt.config.set('watch', {
-        api: {
+  grunt.config.set('watch', {
+    assets: {
 
-            // API files to watch:
-            files: ['api/**/*', '!**/node_modules/**']
-        },
-        assets: {
+      // Assets to watch:
+      files: ['assets/**/*', 'tasks/pipeline.js', '!**/node_modules/**'],
 
-            // Assets to watch:
-            files: ['assets/**/*', 'tasks/pipeline.js', '!**/node_modules/**'],
-
-            // When assets are changed:
-            tasks: ['syncAssets' , 'linkAssets']
-        },
-        // ADD THIS 
+      // When assets are changed:
+      tasks: ['syncAssets' , 'linkAssets' ]
+    },
+    views: {
+        files: ['views/**/*', '!views/layout.jade'],
         options: {
-          livereload: true,
-        },
-    });
+          livereload: 54092
+        }
+    }
+  });
 
-    grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 };

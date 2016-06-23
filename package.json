@@ -40,6 +40,9 @@
   "author": "tony",
   "license": "",
   "devDependencies": {
-    "jade": "^1.11.0"
+    "connect-livereload": "^0.5.4",
+    "grunt-browser-sync": "^2.2.0",
+    "jade": "^1.11.0",
+    "sails-hook-autoreload": "^0.13.1"
   }
 }
