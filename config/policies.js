@@ -50,6 +50,9 @@ module.exports.policies = {
 	// }
   'PostController': {
     '*': 'isAuthenticated'
+  },
+  'UserController': {
+    '*': 'isAuthenticated'
   }
 
 };
