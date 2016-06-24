@@ -1,8 +1,16 @@
 extends ./layout
 
 block body
-	h1 Login
-	form(method="POST" action="/login")
-		input(type="email" name="email")
-		input(type="password" name="password")
-		input(type="submit" value="submit")
+	.restrict
+		h1 Login Form
+		form(method="POST" action="/login")
+			.controlgroup
+				label Email
+				.controls
+					input(type="email" name="email")
+			.controlgroup
+				label Password
+				.controls
+					input(type="password" name="password")
+
+			button.btn.basic(type="submit") submit

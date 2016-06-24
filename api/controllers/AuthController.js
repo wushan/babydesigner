@@ -14,9 +14,7 @@ module.exports = {
         shortcuts: false,
         rest: false
     },
-
     login: function(req, res) {
-
         passport.authenticate('local', function(err, user, info) {
             if ((err) || (!user)) {
                 return res.send({

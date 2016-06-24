@@ -1,13 +1,1 @@
-@include susy-breakpoint(768px, 12) {
-  nav {
-    .logo{
-      width: 20%;
-    }
-    .list-content{
-      display: none;
-    }
-  }
-  .sb-toggle-left{
-    display: block;
-  }
-}
+@include susy-breakpoint(768px, 12) {}
