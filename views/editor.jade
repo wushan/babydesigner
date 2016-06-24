@@ -1,0 +1,13 @@
+extends ./layout
+
+
+block body
+	#canvaseditor
+
+block pagescripts
+	script.
+		var data = {};
+		CanvasComposer.init('new',{
+			'width': '300',
+			'height': '300'
+		});

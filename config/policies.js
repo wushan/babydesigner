@@ -53,6 +53,9 @@ module.exports.policies = {
   },
   'UserController': {
     '*': 'isAuthenticated'
+  },
+  'EditorController': {
+    '*': 'isAuthenticated'
   }
 
 };
