@@ -1,0 +1,78 @@
+#marquee-settings
+	.marquee-settings-inner
+		a.close-btn.js-close(href="javascript:;")
+			i.fa.fa-times.fa-lg
+		.widget-block
+			.widget-title 建立跑馬燈
+			.widget-content
+				.controlgroup
+					label 來源：
+					.controls
+						.select-wrapper
+							select#marquee-source
+								option(value="fromrss") RSS 目錄
+								option(value="fromcustom") 自訂字串
+				.datas
+					#fromrss.marquee-form.active
+						.row
+							.grid.g-3-12
+								.controlgroup
+									label RSS 來源：
+									.controls
+										.select-wrapper
+											select.marquee-rsssource
+												each i in new Array(20)
+													option RSS 名稱
+							.grid.g-3-12
+								.controlgroup
+									label 持續時間：
+									.controls
+										input.marquee-leasttime(type='number', placeholder='3')
+							.grid.g-3-12
+								.controlgroup
+									label 切換特效：
+									.controls
+										.select-wrapper
+											select.marquee-type
+												option(value='default') 預設
+												option(value='random') 隨機
+												option(value='rightleft') 由右至左
+												option(value='leftright') 由左至右
+												option(value='topbottom') 由上至下
+												option(value='bottomtop') 由下至上
+												option(value='fade') 淡入淡出
+							.grid.g-3-12
+								.controlgroup
+									label 特效時間：
+									.controls
+										input.marquee-transitionperiod(type='number', placeholder='3')
+					#fromcustom.marquee-form
+						
+						.string-list-wrapper
+							.string-settings.row
+								.grid.g-4-12
+									.controlgroup
+										label 持續時間：
+										.controls
+											input.marquee-leasttime(type='number', placeholder='3')
+								.grid.g-4-12
+									.controlgroup
+										label 切換特效：
+										.controls
+											.select-wrapper
+												select.marquee-type
+													option(value='horizontal') 單行(水平)
+													option(value='vertical') 多行(垂直)
+								.grid.g-4-12
+									.controlgroup
+										label 特效時間：
+										.controls
+											input.marquee-transitionperiod(type='number', placeholder='3')
+							.string-item
+								.controlgroup
+									label 字串：
+									.controls
+										textarea.marquee-string(placeholder='字串')
+						
+				.call-action.centered
+					a.btn.basic.js-sendToMarquee(href="javascript:;") 建立跑馬燈

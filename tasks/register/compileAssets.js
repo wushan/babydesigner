@@ -15,6 +15,7 @@ module.exports = function(grunt) {
   grunt.registerTask('compileAssets', [
     'clean:dev',
     'bower:dev',
+    'jade:dev',
     'jst:dev',
     'less:dev',
     'sass:dev',

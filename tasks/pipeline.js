@@ -35,28 +35,7 @@ var jsFilesToInject = [
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
-  'js/editor/vendor/fabric.js',
-  'js/editor/vendor/moment/moment.js',
-  'js/editor/editor/extensions/cc.Extensions.js',
-  'js/editor/CanvasComposer.js',
-  'js/editor/editor/cc.View.js',
-  'js/editor/editor/cc.Initial.js',
-  'js/editor/editor/cc.Load.js',
-  'js/editor/editor/cc.History.js',
-  'js/editor/editor/cc.Presets.js',
-  'js/editor/editor/cc.Menu.js',
-  'js/editor/editor/cc.Menu.ContextMenu.js',
-  'js/editor/editor/cc.Hotkey.js',
-  'js/editor/editor/cc.Artboard.js',
-  'js/editor/editor/cc.Attributions.js',
-  'js/editor/editor/cc.Attributions.canvas.js',
-  'js/editor/editor/cc.bindEvents.js',
-  'js/editor/editor/cc.MediaLibrary.js',
-  'js/editor/editor/cc.Log.js',
-  'js/editor/editor/cc.WeatherAPI.js',
-  'js/editor/vendor/spectrum.js',
-  'js/editor/vendor/Sortable.min.js',
-  'js/**/*.js'
+  'js/main.js'
 ];
 
 
@@ -70,7 +49,7 @@ var jsFilesToInject = [
 // templates get spit out to the same file.  Be sure and check out `tasks/README.md`
 // for information on customizing and installing new tasks.
 var templateFilesToInject = [
-  'templates/**/*.html'
+  'templates/**/*.jade'
 ];
 
 
