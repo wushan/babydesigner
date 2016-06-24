@@ -11,3 +11,12 @@ block body
 				a.btn.basic(href='/signup') signup
 			h3 User List
 			#show
+	#canvaseditor
+
+block pagescripts
+	script.
+		var data = {};
+		CanvasComposer.init('new',{
+			'width': '300',
+			'height': '300'
+		});

@@ -1,0 +1,5 @@
+CanvasComposer.Interface = {
+  save: function(){
+
+  }
+}

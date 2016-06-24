@@ -1,21 +1,21 @@
 //Some ajax get
-      $(document).ready(function(){
-        $.ajax({
-            method: "GET",
-            url: "/user"
-          })
-            .done(function( data ) {
-              //List em all
-              $('#show').append('<ul></ul>');
-              for (var i=0; i < data.length; i++) {
-                  $('#show ul').append('<li>id:' + data[i].id + ' / email:' + data[i].email + '</li>');
-                }
-              //- $('#show').html(data[2].email);
-            })
-            .fail(function( err ){
-              $('#show').append('failed:' + err );
-            });
+$(document).ready(function(){
+  $.ajax({
+      method: "GET",
+      url: "/user"
+    })
+      .done(function( data ) {
+        //List em all
+        $('#show').append('<ul></ul>');
+        for (var i=0; i < data.length; i++) {
+            $('#show ul').append('<li>id:' + data[i].id + ' / email:' + data[i].email + '</li>');
+          }
+        //- $('#show').html(data[2].email);
+      })
+      .fail(function( err ){
+        $('#show').append('failed:' + err );
       });
+});
 
 //Socket
 

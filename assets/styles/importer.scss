@@ -1,9 +1,9 @@
 // Moduels
   //Bourbon
-  @import "../../bower_components/bourbon/app/assets/stylesheets/bourbon";
+  @import "../../src/bower_components/bourbon/app/assets/stylesheets/bourbon";
   //Susy + BreakPoint
-  @import "../../bower_components/susy/sass/susy";
-  @import "../../bower_components/breakpoint-sass/stylesheets/breakpoint";
+  @import "../../src/bower_components/susy/sass/susy";
+  @import "../../src/bower_components/breakpoint-sass/stylesheets/breakpoint";
 
   //Normalize
   @import "normalize";
@@ -17,20 +17,15 @@
 //Basic Settings
 @import "lib/base";
 
-//Layout
-@import "lib/layout";
+//This should overide
+@import "temp";
 
-//Navigation
-@import "lib/nav";
 
-//Pages
-@import "lib/main";
+@import "editor";
 
 //Plugins
 @import "lib/plugins/slidebars.min";
 @import "lib/plugins/jquery.bxslider";
 @import "lib/plugins/magnific-popup";
-@import "lib/plugins/jquery.mCustomScrollbar";
 
 //Icons
-@import "lib/icons";
