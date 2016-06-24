@@ -56,7 +56,8 @@ var CanvasComposer = {
 	Save: {
     toObj: function(){
       var currentCanvas = JSON.stringify(canvas);
-      console.log(currentCanvas);
+      // Welcome to real world.
+      // console.log(currentCanvas);
     },
     toPng: function(){
       //Prevent saving image with a selected control points(borders).

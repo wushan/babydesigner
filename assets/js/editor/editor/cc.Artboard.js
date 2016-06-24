@@ -1,125 +1,32 @@
 
 CanvasComposer.Artboard = {
   addRect : function(){
-      var rect = new fabric.Rect({
-        left: canvas.getWidth()/2-initRadius/2,
-        top: canvas.getHeight()/2-initRadius/2,
-        fill: '#'+Math.floor(Math.random()*16777215).toString(16),
-        width: initRadius,
-        height: initRadius,
-        padding: 0,
-        strokeWidth: 0
-      });
-      rect.toObject = (function(toObject) {
-        return function() {
-          return fabric.util.object.extend(toObject.call(this), {
-            link: this.link
-          });
-        };
-      })(rect.toObject);
-      rect.perPixelTargetFind = true;
-      canvas.add(rect);
-      CanvasComposer.History.Update();
-      canvas.renderAll();
-      //Bind
-      bindEvents(rect);
-      //Programmatically Select Newly Added Object
-      canvas.setActiveObject(rect);
-      //Refresh log
-      
-    },
-  addUsb : function(){
-    var bg = new fabric.Rect({
-        fill: '#333333',
-        width: initRadius*2,
-        height: initRadius*2,
-        left: 0,
-        top: 0,
-        padding: 0,
-        strokeWidth: 0,
-        originX: 'center',
-        originY: 'center'
-      });
-    var text = new fabric.Text('<USB Frame>', {
-        left: 0,
-        top: 0,
-        fontSize: '14',
-        fontFamily: 'Open sans',
-        textAlign: 'center',
-        fill: '#cccccc',
-        originX: 'center',
-        originY: 'center'
-      });
-
-    var group = new fabric.Usbframe([bg,text],{
-        left: canvas.getWidth()/2-initRadius/2,
-        top: canvas.getHeight()/2-initRadius/2,
-        padding: 0,
-        strokeWidth: 0
-      });
-      
-      group.toObject = (function(toObject) {
-        return function() {
-          return fabric.util.object.extend(toObject.call(this), {
-            link: this.link
-          });
-        };
-      })(group.toObject);
-      group.perPixelTargetFind = true;
-      canvas.add(group);
-      canvas.renderAll();
-      CanvasComposer.History.Update();
-      //Bind
-      bindEvents(group);
-      //Programmatically Select Newly Added Object
-      canvas.setActiveObject(group);
-      //Refresh log
-  },
-  addWeb : function(url){
-    var bg = new fabric.Rect({
-        width: initRadius*2,
-        height: initRadius*2,
-        left: 0,
-        top: 0,
-        padding: 0,
-        strokeWidth: 0,
-        fill: '#cccccc',
-        originX: 'center',
-        originY: 'center'
-      });
-
-    var text = new fabric.Text('<WebView>', {
-        left: 0,
-        top: 0,
-        fontSize: '14',
-        fontFamily: 'Open sans',
-        textAlign: 'center',
-        originX: 'center',
-        originY: 'center'
-      });
-
-    var group = new fabric.Webview([bg,text],{
-        left: 0,
-        top: 0
-      });
-      
-    group.toObject = (function(toObject) {
+    var rect = new fabric.Rect({
+      left: canvas.getWidth()/2-initRadius/2,
+      top: canvas.getHeight()/2-initRadius/2,
+      fill: '#'+Math.floor(Math.random()*16777215).toString(16),
+      width: initRadius,
+      height: initRadius,
+      padding: 0,
+      strokeWidth: 0
+    });
+    rect.toObject = (function(toObject) {
       return function() {
         return fabric.util.object.extend(toObject.call(this), {
-          webview: this.webview,
           link: this.link
         });
       };
-    })(group.toObject);
-    
-    group.perPixelTargetFind = true;
-    canvas.add(group);
+    })(rect.toObject);
+    rect.perPixelTargetFind = true;
+    canvas.add(rect);
     CanvasComposer.History.Update();
+    canvas.renderAll();
     //Bind
-    bindEvents(group);
+    bindEvents(rect);
     //Programmatically Select Newly Added Object
-    canvas.setActiveObject(group);
+    canvas.setActiveObject(rect);
     //Refresh log
+    
   },
   addCircle : function(){
     var circle = new fabric.Circle({
@@ -172,60 +79,7 @@ CanvasComposer.Artboard = {
     //Programmatically Select Newly Added Object
     canvas.setActiveObject(text);    
   },
-  addMarquee: function(str){
-    //Always Create Text Object from first string.
-    var i = 0;
-    var text = new fabric.Marquee(str.string[i],{
-      //options
-      left: canvas.getWidth()/2,
-      top: canvas.getHeight()/2,
-      lockScalingX: true,
-      lockScalingY: true,
-      fontSize: '24'
-    })
-    text.setControlsVisibility({
-      bl: false,
-      br: false,
-      mb: false,
-      ml: false,
-      mr: false,
-      mt: false,
-      tl: false,
-      tr: false,
-      mtr: true
-    });
-    text.toObject = (function(toObject) {
-      return function() {
-        return fabric.util.object.extend(toObject.call(this), {
-          link: this.link,
-          marquee: str
-        });
-      };
-    })(text.toObject);
-    canvas.add(text);
-    //Bind
-    bindEvents(text);
-    //Programmatically Select Newly Added Object
-    canvas.setActiveObject(text);
-
-    //Transition
-    setTimeout(function(){marquee(str,i);},str.leastTime*1000);
-
-    function marquee(str, i) {
-      if (i >= str.string.length-1) {
-        i = 0;
-      } else {
-        i++;
-      }
-      text.setText(str.string[i]);
-      canvas.renderAll();
-
-      setTimeout(function(){
-        marquee(str,i);
-      },str.leastTime*1000);
-      
-    }
-  },
+  
   addMedia : function(objImage) {
     //Check if it is an Slide Array
     if (objImage.length > 1) {
@@ -469,118 +323,6 @@ CanvasComposer.Artboard.Multimedia = {
         };
       }
     },
-    slider : function(imageset) {
-        var i=0;
-        var counter;
-        var leastTime;
-        var obj;
-        //First Image
-
-        //POV
-        new fabric.Slider.fromArray(imageset, function(res){
-          var patternSourceCanvas = res.patternSourceCanvas;
-          var pattern = res.pattern;
-          
-          //已建立 slider 物件
-          canvas.add(res);
-          canvas.renderAll();
-          CanvasComposer.History.Update();
-          // Bind
-          bindEvents(res);
-          //Programmatically Select Newly Added Object
-          canvas.setActiveObject(res);
-          res.setCoords();
-          //Refresh log
-          
-          leastTime = res.slides[0].continued*1000;
-          var id = res.id;
-          setTimeout(function(){bgRelacer(i,res,id)}, leastTime);
-          function bgRelacer(i, res, id) {
-            i++;
-            if (i === res.slides.length ) {
-              i=0;
-            }
-            //Next
-            var extension = res.slides[i].src.split('.').pop();
-            if (extension.match(/^(gif|png|jpg|jpeg|tiff|svg)$/)) {
-              new fabric.Image.fromURL(res.slides[i].src, function(img){
-                img.setHeight(patternSourceCanvas.height);
-                img.setWidth(patternSourceCanvas.width);
-                for (var x=0; x<patternSourceCanvas._objects.length; x++) {
-                  // obj = canvas._objects[i];
-                  if (patternSourceCanvas._objects[x]._element !== undefined && patternSourceCanvas._objects[x]._element.localName === 'video') {
-                    patternSourceCanvas._objects[x].getElement().pause();
-                  } else {
-                    console.log( 'error' );
-                  }
-                }
-                patternSourceCanvas.clear();
-                patternSourceCanvas.setBackgroundImage(img);
-                patternSourceCanvas.renderAll();
-                // patternSourceCanvas.renderAll();
-                pattern = new fabric.Pattern({
-                          source: patternSourceCanvas.getElement(),
-                          repeat: 'no-repeat'
-                        });
-
-                res.setFill(pattern);
-                canvas.renderAll();
-              })
-
-              leastTime = res.slides[i].continued*1000;
-              setTimeout(function(){bgRelacer(i,res,id)}, leastTime);
-            } else if (extension.match(/^(mp4|avi|ogg|ogv|webm)$/)) {
-              //Add Single Video
-              var vw, vh;
-              var video = new fabric.Video(res.slides[i].src, {
-                media: {
-                  video: res.slides[i].src
-                }
-              });
-              var videoEl = video.getElement();
-              for (var x=0; x<patternSourceCanvas._objects.length; x++) {
-                // obj = canvas._objects[i];
-                if (patternSourceCanvas._objects[x]._element !== undefined && patternSourceCanvas._objects[x]._element.localName === 'video') {
-                  patternSourceCanvas._objects[x].getElement().pause();
-                } else {
-                  console.log( 'error' );
-                }
-              }
-              patternSourceCanvas.clear();
-              patternSourceCanvas.add(video);
-              console.log(patternSourceCanvas.getContext());
-              patternSourceCanvas.renderAll();
-              // patternSourceCanvas.renderAll();
-              
-              
-              console.log(videoEl);
-              console.log(video);
-              videoEl.onloadeddata = function() {
-                vw = this.videoWidth;
-                vh = this.videoHeight;
-                video.setWidth(patternSourceCanvas.width);
-                video.setHeight(patternSourceCanvas.height);
-                video.center();
-                video.setCoords();
-                canvas.renderAll();
-              };
-              fabric.util.requestAnimFrame(function render() {
-                patternSourceCanvas.renderAll();
-                fabric.util.requestAnimFrame(render);
-              });
-
-              leastTime = res.slides[i].continued*1000;
-              setTimeout(function(){bgRelacer(i,res,id)}, leastTime);
-            } else {
-              console.log('不支援此檔案格式，請重試');
-            }
-            
-          }
-      }, {
-       left: 150,
-       top: 100
-      });
-    },
     
     clock : function(options) {
         var _defaultSettings = {
@@ -664,69 +406,5 @@ CanvasComposer.Artboard.Multimedia = {
                 });
             })
         });
-    },
-    weather: function(location, locationText) {
-      // Use Custom Location Text for localization.
-      $('#loading').fadeIn();
-      Weather.translate(location, function(res){
-        var conditionText = res.conditionText;
-        var conditionImg = res.conditionImg;
-        var temp = res.temp;
-        var city = locationText;
-        var country = res.country;
-        console.log(conditionText);
-        
-        var fImg = new fabric.Image.fromURL( 'images/components/conditions/svg/'+conditionImg, function(oImg) {
-          oImg.scaleToWidth(60);
-          oImg.set({
-            'left': 0,
-            'top': 30
-
-          });
-          
-          var fText = new fabric.Text(conditionText, {
-            left: 70,
-            top: 50,
-            fontSize: '18',
-            fontFamily: 'Open sans'
-          });
-          var fTemp = new fabric.Text(temp, {
-            left: 0,
-            top: 90,
-            fontSize: '60',
-            fontFamily: 'Open sans',
-            fontWeight: 300
-          });
-          var fLocation = new fabric.Text(city, {
-            left: 0,
-            top: 0,
-            fontSize: '18',
-            fontFamily: 'Open sans'
-          });
-          var weather = new fabric.Weather([fText,fTemp,fLocation,oImg], {
-            left: 0,
-            top: 0
-          });
-
-          weather.toObject = (function(toObject) {
-            return function() {
-              return fabric.util.object.extend(toObject.call(this), {
-                location: location,
-                link: this.link
-              });
-            };
-          })(weather.toObject);
-
-          canvas.add(weather);
-          weather.center();
-          weather.setCoords();
-          CanvasComposer.History.Update();
-          //Bind
-          bindEvents(weather);
-          //Programmatically Select Newly Added Object
-          canvas.setActiveObject(weather);
-        });
-      });
-      $('#loading').fadeOut();
     }
 };
