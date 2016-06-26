@@ -6,6 +6,16 @@
  */
 
 module.exports = {
-	
+	public: function(req, res){
+		Works.find({author:'1', public: false}).exec(function (err, data){
+		  if (err) {
+		    return res.negotiate(err);
+		  }
+		  // sails.log('Wow, there are %d users named Finn.  Check it out:', usersNamedFinn.length, usersNamedFinn);
+		  sails.log('Wow, there are %d users named Finn.  Check it out!');
+		  // return res.json(data);
+		  return res.view('worksPublic', {publicworks: data});
+		});
+	}
 };
 

@@ -1,0 +1,17 @@
+extends ./layout
+
+block body
+	//- p #{publicworks}
+	section#works
+		.restrict
+			.work-list
+				ul
+					each work in publicworks
+						li
+							.thumbnail
+								img(src=work.thumbnail)
+							.caption
+								.author=work.author
+								.created=work.createdAt
+								.updated=work.updatedAt
+								.public=work.public
