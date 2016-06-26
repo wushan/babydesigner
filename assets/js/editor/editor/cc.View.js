@@ -11,7 +11,7 @@ CanvasComposer.View = function(){
 	                var loader = $.get(url)
 	                    .success(function (data) {
 	                    // on success, add the template to the targeted DOM element
-	                    console.log(data);
+	                    // console.log(data);
 	                    $(target).append(data);
 	                })
 	                defferArray.push(loader);

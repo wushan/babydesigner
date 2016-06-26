@@ -24,7 +24,8 @@ module.exports = function(grunt) {
       files: ['assets/**/*', 'tasks/pipeline.js', '!**/node_modules/**'],
 
       // When assets are changed:
-      tasks: ['compileAssets', 'syncAssets' , 'linkAssets' ]
+      // tasks: ['compileAssets', 'syncAssets' , 'linkAssets' ]
+      tasks: [ 'syncAssets' , 'linkAssets' ]
     },
     views: {
         files: ['views/**/*', '!views/layout.jade'],

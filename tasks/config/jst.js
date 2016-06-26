@@ -39,6 +39,8 @@ module.exports = function(grunt) {
       files: {
         // e.g.
         // 'relative/path/from/gruntfile/to/compiled/template/destination'  : ['relative/path/to/sourcefiles/**/*.html']
+        
+        // '.tmp/public/jst.js': require('../pipeline').templateFilesToInject
         '.tmp/public/jst.js': '.tmp/public/templates/**/**.html'
       }
     }

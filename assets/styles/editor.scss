@@ -504,7 +504,18 @@ ul {
 		font-size: 1rem;
 	}
 }
-
+#message {
+	position: fixed;
+	top: 50px;
+	right: 50px;
+	color: $white;
+	background-color: rgba($black, .8);
+	border-radius: 6px;
+	display: inline-block;
+	vertical-align: middle;
+	padding: 1em 2em;
+	display: none;
+}
 @import "lib/editor/marquee-settings";
 @import "lib/editor/medialibrary";
 @import "lib/editor/contextMenu";

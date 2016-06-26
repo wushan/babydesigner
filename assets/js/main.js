@@ -9,9 +9,13 @@ io.socket.on('connect', function socketConnected() {
 	console.log('xxx');
 });
 
-	//Authorize
+var user;
+
+//Authorize
 io.socket.get("/post", function (response) {
+	
 	if (response.passport){
+		user = response.passport.user;
 		$('.js-login').hide();
 		$('.js-logout').show();
 	} else {

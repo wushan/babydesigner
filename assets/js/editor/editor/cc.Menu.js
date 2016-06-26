@@ -94,7 +94,26 @@ CanvasComposer.Menu = function(){
       CanvasComposer.Save.toSvg();
     },
     saveJSON: function(event) {
-      CanvasComposer.Save.toObj();
+      var currentCanvas = JSON.stringify(canvas);
+      $.ajax({
+        url: '/works',
+        method: 'POST',
+        data: {author: user, data: currentCanvas, public: true},
+        success: function(){
+          $('#message').html('Saved !');
+          $('#message').fadeIn().promise().done(function(){
+            setTimeout({
+              function(){
+                $('#message').fadeOut();
+              }
+            }, 2000);
+          });
+        }
+      });
+      event.preventDefault();
+      // CanvasComposer.Save.toObj();
+      // CanvasComposer.Interface.save();
+
     }
   };
 
