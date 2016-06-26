@@ -324,4 +324,4 @@ CanvasComposer.Attributions = function(){
     $('#inboundlist .js-close').on('click', function(){
         inboundList.removeClass('active');
       });
-}
+};

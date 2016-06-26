@@ -26,12 +26,6 @@ module.exports = function(grunt) {
       // When assets are changed:
       // tasks: ['compileAssets', 'syncAssets' , 'linkAssets' ]
       tasks: [ 'syncAssets' , 'linkAssets' ]
-    },
-    views: {
-        files: ['views/**/*', '!views/layout.jade'],
-        options: {
-          livereload: 54092
-        }
     }
   });
 

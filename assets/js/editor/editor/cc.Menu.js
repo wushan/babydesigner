@@ -95,24 +95,8 @@ CanvasComposer.Menu = function(){
     },
     saveJSON: function(event) {
       var currentCanvas = JSON.stringify(canvas);
-      $.ajax({
-        url: '/works',
-        method: 'POST',
-        data: {author: user, data: currentCanvas, public: true},
-        success: function(){
-          $('#message').html('Saved !');
-          $('#message').fadeIn().promise().done(function(){
-            setTimeout({
-              function(){
-                $('#message').fadeOut();
-              }
-            }, 2000);
-          });
-        }
-      });
-      event.preventDefault();
-      // CanvasComposer.Save.toObj();
-      // CanvasComposer.Interface.save();
+      
+      CanvasComposer.Interface.save();
 
     }
   };

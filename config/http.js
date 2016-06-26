@@ -50,15 +50,8 @@ module.exports.http = {
     passportInit    : require('passport').initialize(),
     passportSession : require('passport').session(),
 
-    connectLivereload: function (req, res, next) {
-      if (sails.config.environment !== 'production')
-        require('connect-livereload')({
-          port: 54092
-        })(req, res, next);
-      else return next();
-    },
+    
      order: [
-            'connectLivereload',
             'startRequestTimer',
             'cookieParser',
             'session',

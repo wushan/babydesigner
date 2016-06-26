@@ -7,7 +7,8 @@ CanvasComposer.Interface = {
   		url: '/works',
   		method: 'POST',
   		data: {author: user, data: currentCanvas, public: true},
-  		success: function(){
+  		success: function(res){
+        console.log(res);
   			$('#message').html('Saved !');
 	  		$('#message').fadeIn().promise().done(function(){
 	  			setTimeout({
@@ -18,6 +19,5 @@ CanvasComposer.Interface = {
 	  		});
   		}
   	});
-  	
   }
 };

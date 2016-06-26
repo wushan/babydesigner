@@ -51,9 +51,10 @@ module.exports.policies = {
   'PostController': {
     '*': 'isAuthenticated'
   },
-  'UserController': {
-    '*': 'isAuthenticated'
-  },
+  
+  // 'UserController': {
+  //   '*': 'isAuthenticated'
+  // },
   'EditorController': {
     '*': 'isAuthenticated'
   }
