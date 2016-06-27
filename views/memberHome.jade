@@ -1,0 +1,27 @@
+extends ./layout
+
+
+block body
+	.restrict
+		section
+			h1.
+				We should list some private works here. and private is a default setting.
+			#works
+				.restrict
+					.work-list
+						ul
+							each work in privateworks
+								li
+									.thumbnail
+										img(src=work.thumbnail)
+									.caption
+										.author=work.author
+										.created=work.createdAt
+										.updated=work.updatedAt
+										.public=work.public
+		section
+			h1 Who am I ?
+			ul
+				li id: #{me.id}
+				li email: #{me.email}
+				li dateJoin: #{me.createdAt}
