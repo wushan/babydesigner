@@ -6,8 +6,9 @@
  */
 
 module.exports = {
+	
 	public: function(req, res){
-		Works.find({author:'1', public: false}).exec(function (err, data){
+		Works.find({public: false}).exec(function (err, data){
 		  if (err) {
 		    return res.negotiate(err);
 		  }
