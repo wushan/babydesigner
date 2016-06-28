@@ -50,7 +50,10 @@ module.exports.routes = {
     view: 'signup'
   },
 
-  'get /editor': 'EditorController.login'
+  'get /editor': 'EditorController.login',
+
+  //Works
+  'post /works': 'WorksController.CreateorUpdate'
 
   /***************************************************************************
   *                                                                          *

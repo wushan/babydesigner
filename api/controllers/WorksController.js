@@ -17,6 +17,18 @@ module.exports = {
 		  // return res.json(data);
 		  return res.view('worksPublic', {publicworks: data});
 		});
+	},
+	CreateorUpdate: function(req,res) {
+
+		var base64 = req.body.thumbnail;
+		var buf = base64.split(',')[1];
+		//Write to somewhere
+		require("fs").writeFile("buf.png", buf, 'base64', function(err) {
+		  if (err) {
+		  	return consolg.log(err);
+		  }
+		  console.log('file-saved!');
+		});
 	}
 };
 
