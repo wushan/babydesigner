@@ -2,14 +2,16 @@ extends ./layout
 
 
 block body
+
 	script.
 		(function(d) {
 		var wf = d.createElement('script'), s = d.scripts[0];
 		wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
 		s.parentNode.insertBefore(wf, s);
 		})(document);
-	#canvaseditor
-
+	#canvaseditor(data-workid="#{currentArtboard.workID}")
+	p.
+		#{currentArtboard.data}
 block pagescripts
 	script(src="/js/dependencies/sails.io.js")
 	script(src="/js/dependencies/dist/jquery.js")
@@ -38,8 +40,9 @@ block pagescripts
 	script(src="/js/editor/editor/cc.Api.js")
 	script(src="/js/editor/vendor/moments.js")
 	script.
-		var data = {};
-		CanvasComposer.init('new',{
+		//- var data = JSON.stringify(#{currentArtboard.data});
+		console.log(!{JSON.stringify(currentArtboard)});
+		CanvasComposer.init(!{JSON.stringify(currentArtboard.data)},{
 			'width': '300',
 			'height': '300'
 		});
