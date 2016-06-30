@@ -4,7 +4,18 @@
  * @description :: Server-side logic for managing works
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
+var shortid = require('shortid');
+var mkdirp = require('mkdirp');
+var fs = require('fs');
+var getDirName = require('path').dirname;
 
+function writeFile(path, contents, cb) {
+  mkdirp(getDirName(path), function (err) {
+    if (err) return cb(err);
+
+    fs.writeFile(path, contents, cb);
+  });
+}
 module.exports = {
 	
 	public: function(req, res){
@@ -23,9 +34,9 @@ module.exports = {
 		var base64 = req.body.thumbnail;
 		var buf = base64.split(',')[1];
 		//Write to somewhere
-		require("fs").writeFile("buf.png", buf, 'base64', function(err) {
+		writeFile( "/assets/images/user/uploads/" + shortid.generate() + ".png", buf, 'base64', function(err) {
 		  if (err) {
-		  	return consolg.log(err);
+		  	return console.log(err);
 		  }
 		  console.log('file-saved!');
 		});
