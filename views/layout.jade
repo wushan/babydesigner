@@ -58,8 +58,21 @@ html
 				p Copyright 2016 / All rights reserved.
 		<![endif]-->
 		#wrapper
-			header
-			nav
+			block header
+				header
+					.header-inner
+						.navigation-wrapper
+							nav.main-navigation
+								include partials/navigation
+							block hero
+								section#hero-title
+									.container.restrict
+										h1
+											span Compose
+											|  your poster<br>in 
+											span deadly speed.
+											
+										small Don’t bother the real designers, do it your self for not being hate from them.
 			main#main
 				block body
 			footer
@@ -115,4 +128,4 @@ html
 		script(src="/js/main.js")
 		// SCRIPTS END
 		block pagescripts
-			script(src='http://localhost:35729/livereload.js?snipver=1')
+			//- script(src='http://localhost:35729/livereload.js?snipver=1')

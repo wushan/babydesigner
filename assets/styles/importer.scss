@@ -6,7 +6,7 @@
   @import "../../bower_components/breakpoint-sass/stylesheets/breakpoint";
 
   //Normalize
-  @import "normalize";
+  @import "vendor/normalize";
 
   //Susy Global
   @import "lib/susy_global";
@@ -18,7 +18,8 @@
 @import "lib/base";
 
 //This should overide
-@import "temp";
+// @import "temp";
+@import "nav";
 @import "main";
 
 
