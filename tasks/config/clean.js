@@ -13,9 +13,20 @@
 module.exports = function(grunt) {
 
   grunt.config.set('clean', {
-    dev: ['.tmp/public/**'],
-    build: ['www']
-  });
+      dev: [
+        getFolderPath('fonts/**'),
+        getFolderPath('images/**'),
+        getFolderPath('images/**'),
+        getFolderPath('js/**'),
+        getFolderPath('styles/**'),
+        getFolderPath('*.*')
+      ],
+      build: ['www']
+    });
 
   grunt.loadNpmTasks('grunt-contrib-clean');
 };
+
+function getFolderPath(folderName){
+  return '.tmp/public/' + folderName;
+}

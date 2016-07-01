@@ -35,7 +35,8 @@ module.exports = {
 		//Write to somewhere		
 		// console.log(req);
 		//Update the record and write the thumbnail
-		writeFile("assets/images/user/uploads/" + req.body.workID + ".png", buf, 'base64', function(err){
+		var savePath = "preview/" + req.body.workID + ".png";
+		writeFile(".tmp/public/preview/" + req.body.workID + ".png", buf, 'base64', function(err){
 		  if(err) {
 		    throw err;
 		  } else {
@@ -51,12 +52,12 @@ module.exports = {
 			// });
 		  }
 		});
-		Works.update({author: req.user.id, workID: req.body.workID },{data: req.body.data}).exec(function afterwards(err, updated){
+
+		Works.update({author: req.user.id, workID: req.body.workID },{data: req.body.data, thumbnail: savePath}).exec(function afterwards(err, updated){
 		  if (err) {
 		    // handle error here- e.g. `res.serverError(err);`
 		    return;
 		  }
-		  sails.log(updated);
 		  //////
 		});
 	}

@@ -6,7 +6,16 @@
  */
 
 module.exports = {
-	home: function(req,res){
+	redirectUser: function(req,res) {
+		if (req.isAuthenticated()) {
+			sails.log(req.user);
+			return res.redirect('/user/'+req.user.username);
+		} else {
+			return res.redirect('/login');
+		}
+	},
+	getUserHome: function(req,res){
+		sails.log('username: ' + req.param('username'));
 		if (req.isAuthenticated()) {
 			//Find Personal Works
 			Works.find({public: false}).exec(function (err, data){

@@ -13,13 +13,15 @@ block body
 							each work in privateworks
 								li
 									.thumbnail
-										img(src=work.thumbnail)
+										img(src='/' + work.thumbnail)
+										p=work.thumbnail
 									.caption
 										.author=work.author
 										.created=work.createdAt
 										.updated=work.updatedAt
 										.public=work.public
 										.workid=work.workID
+										.data=work.data
 		section
 			h1 Who am I ?
 			ul

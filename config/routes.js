@@ -36,7 +36,8 @@ module.exports.routes = {
     view: 'homepage'
   },
   //USer
-  'get /user': 'UserController.home',
+  'get /user': 'UserController.redirectUser',
+  'get /user/:username': 'UserController.getUserHome',
 
   'get /login': {
        view: 'login'
@@ -49,8 +50,8 @@ module.exports.routes = {
   'get /signup': {
     view: 'signup'
   },
-
-  'get /editor': 'EditorController.editor',
+  'get /editor': 'EditorController.createWork',
+  'get /editor/:workid': 'EditorController.getWork',
 
   //Works
   'post /works': 'WorksController.CreateorUpdate'

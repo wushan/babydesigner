@@ -10,8 +10,7 @@ block body
 		s.parentNode.insertBefore(wf, s);
 		})(document);
 	#canvaseditor(data-workid="#{currentArtboard.workID}")
-	p.
-		#{currentArtboard.data}
+
 block pagescripts
 	script(src="/js/dependencies/sails.io.js")
 	script(src="/js/dependencies/dist/jquery.js")
@@ -40,9 +39,12 @@ block pagescripts
 	script(src="/js/editor/editor/cc.Api.js")
 	script(src="/js/editor/vendor/moments.js")
 	script.
-		//- var data = JSON.stringify(#{currentArtboard.data});
-		console.log(!{JSON.stringify(currentArtboard)});
-		CanvasComposer.init(!{JSON.stringify(currentArtboard.data)},{
-			'width': '300',
-			'height': '300'
+		var data = {
+			workData: !{currentArtboard.data}
+		};
+		console.log(data.workData);
+		console.log(#{currentArtboard.workSize[0]});
+		CanvasComposer.init(data.workData,{
+			'width': '#{currentArtboard.workSize[0]}',
+			'height': '#{currentArtboard.workSize[1]}'
 		});

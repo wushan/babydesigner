@@ -13,37 +13,35 @@ module.exports = {
         shortcuts: false,
         rest: false
     },
-    editor: function(req, res) {
+    createWork: function( req, res ) {
+        if (req.isAuthenticated()) {
+            var newWorkID = shortid.generate();
+            //Create New
+            Works.create({author: req.user.id, data: '{"objects":[],"background":""}', public: false, workID: newWorkID, workSize: [500,500]}).exec(function createCB(err, created){
+                
+                // return res.view('editor', {currentArtboard: created});
+                return res.redirect('/editor/' + newWorkID);
+            });
+        }
+    },
+    getWork: function(req, res) {
         if (req.isAuthenticated()) {
             //Create a blank work with shortID
-            var queryID = req._parsedOriginalUrl.query;
-            console.log(queryID);
-            if (queryID === null) {
-                //Create New
-                Works.create({author: req.user.id, data: {"objects":[],"background":""}, public: false, workID: shortid.generate()}).exec(function createCB(err, created){
-                    sails.log('create new work');
-                    sails.log(created);
-                    return res.view('editor', {currentArtboard: created});
-                });
-
-                
-            } else {
-                sails.log(queryID);
-                sails.log(req.user);
-                //Find If User had permission to edit this work
-                Works.find({author: req.user.id, workID: queryID}).exec(function (err, workfound){
-                  if (err) {
-                    return res.negotiate(err);
-                  }
-                  sails.log('record found !');
-                  
-                  if ( workfound.length < 1 ) {
-                    return res.forbidden();
-                  } else {
-                    return res.view('editor', {currentArtboard: workfound[0]});
-                  }
-                });
-            }
+            // var queryID = req._parsedOriginalUrl.query;
+            var queryID = req.param('workid');
+            //Find If User had permission to edit this work
+            Works.find({author: req.user.id, workID: queryID}).exec(function (err, workfound){
+              if (err) {
+                return res.negotiate(err);
+              }
+              sails.log('Search finished');
+              
+              if ( workfound.length < 1 ) {
+                return res.forbidden();
+              } else {
+                return res.view('editor', {currentArtboard: workfound[0]});
+              }
+            });
         	
             // return res.view('editor');
         }
