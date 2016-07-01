@@ -17,7 +17,7 @@ module.exports = {
         if (req.isAuthenticated()) {
             var newWorkID = shortid.generate();
             //Create New
-            Works.create({author: req.user.id, data: '{"objects":[],"background":""}', public: false, workID: newWorkID, workSize: [500,500]}).exec(function createCB(err, created){
+            Works.create({author: req.user.id, data: '{"objects":[],"background":""}', public: true, workID: newWorkID, workSize: [500,500]}).exec(function createCB(err, created){
                 
                 // return res.view('editor', {currentArtboard: created});
                 return res.redirect('/editor/' + newWorkID);

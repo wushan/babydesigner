@@ -1,6 +1,8 @@
 //Some ajax get
 $(document).ready(function(){
-  
+  $('.user-dropdown > a').on('click', function(){
+  	$(this).toggleClass('active');
+  })
 });
 
 //Socket
@@ -12,17 +14,17 @@ io.socket.on('connect', function socketConnected() {
 var user;
 
 //Authorize
-io.socket.get("/post", function (response) {
+// io.socket.get("/post", function (response) {
 	
-	if (response.passport){
-		user = response.passport.user;
-		$('.js-login').hide();
-		$('.js-logout').show();
-	} else {
-		$('.js-login').show();
-		$('.js-logout').hide();
-	}
-});
+// 	if (response.passport){
+// 		user = response.passport.user;
+// 		$('.js-login').hide();
+// 		$('.js-logout').show();
+// 	} else {
+// 		$('.js-login').show();
+// 		$('.js-logout').hide();
+// 	}
+// });
 
 // socket = io.connect();
 

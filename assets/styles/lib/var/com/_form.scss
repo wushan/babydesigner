@@ -8,38 +8,10 @@
     text-align: center;
     display: block;
   }
-  .controls {
-    &.richcontrol {
-      @extend .clr;
-      a {
-        display: block;
-        float: right;
-        color: $white;
-        i {
-           margin: 2px 0;
-        }
-      }
-      input {
-        float: left;
-        width: calc( 100% - 40px );
-      }
-    }
-    &.small {
-      width: 50%;
-      margin: 0 auto;
-    }
-    .status {
-      display: inline-block;
-      vertical-align: middle;
-    }
-    .vertify {
-      display: inline-block;
-      vertical-align: middle;
-      img {
-        display: block;
-      }
-    }
+  input {
+    margin-bottom: .3em;
   }
+  
 }
 textarea {
   width: 100%;
@@ -60,11 +32,11 @@ input,input[type=search] {
   width: 100%;
   border: 1px solid $gray;
   box-sizing: border-box;
-  height: 30px;
+  height: 44px;
   background-color: $white;
-  padding: 0 .4em;
+  padding: 0 1em;
   outline: none;
-  border-radius: 3px;
+  border-radius: 6px;
   &:focus {
     border: 1px solid $gray;
     background-color: $smokygray;

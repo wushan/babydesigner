@@ -1,0 +1,26 @@
+@include susy-breakpoint(1024px) {
+	//Navigator
+	nav {
+		ul {
+
+			li {
+				a {
+					
+				}
+			}
+		}
+		&.main-navigation {
+
+			ul {
+
+				li {
+
+					margin-right: 2.5em;
+					a {
+
+					}
+				}
+			}
+		}
+	}
+}

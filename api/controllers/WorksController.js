@@ -17,17 +17,22 @@ function writeFile(path, contents, cb) {
   });
 }
 module.exports = {
-	
 	public: function(req, res){
 		Works.find({public: true}).exec(function (err, data){
 		  if (err) {
 		    return res.negotiate(err);
 		  }
-		  // sails.log('Wow, there are %d users named Finn.  Check it out:', usersNamedFinn.length, usersNamedFinn);
-		  sails.log('Wow, there are %d users named Finn.  Check it out!');
-		  // return res.json(data);
-		  return res.view('worksPublic', {publicworks: data});
+		  if (req.isAuthenticated()) {
+		  	authorized = true;
+		  	return res.view('worksPublic', {publicworks: data, authorized: authorized});
+		  } else {
+		  	authorized = false;
+		  	return res.view('worksPublic', {publicworks: data, authorized: authorized});
+		  }
 		});
+	},
+	redirectToPublic: function(req, res) {
+		return res.redirect('/works/public');
 	},
 	CreateorUpdate: function(req,res) {
 		var base64 = req.body.thumbnail;

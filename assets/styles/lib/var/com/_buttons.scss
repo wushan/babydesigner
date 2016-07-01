@@ -1,0 +1,47 @@
+//Buttons
+button {
+  outline: none;
+  border: 0;
+  background-color: transparent;
+}
+.btn {
+  height: 44px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  padding: .6em 1.2em;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.6;
+  //
+  & + .btn {
+    margin-left: .5em;
+  }
+  &.basic {
+    
+  }
+  &.bordered {
+    border: 1px solid $white;
+    color: $white;
+    &:hover {
+      background-color: $white;
+      color: $black;
+    }
+  }
+  &.full {
+    width: 100%;
+    display: block;
+  }
+  //Conditional
+  &.confirmation {
+    background-color: $confirmation;
+    color: $confirmation-text;
+    &:hover {
+      background-color: darken($confirmation, 30%);
+      color: $white;
+    }
+  }
+}
+
+.call-action {
+  margin: 2em 0;
+}

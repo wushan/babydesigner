@@ -32,9 +32,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  },
+  '/': 'HomeController.getHome',
   //USer
   'get /user': 'UserController.redirectUser',
   'get /user/:username': 'UserController.getUserHome',
@@ -54,7 +52,9 @@ module.exports.routes = {
   'get /editor/:workid': 'EditorController.getWork',
 
   //Works
-  'post /works': 'WorksController.CreateorUpdate'
+  'post /works': 'WorksController.CreateorUpdate',
+  
+  'get /works': 'WorksController.redirectToPublic'
 
   /***************************************************************************
   *                                                                          *

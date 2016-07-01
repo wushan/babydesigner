@@ -1,0 +1,40 @@
+@include susy-breakpoint(768px) {
+	//Header
+	.header-inner {
+		.navigation-wrapper {
+			#brand {
+				@include span(3 of 12);
+				img {
+					margin: 17px 0;
+				}
+			}
+			.main-navigation {
+				@include span(6 of 12);
+			}
+			.navigation-buttons {
+				text-align: right;
+				@include span(3 of 12 last);
+				line-height: 80px;
+			}
+		}
+	}
+	//Hero Contents
+	#heroContent {
+		
+		h1 {
+			span {
+			}
+			& + small {
+				
+			}
+		}
+		.signin-form {
+			input {
+				@include span(4 of 12);
+			}
+			button {
+				@include span(4 of 12 last);
+			}
+		}
+	}
+}

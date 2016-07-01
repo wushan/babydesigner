@@ -62,17 +62,12 @@ html
 				header
 					.header-inner
 						.navigation-wrapper
-							nav.main-navigation
-								include partials/navigation
-							block hero
-								section#hero-title
-									.container.restrict
-										h1
-											span Compose
-											|  your poster<br>in 
-											span deadly speed.
-											
-										small Don’t bother the real designers, do it your self for not being hate from them.
+							include partials/navigation
+							
+						section#heroContent
+							.heroContent-inner.container.restrict
+								block hero
+							
 			main#main
 				block body
 			footer

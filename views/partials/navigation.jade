@@ -1,9 +1,28 @@
-ul
-	li
-		a(href='/works/public') Showroom
-	li
-		a(href='/editor') Make
-	li
-		a(href='/resources') Resources
-	li
-		a(href='/company') Company
+#brand
+	a(href='/')
+		img(src='/images/components/posterbay.svg')
+nav.main-navigation
+	ul
+		li
+			a(href='/works/public') SHOWROOM
+		li
+			a(href='/editor') MAKE
+		li
+			a(href='/resources') RESOURCES
+
+.navigation-buttons
+	
+	if authorized
+		.user-dropdown
+			a(href='javascript:;')
+				img(src='http://unsplash.it/40x40')
+				.name Andy Bugs
+			ul
+				li
+					a(href='/user') Profile
+				li
+					a(href='/logout') Logout
+		
+	else
+		a.btn.bordered.js-login(href='/login') Login
+		a.btn.bordered(href='/signup') Signup

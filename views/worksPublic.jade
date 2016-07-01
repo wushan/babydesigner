@@ -1,7 +1,6 @@
 extends ./layout
 block hero
-	p.
-		xxx
+	h1 Showroom
 block body
 	//- p #{publicworks}
 	section#works
@@ -11,9 +10,11 @@ block body
 					each work in publicworks
 						li
 							.thumbnail
-								img(src=work.thumbnail)
+								img(src='/' + work.thumbnail)
 							.caption
 								.author=work.author
 								.created=work.createdAt
 								.updated=work.updatedAt
 								.public=work.public
+								.workid=work.workID
+								// .data=work.data
