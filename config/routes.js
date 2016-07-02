@@ -37,9 +37,7 @@ module.exports.routes = {
   'get /user': 'UserController.redirectUser',
   'get /user/:username': 'UserController.getUserHome',
 
-  'get /login': {
-       view: 'login'
-  },
+  'get /login': 'AuthController.auth',
 
   'post /login': 'AuthController.login',
 

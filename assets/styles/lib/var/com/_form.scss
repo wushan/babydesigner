@@ -113,6 +113,16 @@ input,input[type=search] {
     }
   }
 }
+
+//Form
+form {
+  .form-tips {
+    text-align: center;
+    font-size: .9em;
+    color: $darkgray;
+    padding: 1em 0 0 0;
+  }
+}
 //Placehoder
 ::-webkit-input-placeholder { /* WebKit browsers */ color: $gray; }
 

@@ -1,3 +1,22 @@
+//main cibtebt
+main {
+	.main-inner {
+		padding-top: 4em;
+	}
+}
+
+//Login PAge
+.loggin-wrapper {
+	.loggin-inner {
+		position: relative;
+		top: -6em;
+		background-color: $white;
+		border-radius: 6px;
+		padding: 1em;
+		box-shadow: 0 1px 3px rgba($black, .33);
+	}
+}
+
 #works {
 	.work-list {
 		ul {
@@ -11,6 +30,19 @@
 					border: 1px solid $gray;
 				}
 			}
+		}
+	}
+}
+
+footer {
+	.footer-inner {
+		padding: 1em;
+		text-align: center;
+		color: $darkgray;
+		border-top: 1px solid $lightgray;
+		.copyrights {
+			font-size: .9em;
+			margin-top: 1em;
 		}
 	}
 }

@@ -5,7 +5,7 @@ header.home {
 	}
 }
 .header-inner {
-	min-height: 30vh;
+	min-height: 10vh;
 	background: #F7F7F7;
 	background-image: linear-gradient(-134deg, #256BDC 0%, #6DD79F 100%);
 	box-sizing: border-box;
@@ -95,6 +95,7 @@ header.home {
 		//Super
 		font-size: 4em;
 		line-height: 1.2;
+		margin-top: 0;
 		span {
 			font-weight: 700;
 		}
@@ -102,6 +103,9 @@ header.home {
 			font-size: 1em;
 			color: rgba($white, .5);
 		}
+	}
+	a {
+		color: $white;
 	}
 	.signin-form {
 		margin-top: 2em;
@@ -136,6 +140,22 @@ nav {
 					&:hover {
 						color: $white;
 					}
+				}
+			}
+		}
+	}
+	&.footer-navigation {
+		ul {
+			li {
+				display: inline-block;
+				vertical-align: middle;
+				margin-right: 2em;
+				&:last-child {
+					margin-right: 0;
+				}
+				a {
+					color: $black;
+					display: block;
 				}
 			}
 		}

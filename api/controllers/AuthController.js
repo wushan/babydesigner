@@ -14,6 +14,15 @@ module.exports = {
         shortcuts: false,
         rest: false
     },
+    auth: function(req,res) {
+        if (req.isAuthenticated()) {
+            authorized = true;
+            return res.view('login', {authorized: authorized});
+        } else {
+            authorized = false;
+            return res.view('login', {authorized: authorized});
+        }
+    },
     login: function(req, res) {
         passport.authenticate('local', function(err, user, info) {
             if ((err) || (!user)) {
@@ -30,7 +39,6 @@ module.exports = {
                 //     message: info.message,
                 //     user: user
                 // });
-
             });
 
         })(req, res);

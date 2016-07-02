@@ -57,7 +57,12 @@ module.exports.connections = {
   *                                                                          *
   ***************************************************************************/
   someMongodbServer: {
-    
+    adapter: 'sails-mongo',
+    host: 'ds011775.mlab.com',
+    port: 11775,
+    user: 'wushan', //optional
+    password: '121214', //optional
+    database: 'babydesigner' //optional
   },
 
   /***************************************************************************
