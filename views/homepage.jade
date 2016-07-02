@@ -12,10 +12,10 @@ block hero
 		.call-action
 			a.btn.confirmation(href='/works/public') Let's see what others have done.
 	else
-		form.signin-form(action='/signup')
+		form.signin-form(method='POST', action='/user')
 			.controlgroup
-				input(type='email', placeholder='E-mail Address')
-				input(type='password', placeholder='Custom Password')
+				input(name='email', type='email', placeholder='E-mail Address')
+				input(name='password', type='password', placeholder='Custom Password')
 				button.btn.full.confirmation(type='submit') SIGN UP
 block body
 	section

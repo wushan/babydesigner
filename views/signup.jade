@@ -3,7 +3,7 @@ extends ./layout
 block body
 	.restrict
 		h1 Signup Form
-		form(method="POST" action="/user")
+		form.signin-form(method="POST" action="/user")
 			.controlgroup
 				label Email
 				.controls
@@ -18,3 +18,4 @@ block body
 					input(type="password" name="password")
 
 			button.btn.basic(type="submit") submit
+		

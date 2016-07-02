@@ -4,7 +4,7 @@
  * @description :: Server-side logic for managing users
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
-
+var passport = require('passport');
 module.exports = {
 	redirectUser: function(req,res) {
 		if (req.isAuthenticated()) {
@@ -14,8 +14,33 @@ module.exports = {
 			return res.redirect('/login');
 		}
 	},
+	createUser: function(req,res) {
+		sails.log(req.body);
+
+		User.create(req.body).exec(function createCB(err, created){
+            //Automatic Login After Registered
+            passport.authenticate('local', function(err, user, info) {
+	            sails.log(user);
+	            if ((err) || (!user)) {
+	                return res.send({
+	                    message: info.message,
+	                    user: user
+	                });
+	            }
+	            req.logIn(user, function(err) {
+	                if (err) res.send(err);
+	                //Redirect to Home
+	                return res.redirect('/');
+	                // return res.send({
+	                //     message: info.message,
+	                //     user: user
+	                // });
+	            });
+
+	        })(req, res);
+        });
+	},
 	getUserHome: function(req,res){
-		sails.log('username: ' + req.param('username'));
 		if (req.isAuthenticated()) {
 			//Find Personal Works
 			Works.find({public: false}).exec(function (err, data){

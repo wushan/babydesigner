@@ -7,7 +7,6 @@
 
 module.exports = {
 	getHome: function(req,res) {
-		sails.log(req);
 		var authorized;
 		if (req.isAuthenticated()) {
 			//If Logged In

@@ -33,7 +33,8 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': 'HomeController.getHome',
-  //USer
+  //User
+  'post /user': 'UserController.createUser',
   'get /user': 'UserController.redirectUser',
   'get /user/:username': 'UserController.getUserHome',
 
@@ -46,6 +47,7 @@ module.exports.routes = {
   'get /signup': {
     view: 'signup'
   },
+
   'get /editor': 'EditorController.createWork',
   'get /editor/:workid': 'EditorController.getWork',
 
