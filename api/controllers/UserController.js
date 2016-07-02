@@ -43,7 +43,7 @@ module.exports = {
 	getUserHome: function(req,res){
 		if (req.isAuthenticated()) {
 			//Find Personal Works
-			Works.find({public: false}).exec(function (err, data){
+			Works.find({author: req.user.id }).exec(function (err, data){
 				if (err) {
 				    // return res.negotiate(err);
 				    return res.view('memberHome', {

@@ -1,21 +1,18 @@
 extends ./layout
-
+block hero
+	h1 Sign Up
+	small enter your E-mail, Username and set a password.
 block body
-	.restrict
-		h1 Signup Form
-		form.signin-form(method="POST" action="/user")
-			.controlgroup
-				label Email
-				.controls
-					input(type="email" name="email")
-			.controlgroup
-				label Username
-				.controls
-					input(type="text" name="username")
-			.controlgroup
-				label Password
-				.controls
-					input(type="password" name="password")
+	section.loggin-wrapper
+		.loggin-inner.restrict-tiny
+			form.signin-form(method="POST" action="/user")
+				.controlgroup
+					input(type="email" name="email", placeholder="E-mail")
+				.controlgroup
+					input(type="text" name="username", placeholder="Username")
+				.controlgroup
+					input(type="password" name="password", placeholder="Custom password")
 
-			button.btn.basic(type="submit") submit
-		
+				.call-action
+					button.btn.full.confirmation(type="submit") Sign Up
+			

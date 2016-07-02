@@ -17,7 +17,7 @@ module.exports = {
     auth: function(req,res) {
         if (req.isAuthenticated()) {
             authorized = true;
-            return res.view('login', {authorized: authorized});
+            return res.redirect('/user');
         } else {
             authorized = false;
             return res.view('login', {authorized: authorized});
