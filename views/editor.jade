@@ -41,9 +41,11 @@ block pagescripts
 		var data = {
 			workData: !{currentArtboard.data}
 		};
+		var worksizeArray = '#{currentArtboard.worksize}';
+		var worksize = worksizeArray.split(',');
+
 		console.log(data.workData);
-		console.log(#{currentArtboard.workSize[0]});
 		CanvasComposer.init(data.workData,{
-			'width': '#{currentArtboard.workSize[0]}',
-			'height': '#{currentArtboard.workSize[1]}'
+			'width': 'worksize[0]',
+			'height': 'worksize[1]'
 		});

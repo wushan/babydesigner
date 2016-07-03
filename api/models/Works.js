@@ -8,7 +8,37 @@
 module.exports = {
 
   attributes: {
-
+  	//Asscociate to User
+  	author: {
+  		model: 'user'
+  	},
+  	thumbnail: {
+  		type: 'string'
+  	},
+  	data: {
+  		type: 'string',
+        required: true
+  	},
+  	tags: {
+  		type: 'array'
+  	},
+  	public: {
+  		type: 'boolean',
+  		required: true,
+  		defaultsTo: true
+  	},
+  	workid: {
+  		type: 'string',
+  		required: true,
+  		unique: true
+  	},
+  	worksize: {
+  		type: 'array',
+  		defaultsTo: [640,480]
+  	},
+  	likes: {
+  		type: 'number'
+  	}
   }
 };
 
