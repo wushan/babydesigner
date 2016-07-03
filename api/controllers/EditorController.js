@@ -7,18 +7,14 @@
 var passport = require('passport');
 var shortid = require('shortid');
 module.exports = {
-
-	_config: {
-        actions: false,
-        shortcuts: false,
-        rest: false
-    },
     createWork: function( req, res ) {
         if (req.isAuthenticated()) {
             var newWorkID = shortid.generate();
             //Create New
-            Works.create({author: req.user.id, data: '{"objects":[],"background":""}', public: true, workID: newWorkID, workSize: [500,500]}).exec(function createCB(err, created){
-                
+            Works.create({author: req.user.id, data: '{"objects":[],"background":""}', workid: newWorkID, public: true}).exec(function createCB(err, created){
+                if (err) {
+                    return res.negotiate(err);
+                }
                 // return res.view('editor', {currentArtboard: created});
                 return res.redirect('/editor/' + newWorkID);
             });
@@ -29,8 +25,9 @@ module.exports = {
             //Create a blank work with shortID
             // var queryID = req._parsedOriginalUrl.query;
             var queryID = req.param('workid');
+            
             //Find If User had permission to edit this work
-            Works.find({author: req.user.id, workID: queryID}).exec(function (err, workfound){
+            Works.find({author: req.user.id, workid: queryID}).exec(function (err, workfound){
               if (err) {
                 return res.negotiate(err);
               }
@@ -39,7 +36,7 @@ module.exports = {
               if ( workfound.length < 1 ) {
                 return res.forbidden();
               } else {
-                return res.view('editor', {currentArtboard: workfound[0]});
+                return res.view('editor', {user: req.user, currentArtboard: workfound[0]});
               }
             });
         	

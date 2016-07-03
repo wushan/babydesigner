@@ -11,7 +11,7 @@ module.exports = {
 		if (req.isAuthenticated()) {
 			//If Logged In
 			authorized = true;
-			return res.view('homepage', {authorized: authorized});
+			return res.view('homepage', {authorized: authorized, user: req.user});
 		} else {
 			//If Not Logged In
 			authorized = false;

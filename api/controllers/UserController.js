@@ -15,9 +15,12 @@ module.exports = {
 		}
 	},
 	createUser: function(req,res) {
-		sails.log(req.body);
+		var userData = req.body;
 
-		User.create(req.body).exec(function createCB(err, created){
+		//Use Email Account name as a Default username
+		userData.username = req.body.email.split("@")[0];
+
+		User.create(userData).exec(function createCB(err, created){
             //Automatic Login After Registered
             passport.authenticate('local', function(err, user, info) {
 	            sails.log(user);
@@ -54,7 +57,7 @@ module.exports = {
 				// sails.log('Wow, there are %d users named Finn.  Check it out!');
 				// return res.json(data);
 				return res.view('memberHome', {
-					me: req.user,
+					user: req.user,
 					privateworks: data
 				});
 			  // return res.view('worksPublic', {publicworks: data});
