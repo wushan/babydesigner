@@ -8,7 +8,7 @@ block body
 		wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
 		s.parentNode.insertBefore(wf, s);
 		})(document);
-	#canvaseditor(data-workid="#{currentArtboard.workID}")
+	#canvaseditor(data-workid="#{currentArtboard.workid}")
 
 block pagescripts
 	script(src="/js/dependencies/sails.io.js")
@@ -38,14 +38,17 @@ block pagescripts
 	script(src="/js/editor/editor/cc.Api.js")
 	script(src="/js/editor/vendor/moments.js")
 	script.
+		console.log('#{currentArtboard.data}');
 		var data = {
-			workData: !{currentArtboard.data}
+			workData: !{JSON.stringify(currentArtboard.data)}
+
 		};
 		var worksizeArray = '#{currentArtboard.worksize}';
 		var worksize = worksizeArray.split(',');
-
+		console.log(typeof worksize[0]);
+		console.log(worksize[1]);
 		console.log(data.workData);
 		CanvasComposer.init(data.workData,{
-			'width': 'worksize[0]',
-			'height': 'worksize[1]'
+			'width': worksize[0],
+			'height': worksize[1]
 		});

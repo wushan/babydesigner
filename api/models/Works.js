@@ -16,7 +16,7 @@ module.exports = {
   		type: 'string'
   	},
   	data: {
-  		type: 'string',
+  		type: 'json',
         required: true
   	},
   	tags: {

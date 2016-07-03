@@ -24,10 +24,10 @@ module.exports = {
 		  }
 		  if (req.isAuthenticated()) {
 		  	authorized = true;
-		  	return res.view('worksPublic', {publicworks: data, authorized: authorized});
+		  	return res.view('worksPublic', {user: req.user, publicworks: data, authorized: authorized});
 		  } else {
 		  	authorized = false;
-		  	return res.view('worksPublic', {publicworks: data, authorized: authorized});
+		  	return res.view('worksPublic', {user: req.user, publicworks: data, authorized: authorized});
 		  }
 		});
 	},
@@ -37,11 +37,10 @@ module.exports = {
 	CreateorUpdate: function(req,res) {
 		var base64 = req.body.thumbnail;
 		var buf = base64.split(',')[1];
-		//Write to somewhere		
-		// console.log(req);
+		//Write to somewhere
 		//Update the record and write the thumbnail
-		var savePath = "preview/" + req.body.workID + ".png";
-		writeFile(".tmp/public/preview/" + req.body.workID + ".png", buf, 'base64', function(err){
+		var savePath = "preview/" + req.body.workid + ".png";
+		writeFile(".tmp/public/preview/" + req.body.workid + ".png", buf, 'base64', function(err){
 		  if(err) {
 		    throw err;
 		  } else {
@@ -58,7 +57,7 @@ module.exports = {
 		  }
 		});
 
-		Works.update({author: req.user.id, workID: req.body.workID },{data: req.body.data, thumbnail: savePath}).exec(function afterwards(err, updated){
+		Works.update({author: req.user.id, workid: req.body.workid },{data: req.body.data, thumbnail: savePath}).exec(function afterwards(err, updated){
 		  if (err) {
 		    // handle error here- e.g. `res.serverError(err);`
 		    return;
