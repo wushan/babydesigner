@@ -10,11 +10,12 @@ block body
 					each work in publicworks
 						li
 							.thumbnail
-								img(src='/' + work.thumbnail)
+								a(href='/editor/' + work.workid)
+									img(src='/' + work.thumbnail)
 							.caption
-								.author=work.author
+								.author=work.author.username
 								.created=work.createdAt
 								.updated=work.updatedAt
 								.public=work.public
-								.workid=work.workID
+								.workid=work.workid
 								// .data=work.data

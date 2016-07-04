@@ -25,7 +25,7 @@ module.exports = {
   	public: {
   		type: 'boolean',
   		required: true,
-  		defaultsTo: true
+  		defaultsTo: false
   	},
   	workid: {
   		type: 'string',

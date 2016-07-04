@@ -13,15 +13,17 @@ h1,h2,h3,h4,h5 {
 
 //Deal with FOUT
 
-.wf-loading {
-	h1,h2,h3,h4,h5, p, a, span, small, div {
-		opacity: 0;
-	}
+h1,h2,h3,h4,h5, p, a, span, small {
+	opacity: 0;
+	// filter: blur(6px);
+	// -webkit-filter: blur(6px);
 }
 .wf-active {
-	h1,h2,h3,h4,h5,p,a,span, small, div {
+	h1,h2,h3,h4,h5,p,a,span, small {
 		@extend .transition;
 		opacity: 1;
+		// filter: blur(0px);
+		// -webkit-filter: blur(0px);
 	}
 }
 

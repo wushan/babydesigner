@@ -4,22 +4,24 @@ extends ./layout
 block body
 	.restrict
 		section
-			h1.
-				We should list some private works here. and private is a default setting.
-			#works
-				.restrict
+			.restrict
+				if privateworks.length < 1
+					.centered
+						h1 You don't have any works in the box. Make one right now.
+						.call-action
+							a.btn.confirmation(href='/editor/') CREATE
+				else
 					.work-list
 						ul
 							each work in privateworks
 								li
 									.thumbnail
-										img(src='/' + work.thumbnail)
-										p=work.thumbnail
+										a(href='/editor/' + work.workid)
+											img(src='/' + work.thumbnail)
 									.caption
 										.author=work.author
 										.created=work.createdAt
 										.updated=work.updatedAt
 										.public=work.public
-										.workid=work.workID
-										.data=work.data
-		
+										.workid=work.workid
+			
