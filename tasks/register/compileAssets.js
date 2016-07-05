@@ -17,9 +17,8 @@ module.exports = function(grunt) {
     'bower:dev',
     'jade:dev',
     'jst:dev',
-    'less:dev',
     'sass:dev',
-    'postcss:dev',
+    'postcss',
     'copy:dev',
     'coffee:dev'
   ]);
