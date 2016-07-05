@@ -50,6 +50,22 @@ var user;
 //   });
 //   socket.get("/foo", function (response) { console.log(response); });
 // });
+
+
+//SVG Fallback by Modernizr
+// if (!Modernizr.svg) {
+//     var imgs = document.getElementsByTagName('img');
+//     var svgExtension = /.*\.svg$/
+//     var l = imgs.length;
+//     for(var i = 0; i < l; i++) {
+//         if(imgs[i].src.match(svgExtension)) {
+//             imgs[i].src = imgs[i].src.slice(0, -3) + 'png';
+//             console.log(imgs[i].src);
+//         }
+//     }
+// }
+
+
 //TypeKit
 (function(d) {
     var config = {

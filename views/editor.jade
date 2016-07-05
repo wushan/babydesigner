@@ -1,6 +1,6 @@
 extends ./layout
 
-//- block header
+block header
 block body
 	script.
 		(function(d) {
@@ -11,10 +11,6 @@ block body
 	#canvaseditor(data-workid="#{currentArtboard.workid}")
 
 block pagescripts
-	script(src="/js/dependencies/sails.io.js")
-	script(src="/js/dependencies/dist/jquery.js")
-	script(src="/js/dependencies/underscore.js")
-	script(src="/js/dependencies/backbone.js")
 	script(src="/js/editor/vendor/fabric.js")
 	script(src="/js/editor/editor/extensions/cc.Extensions.js")
 	script(src="/js/editor/CanvasComposer.js")

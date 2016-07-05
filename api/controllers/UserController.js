@@ -46,7 +46,7 @@ module.exports = {
 	getUserHome: function(req,res){
 		if (req.isAuthenticated()) {
 			//Find Personal Works
-			Works.find({author: req.user.id }).exec(function (err, data){
+			Works.find({author: req.user.id }).populate('author').exec(function (err, data){
 				if (err) {
 				    // return res.negotiate(err);
 				    return res.view('memberHome', {
@@ -56,6 +56,7 @@ module.exports = {
 				// sails.log('Wow, there are %d users named Finn.  Check it out:', usersNamedFinn.length, usersNamedFinn);
 				// sails.log('Wow, there are %d users named Finn.  Check it out!');
 				// return res.json(data);
+				sails.log(data);
 				return res.view('memberHome', {
 					user: req.user,
 					privateworks: data

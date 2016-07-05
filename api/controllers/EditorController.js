@@ -25,7 +25,7 @@ module.exports = {
             //Create a blank work with shortID
             // var queryID = req._parsedOriginalUrl.query;
             var queryID = req.param('workid');
-            
+            var authorized = true;
             // Query rule
             // is public -> copy
             // is mine -> load
@@ -67,7 +67,7 @@ module.exports = {
                 });
                 // return res.forbidden();
               } else {
-                return res.view('editor', {user: req.user, currentArtboard: workfound[0]});
+                return res.view('editor', {user: req.user, currentArtboard: workfound[0], authorized: authorized} );
               }
             });
         	

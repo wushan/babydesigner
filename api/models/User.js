@@ -19,6 +19,11 @@ module.exports = {
             minLength: 6,
             required: true
         },
+        //PermissonGroup
+        group: {
+            type: 'string',
+            defaultsTo: 'default'
+        },
         //Associate With Works
         works: {
             collection: 'works',

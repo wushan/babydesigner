@@ -36,6 +36,10 @@ module.exports = {
   		type: 'array',
   		defaultsTo: [640,480]
   	},
+    worktitle: {
+      type: 'string',
+      defaultsTo: 'untitled'
+    },
   	likes: {
   		type: 'number'
   	}
