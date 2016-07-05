@@ -1,5 +1,5 @@
 CanvasComposer.View = function(){
-	var wrapper = $('#canvaseditor');
+	var wrapper = $('#canadEditor');
 	//Generate View Components
 	var templates = (function ($, host) {
 	    // begin to load external templates from a given path and inject them into the DOM
@@ -26,7 +26,7 @@ CanvasComposer.View = function(){
 
 	
 	$(function () {
-	    var templateArray = ['/templates/sidebar.html', '/templates/artboard.html', '/templates/config.html', '/templates/contextmenu.html', '/templates/library.html', '/templates/inbounds.html', '/templates/marquee-settings.html']
+	    var templateArray = ['/templates/sidebar.html', '/templates/config.html', '/templates/contextmenu.html', '/templates/library.html', '/templates/inbounds.html', '/templates/marquee-settings.html']
 	    templates.load(templateArray, wrapper, 'files-loaded');
 	});
 }

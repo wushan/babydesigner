@@ -8,7 +8,25 @@ block body
 		wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
 		s.parentNode.insertBefore(wf, s);
 		})(document);
-	#canvaseditor(data-workid="#{currentArtboard.workid}")
+	#canadEditor(data-workid="#{currentArtboard.workid}")
+		.canad-editor-topbar
+			.presets
+				a.btn.btn-withicon.orange(href='javascript:;')
+					.icon
+						img(src='/images/icons/icon-preset.svg')
+					span PRESETS
+			.easy-setting
+				.privacy-setting
+					.toggle-component
+						input#privacysetting(type='checkbox', name='privacysetting')
+						label(for='privacysetting')
+							.ball
+				.save
+					a.btn.btn-withicon.blue(href='javascript:;')
+						.icon
+							img(src='/images/icons/icon-save.svg')
+						span SAVE
+		include ../assets/templates/artboard
 
 block pagescripts
 	script(src="/js/editor/vendor/fabric.js")
