@@ -17,9 +17,7 @@ var CanvasComposer = {
 		// console.log(this);
   //   console.log(JST);
   //   console.log(JST['.tmp/public/templates/artboard.html']());
-		this.View();
-    //Put Temp Loader
-    $('body').append($('<div id=loader><div class=loader-inner><img src=/images/components/boxloader.gif>Initializing</div></div'));
+    this.View();
 
 		$(document).on("files-loaded", function () {
 			if (typeof data === 'object') {

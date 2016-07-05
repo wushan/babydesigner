@@ -7,10 +7,9 @@ module.exports = function(grunt) {
                 require('pixrem')(), // add fallbacks for rem units
                 require('autoprefixer')(
                     {
-                        browsers: ['IE 8', 'last 2 versions']
+                        browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']
                     }
                 ),
-                
                 require('cssnano')() // minify the result
             ]
         },
@@ -22,29 +21,3 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-postcss');
 };
 
-// module.exports = function(grunt) {
-//     grunt.config.set('postcss', {
-// //        dev: {
-// //            pkg: grunt.file.readJSON('package.json'),
-//            // postcss: {
-//                 options: {
-//                     map:true,
-//                     processors: [
-//                         require('pixrem')(), // add fallbacks for rem units
-//                         require('autoprefixer')(
-//                             {
-//                                 browsers: ['IE 8', 'last 2 versions']
-//                             }
-//                         ),
-//                         require('cssgrace'),
-//                         require('cssnano')() // minify the result
-//                     ]
-//                 },
-//                 dist: {
-//                     src: 'assets/styles/*.css'
-//                 }
-//            // }
-// //       /  }
-//     });
-//     grunt.loadNpmTasks('grunt-postcss');
-// };

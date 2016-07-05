@@ -14,7 +14,7 @@ CanvasComposer.Presets = function(){
             CanvasComposer.Load.FromPresets($(this).attr('data-src'), function(res){
               console.log(res);
               CanvasComposer.History.Update();
-              $('#canvassetting').fadeOut('fast');
+              $('#presets').fadeOut('fast');
               $('#loading').fadeOut('fast');
             });
         } else {
@@ -24,7 +24,7 @@ CanvasComposer.Presets = function(){
         CanvasComposer.Load.FromPresets($(this).attr('data-src'), function(res){
           console.log(res);
           CanvasComposer.History.Update();
-          $('#canvassetting').fadeOut('fast');
+          $('#presets').fadeOut('fast');
         });
       }
     } else {

@@ -26,7 +26,7 @@ CanvasComposer.View = function(){
 
 	
 	$(function () {
-	    var templateArray = ['/templates/sidebar.html', '/templates/config.html', '/templates/contextmenu.html', '/templates/library.html', '/templates/inbounds.html', '/templates/marquee-settings.html']
+	    var templateArray = ['/templates/config.html', '/templates/contextmenu.html', '/templates/library.html']
 	    templates.load(templateArray, wrapper, 'files-loaded');
 	});
 }

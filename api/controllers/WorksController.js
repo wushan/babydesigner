@@ -52,20 +52,22 @@ module.exports = {
 		var base64 = req.body.thumbnail;
 		var buf = base64.split(',')[1];
 		//Write to somewhere
+		sails.log(req.body);
 		//Update the record and write the thumbnail
 		var savePath = "preview/" + req.body.workid + ".png";
 		writeFile(".tmp/public/preview/" + req.body.workid + ".png", buf, 'base64', function(err){
 		  if(err) {
 		    throw err;
 		  }
+		  sails.log('file writed');
 		});
 
 		Works.update({author: req.user.id, workid: req.body.workid },{data: req.body.data, thumbnail: savePath, public: req.body.public}).exec(function afterwards(err, updated){
 		  if (err) {
 		    // handle error here- e.g. `res.serverError(err);`
-		    return res.send(err);
+		    return res.serverError(err);
 		  }
-		  //////
+		  return res.send('updated.');
 		});
 	}
 };

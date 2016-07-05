@@ -1,13 +1,11 @@
 CanvasComposer.Interface = {
   save: function(){
-
     //Detach All
     canvas.deactivateAll().renderAll();
-
     //Save
   	var currentCanvas = JSON.stringify(canvas);
     var canvasThumb = canvas.toDataURL('png');
-    var currentWorkID = $('#canvaseditor').data('workid');
+    var currentWorkID = $('#canadEditor').data('workid');
     var canvassize = [canvas.getWidth(), canvas.getHeight()];
   	//好像要來個驗證？
   	$.ajax({
@@ -18,9 +16,11 @@ CanvasComposer.Interface = {
         console.log(res);
   			$('#message').html('Saved !');
 	  		$('#message').fadeIn().promise().done(function(){
-	  			$(this).fadeOut();
+	  			$(this).fadeOut('slow');
 	  		});
   		}
-  	});
+  	}).fail(function(err){
+      console.log(err);
+    });
   }
 };
