@@ -10,7 +10,9 @@ CanvasComposer.Menu = function(){
     addText: function (event) {
                   CanvasComposer.Artboard.addText();
                 },
-    
+    presets: function( event ) {
+            $('#presets').toggleClass('active');
+            },
     lockAll: function(event) {
                 //
               },

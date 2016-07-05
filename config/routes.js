@@ -54,8 +54,12 @@ module.exports.routes = {
   //Works
   'post /works': 'WorksController.CreateorUpdate',
   
-  'get /works': 'WorksController.redirectToPublic'
+  'get /works': 'WorksController.redirectToPublic',
 
+  //Static Pages
+  'get /annoucement': {
+    view: 'announcement'
+  }
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
