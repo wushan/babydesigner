@@ -44,29 +44,82 @@ module.exports = {
         });
 	},
 	getUserHome: function(req,res){
-		if (req.isAuthenticated()) {
-			//Find Personal Works
-			Works.find({author: req.user.id }).populate('author').exec(function (err, data){
-				if (err) {
-				    // return res.negotiate(err);
-				    return res.view('memberHome', {
-						error: err
+		var username = req.param('username');
+		var authorized;
+		sails.log(req.user.username);
+
+		if (username === req.user.username) {
+			//Requesting yourself
+			if (req.isAuthenticated()) {
+				authorized = true;
+				Works.find({ author: req.user.id }).populate('author').exec(function (err, data){
+					if (err) {
+						return res.view('memberHome', {
+							error: err
+						});
+					}
+					return res.view('memberPrivate', {
+						authorized: authorized,
+						user: req.user,
+						works: data //Return all works belongs to the user.
 					});
-				}
-				// sails.log('Wow, there are %d users named Finn.  Check it out:', usersNamedFinn.length, usersNamedFinn);
-				// sails.log('Wow, there are %d users named Finn.  Check it out!');
-				// return res.json(data);
-				sails.log(data);
-				return res.view('memberHome', {
-					user: req.user,
-					privateworks: data
 				});
-			  // return res.view('worksPublic', {publicworks: data});
-			});
-			// return res.send(req.user);
+			}
 		} else {
-			return res.redirect('/login');
+			//Requesting others profile
+			if (req.isAuthenticated()) {
+				authorized = true;
+				sails.log('requesting others');
+				User.findOne({ username: username }).populate('works', { where: { public: true }}).exec(function( err, data ){
+					if (err) {
+						return res.negotiate(err);
+					}
+					//When requesting others, only public works shows up
+					// var publicworks = data.works;
+					// sails.log(typeof publicworks);
+					return res.view('memberPublic', {
+						authorized: authorized,
+						user: req.user,
+						works: data //Return all works belongs to the user.
+					});
+				});
+				// Works.find({ author: req.user.id }).populate('author').exec(function (err, data){
+				// 	if (err) {
+				// 		return res.view('memberHome', {
+				// 			error: err
+				// 		});
+				// 	}
+				// 	return res.view('memberHome', {
+				// 		authorized: authorized,
+				// 		user: req.user,
+				// 		works: data //Return all works belongs to the user.
+				// 	});
+				// });
+			}
 		}
+		// if (req.isAuthenticated()) {
+		// 	authorized = true;
+		// 	//Find Personal Works
+		// 	Works.find({ author: req.user.id }).populate('author').exec(function (err, data){
+		// 		if (err) {
+		// 		    // return res.negotiate(err);
+		// 		    return res.view('memberHome', {
+		// 				error: err
+		// 			});
+		// 		}
+				
+		// 		sails.log(data);
+		// 		return res.view('memberHome', {
+		// 			authorized: authorized,
+		// 			user: req.user,
+		// 			privateworks: data
+		// 		});
+		// 	  // return res.view('worksPublic', {publicworks: data});
+		// 	});
+		// 	// return res.send(req.user);
+		// } else {
+		// 	return res.redirect('/login');
+		// }
 	}
 };
 

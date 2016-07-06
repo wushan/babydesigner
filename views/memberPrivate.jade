@@ -1,0 +1,78 @@
+extends ./layout
+
+
+block body
+	.restrict
+		section#member
+			.container.restrict
+				.sidebar
+					.avatar
+						img(src='http://unsplash.it/400x400')
+					.username
+						h1 #{user.username}
+					.contact
+						ul
+							li
+								a(href='mailto:#{user.email}') #{user.email}
+							li url
+					.description
+						h4 Description
+						.content
+							p.
+								Whether you’re just getting started or deploying a complex system, launching a Linode cloud server has never been easier. We offer the fastest hardware and network in the industry with scalable environments. Our 24x7 customer support team is always standing by to help with any questions.
+				.main
+					if works.length < 1
+						.centered
+							h1 You don't have any works in the box. Make one right now.
+							.call-action
+								a.btn.confirmation(href='/editor/') CREATE
+					else
+						.work-list.masonry-list
+							ul
+								li.work-sizer
+								li.work-gutter
+								each work in works
+									li.work
+										.thumbnail
+											a(href='/editor/' + work.workid)
+												if work.thumbnail
+													img(src='/' + work.thumbnail)
+												else
+													img(src='/images/components/transparent-placeholder.png')
+										.caption
+											.caption-inner
+												.title=work.worktitle
+												.author
+													|	from : 
+													=work.author.username
+
+										.work-privacy
+											if work.public
+												img(src='/images/icons/icon-public.svg')
+											else
+												img(src='/images/icons/icon-private.svg')
+block pagescripts
+	script(src="/js/vendor/imagesLoaded.js")
+	script(src="/js/vendor/masonry.js")
+	script.
+		var $workMasonry = $('.masonry-list').masonry({
+			// set itemSelector so .grid-sizer is not used in layout
+			itemSelector: '.work',
+			gutter: '.work-gutter',
+			// use element for option
+			columnWidth: '.work-sizer',
+			percentPosition: true,
+			resize: false
+		});
+		$workMasonry.imagesLoaded().progress( function() {
+			$workMasonry.masonry('layout');
+		});
+		var resizeTimer;
+		$(window).on('resize', function(e) {
+
+			clearTimeout(resizeTimer);
+			resizeTimer = setTimeout(function() {
+				$workMasonry.masonry('layout');
+			}, 250);
+
+		});

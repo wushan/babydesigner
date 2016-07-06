@@ -9,11 +9,11 @@ block body
 					.avatar
 						img(src='http://unsplash.it/400x400')
 					.username
-						h1 #{user.username}
+						h1 #{works.username}
 					.contact
 						ul
 							li
-								a(href='mailto:#{user.email}') #{user.email}
+								a(href='mailto:#{works.email}') #{works.email}
 							li url
 					.description
 						h4 Description
@@ -21,7 +21,7 @@ block body
 							p.
 								Whether you’re just getting started or deploying a complex system, launching a Linode cloud server has never been easier. We offer the fastest hardware and network in the industry with scalable environments. Our 24x7 customer support team is always standing by to help with any questions.
 				.main
-					if privateworks.length < 1
+					if works.length < 1
 						.centered
 							h1 You don't have any works in the box. Make one right now.
 							.call-action
@@ -31,7 +31,7 @@ block body
 							ul
 								li.work-sizer
 								li.work-gutter
-								each work in privateworks
+								each work in works.works
 									li.work
 										.thumbnail
 											a(href='/editor/' + work.workid)
@@ -44,7 +44,7 @@ block body
 												.title=work.worktitle
 												.author
 													|	from : 
-													=work.author.username
+													=works.username
 
 										.work-privacy
 											if work.public

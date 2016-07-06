@@ -22,7 +22,6 @@ module.exports = {
 		  if (err) {
 		    return res.negotiate(err);
 		  }
-		  sails.log(data);
 		  if (req.isAuthenticated()) {
 		  	authorized = true;
 		  	return res.view('worksPublic', {user: req.user, publicworks: data, authorized: authorized});
@@ -31,24 +30,11 @@ module.exports = {
 		  	return res.view('worksPublic', {user: req.user, publicworks: data, authorized: authorized});
 		  }
 		});
-		// Works.find({public: true}).exec(function (err, data){
-		//   if (err) {
-		//     return res.negotiate(err);
-		//   }
-		//   sails.log(data);
-		//   if (req.isAuthenticated()) {
-		//   	authorized = true;
-		//   	return res.view('worksPublic', {user: req.user, publicworks: data, authorized: authorized});
-		//   } else {
-		//   	authorized = false;
-		//   	return res.view('worksPublic', {user: req.user, publicworks: data, authorized: authorized});
-		//   }
-		// });
 	},
 	redirectToPublic: function(req, res) {
 		return res.redirect('/works/public');
 	},
-	CreateorUpdate: function(req,res) {
+	updateWork: function(req,res) {
 		var base64 = req.body.thumbnail;
 		var buf = base64.split(',')[1];
 		//Write to somewhere
@@ -68,6 +54,22 @@ module.exports = {
 		    return res.serverError(err);
 		  }
 		  return res.send('updated.');
+		});
+	},
+	getWorkView: function(req,res) {
+		var workid = req.param('workid');
+        var authorized;
+        if (req.isAuthenticated()) {
+        	authorized = true;
+        } else {
+        	authorized = false;
+        }
+        // check if the request is public
+        Works.findOne({workid: workid}).populate('author').exec(function (err, data){
+		  if (err) {
+		    return res.negotiate(err);
+		  }
+		  return res.view('showwork', {user: req.user, authorized: authorized, work: data});
 		});
 	}
 };

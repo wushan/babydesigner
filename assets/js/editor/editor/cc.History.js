@@ -9,9 +9,9 @@ CanvasComposer.History = function() {
       redo = [];
       $('#redo').addClass('disabled');
       // initial call won't have a state
-      console.log(state);
+      // console.log(state);
       if (state) {
-        console.log(state);
+        // console.log(state);
         undo.push(state);
         $('#undo').removeClass('disabled');
       }
@@ -30,8 +30,8 @@ CanvasComposer.History = function() {
       if (state) {
         saveStack.push(state);
       }
-      console.log(undo);
-      console.log(redo);
+      // console.log(undo);
+      // console.log(redo);
       state = playStack.pop();
       var on = $(buttonsOn);
       var off = $(buttonsOff);

@@ -1,0 +1,25 @@
+extends ./layout
+
+block body
+	section
+		.container.restrict
+			.work
+				.thumbnail
+					a(href='/editor/' + work.workid)
+						if work.thumbnail
+							img(src='/' + work.thumbnail)
+						else
+							img(src='/images/components/transparent-placeholder.png')
+				.caption
+					.caption-inner
+						.title=work.worktitle
+						.author
+							|	Author : 
+							=work.author.username
+						ul
+							li
+							|	CreateAt:
+							=work.createdAt
+							li
+							|	UpdatedAt:
+							=work.updatedAt

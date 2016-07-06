@@ -6,6 +6,7 @@
  */
 var passport = require('passport');
 var shortid = require('shortid');
+
 module.exports = {
     createWork: function( req, res ) {
         if (req.isAuthenticated()) {
@@ -20,23 +21,20 @@ module.exports = {
             });
         }
     },
-    getWork: function(req, res) {
+    loadWork: function(req, res) {
         if (req.isAuthenticated()) {
             //Create a blank work with shortID
-            // var queryID = req._parsedOriginalUrl.query;
             var queryID = req.param('workid');
             var authorized = true;
             // Query rule
             // is public -> copy
             // is mine -> load
 
-
             //Find If User had permission to edit this work
             Works.find({author: req.user.id, workid: queryID}).exec(function (err, workfound){
               if (err) {
                 return res.negotiate(err);
               }
-              
               
               if ( workfound.length < 1 ) {
                 sails.log('This work is not belongs to the requester.')
@@ -61,17 +59,17 @@ module.exports = {
                         });
 
                     } else {
+                        //If requesting a private work, return forbidden
                         sails.log('this is a private work');
                         return res.forbidden();
                     }
                 });
-                // return res.forbidden();
               } else {
+                //Load the Work
                 return res.view('editor', {user: req.user, currentArtboard: workfound[0], authorized: authorized} );
               }
             });
-        	
-            // return res.view('editor');
+
         }
     }
 };

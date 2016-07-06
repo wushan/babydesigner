@@ -49,12 +49,14 @@ module.exports.routes = {
   },
 
   'get /editor': 'EditorController.createWork',
-  'get /editor/:workid': 'EditorController.getWork',
+  'get /editor/:workid': 'EditorController.loadWork',
 
   //Works
-  'post /works': 'WorksController.CreateorUpdate',
+  'put /works': 'WorksController.updateWork',
   
   'get /works': 'WorksController.redirectToPublic',
+  'get /works/public': 'WorksController.public',
+  'get /works/:workid': 'WorksController.getWorkView',
 
   //Static Pages
   'get /annoucement': {
