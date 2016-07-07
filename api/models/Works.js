@@ -40,6 +40,12 @@ module.exports = {
       type: 'string',
       defaultsTo: 'untitled'
     },
+    category: {
+      type: 'string'
+    },
+    subcategory: {
+      type: 'string'
+    },
   	likes: {
   		type: 'number'
   	}

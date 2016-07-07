@@ -19,11 +19,25 @@ module.exports = {
             minLength: 6,
             required: true
         },
+        username: {
+            type: 'string',
+            required: true,
+            unique: true
+        },
         //PermissonGroup
         group: {
             type: 'string',
-            defaultsTo: 'default'
+            defaultsTo: 'default',
+            required: true
         },
+        description: {
+            type: 'string',
+            defaultsTo: 'did not have one ... yet.'
+        },
+        website: {
+            type: 'string'
+        },
+
         //Associate With Works
         works: {
             collection: 'works',
