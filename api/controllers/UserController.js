@@ -18,8 +18,9 @@ module.exports = {
 		var userData = req.body;
 
 		//Use Email Account name as a Default username
+		sails.log(req.body.email.split("@")[0]);
 		userData.username = req.body.email.split("@")[0];
-
+		sails.log(userData);
 		User.create(userData).exec(function createCB(err, created){
             //Automatic Login After Registered
             passport.authenticate('local', function(err, user, info) {
@@ -46,19 +47,38 @@ module.exports = {
 	getUserHome: function(req,res){
 		var username = req.param('username');
 		var authorized;
-		sails.log(req.user.username);
-
-		if (username === req.user.username) {
-			//Requesting yourself
-			if (req.isAuthenticated()) {
-				authorized = true;
-				Works.find({ author: req.user.id }).populate('author').exec(function (err, data){
-					if (err) {
-						return res.view('memberHome', {
-							error: err
+		if (req.user) {
+			if (username === req.user.username) {
+				//Requesting yourself
+				if (req.isAuthenticated()) {
+					authorized = true;
+					Works.find({ where: { author: req.user.id }, sort: 'updatedAt DESC' }).populate('author').exec(function (err, data){
+						if (err) {
+							return res.view('memberHome', {
+								error: err
+							});
+						}
+						return res.view('memberPrivate', {
+							authorized: authorized,
+							user: req.user,
+							works: data //Return all works belongs to the user.
 						});
+					});
+				}
+			} else {
+				//Requesting others profile
+				User.findOne({ username: username }).populate('works', { where: { public: true }}).exec(function( err, data ){
+					if (err) {
+						return res.negotiate(err);
 					}
-					return res.view('memberPrivate', {
+					//When requesting others, only public works shows up
+					if (req.isAuthenticated()) {
+						authorized = true;
+						sails.log('requesting others');
+					} else {
+						authorized = false;
+					}
+					return res.view('memberPublic', {
 						authorized: authorized,
 						user: req.user,
 						works: data //Return all works belongs to the user.
@@ -66,60 +86,25 @@ module.exports = {
 				});
 			}
 		} else {
-			//Requesting others profile
-			if (req.isAuthenticated()) {
-				authorized = true;
-				sails.log('requesting others');
-				User.findOne({ username: username }).populate('works', { where: { public: true }}).exec(function( err, data ){
-					if (err) {
-						return res.negotiate(err);
-					}
-					//When requesting others, only public works shows up
-					// var publicworks = data.works;
-					// sails.log(typeof publicworks);
-					return res.view('memberPublic', {
-						authorized: authorized,
-						user: req.user,
-						works: data //Return all works belongs to the user.
-					});
+			User.findOne({ username: username }).populate('works', { where: { public: true }}).exec(function( err, data ){
+				if (err) {
+					return res.negotiate(err);
+				}
+				//When requesting others, only public works shows up
+				if (req.isAuthenticated()) {
+					authorized = true;
+					sails.log('requesting others');
+				} else {
+					authorized = false;
+				}
+				return res.view('memberPublic', {
+					authorized: authorized,
+					user: req.user,
+					works: data //Return all works belongs to the user.
 				});
-				// Works.find({ author: req.user.id }).populate('author').exec(function (err, data){
-				// 	if (err) {
-				// 		return res.view('memberHome', {
-				// 			error: err
-				// 		});
-				// 	}
-				// 	return res.view('memberHome', {
-				// 		authorized: authorized,
-				// 		user: req.user,
-				// 		works: data //Return all works belongs to the user.
-				// 	});
-				// });
-			}
+			});
 		}
-		// if (req.isAuthenticated()) {
-		// 	authorized = true;
-		// 	//Find Personal Works
-		// 	Works.find({ author: req.user.id }).populate('author').exec(function (err, data){
-		// 		if (err) {
-		// 		    // return res.negotiate(err);
-		// 		    return res.view('memberHome', {
-		// 				error: err
-		// 			});
-		// 		}
-				
-		// 		sails.log(data);
-		// 		return res.view('memberHome', {
-		// 			authorized: authorized,
-		// 			user: req.user,
-		// 			privateworks: data
-		// 		});
-		// 	  // return res.view('worksPublic', {publicworks: data});
-		// 	});
-		// 	// return res.send(req.user);
-		// } else {
-		// 	return res.redirect('/login');
-		// }
+		
 	}
 };
 
