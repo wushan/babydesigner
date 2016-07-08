@@ -26,6 +26,9 @@ block body
 						.icon
 							img(src='/images/icons/icon-save.svg')
 						span SAVE
+			.current-preset
+				|	Current Preset : #{currentArtboard.subcategory.slug} / #{currentArtboard.subcategory.size}
+
 		//Artboard
 		include ../assets/templates/artboard
 		//Menu
@@ -94,7 +97,9 @@ block pagescripts
 	script(src="/js/editor/editor/cc.Api.js")
 	script(src="/js/editor/vendor/moments.js")
 	script.
-		console.log('#{currentArtboard.data}');
+		var ddd = !{JSON.stringify(currentArtboard)};
+
+		console.log(ddd);
 		var data = {
 			workData: !{JSON.stringify(currentArtboard.data)}
 
@@ -108,3 +113,23 @@ block pagescripts
 			'width': worksize[0],
 			'height': worksize[1]
 		});
+
+		//bindEvent
+		var categorylist = !{JSON.stringify(categorylist)};
+		var selectedCate;
+		$('#category-selector').on('change', function(){
+
+			selectedCate = $(this).val();
+			console.log( selectedCate );
+			for (var i = 0; i < categorylist.length; i ++) {
+				if ( selectedCate == categorylist[i].id ){
+					return selectionRenew(categorylist[i].sizes);
+				};
+			}
+		});
+		function selectionRenew(subcategory) {
+			$('#subcategory-selector').empty();
+			for (var i = 0; i < subcategory.length; i ++) {
+				$('#subcategory-selector').append('<option value=' + subcategory[i].id + '>' + subcategory[i].slug + ' ( ' + subcategory[i].size + ' )</option>');
+			}
+		}

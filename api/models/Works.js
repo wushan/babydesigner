@@ -17,7 +17,7 @@ module.exports = {
   	},
   	data: {
   		type: 'json',
-        required: true
+      required: true
   	},
   	tags: {
   		type: 'array'
@@ -41,10 +41,10 @@ module.exports = {
       defaultsTo: 'untitled'
     },
     category: {
-      type: 'string'
+      model: 'category'
     },
     subcategory: {
-      type: 'string'
+      model: 'size'
     },
   	likes: {
   		type: 'number'

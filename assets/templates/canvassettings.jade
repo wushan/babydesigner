@@ -5,21 +5,30 @@
 				label Category
 				.controls
 					.select-wrapper
-						select
-							option Custom
-							option Facebook
+						select#category-selector
+							each category in categorylist
+								option(value=category.id)=category.name
+			
 			.controlgroup
 				label Sub
 				.controls
 					.select-wrapper
-						select
-							option Cover ( 851x350 )
-							option Avatar ( 240x240 )
+						select#subcategory-selector
+							each size in categorylist[0].sizes
+								option(value=size.id)=size.slug
 			.controlgroup
-				a.btn.confirmed(href='javascript:;') Custom
+				a.btn.confirmed(href='javascript:;', data-action='saveJSON') Blank
 		.preset-list
 			each i in Array(20)
 				.preset
 					a(href='javascript:;')
 						.thumbnail
 							img(src='http://unsplash.it/400x300')
+
+if poppresets
+	script.
+		var presets = document.getElementById('presets');
+		console.log(presets);
+		presets.classList.add('active');
+
+

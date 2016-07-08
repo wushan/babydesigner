@@ -48,7 +48,7 @@ module.exports = {
 		  sails.log('file writed');
 		});
 
-		Works.update({author: req.user.id, workid: req.body.workid },{data: req.body.data, thumbnail: savePath, public: req.body.public}).exec(function afterwards(err, updated){
+		Works.update({author: req.user.id, workid: req.body.workid },{data: req.body.data, thumbnail: savePath, public: req.body.public, category: req.body.category, subcategory: req.body.subcategory}).exec(function afterwards(err, updated){
 		  if (err) {
 		    // handle error here- e.g. `res.serverError(err);`
 		    return res.serverError(err);

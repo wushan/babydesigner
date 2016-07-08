@@ -23,7 +23,6 @@ module.exports = {
     },
     loadWork: function(req, res) {
         if (req.isAuthenticated()) {
-            //Create a blank work with shortID
             var queryID = req.param('workid');
             var authorized = true;
             // Query rule
@@ -31,7 +30,7 @@ module.exports = {
             // is mine -> load
 
             //Find If User had permission to edit this work
-            Works.find({author: req.user.id, workid: queryID}).exec(function (err, workfound){
+            Works.findOne({author: req.user.id, workid: queryID}).populate('subcategory').exec(function (err, workfound){
               if (err) {
                 return res.negotiate(err);
               }
@@ -65,8 +64,18 @@ module.exports = {
                     }
                 });
               } else {
-                //Load the Work
-                return res.view('editor', {user: req.user, currentArtboard: workfound[0], authorized: authorized} );
+                if (workfound.data.objects.length > 0) {
+                    //Load the Work
+                    Category.find().populate('sizes').exec(function (err, categorylist) {
+                        return res.view('editor', {user: req.user, currentArtboard: workfound, authorized: authorized, categorylist: categorylist});
+                    });
+                } else {
+                    //Load the Work
+                    Category.find().populate('sizes').exec(function (err, categorylist) {
+                        sails.log(categorylist);
+                        return res.view('editor', {user: req.user, currentArtboard: workfound, authorized: authorized, poppresets: true, categorylist: categorylist});
+                    });
+                }
               }
             });
 

@@ -177,23 +177,30 @@
 }
 //Presets
 #presets {
-	background-color: $darkestgray;
-    margin: auto;
-    width: 80%;
-    height: 80%;
+	background-color: rgba($black, .8);
     position: absolute;
-    padding: 1em;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     box-sizing: border-box;
     overflow: hidden;
     color: $white;
     border-radius: 6px;
-    bottom: 100%;
-    left: 0;
-    right: 0;
+    display: none;
     @extend .transition;
     &.active {
+    	display: block;
+    }
+    .presets-inner {
+    	height: 80%;
+    	width: 80%;
+    	margin: auto;
+    	position: absolute;
     	top: 0;
     	bottom: 0;
+    	left: 0;
+    	right: 0;
     }
     a {
     	display: block;
@@ -214,9 +221,6 @@
     	.controlgroup {
     		@include gallery( 4 of 12);
     	}
-    }
-    .presets-inner {
-    	height: 100%;
     }
 }
 
