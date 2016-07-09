@@ -16,7 +16,7 @@ module.exports = {
   		required: true
   	},
   	size: {
-  		type: 'string',
+  		type: 'array',
   		required: true
   	},
     works: {

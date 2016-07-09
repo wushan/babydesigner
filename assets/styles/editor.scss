@@ -25,6 +25,12 @@
 		vertical-align: middle;
 		margin-right: 1em;
 	}
+	.current-preset {
+		position: absolute;
+		top: 76px;
+		left: 0;
+		right: 0;
+	}
 }
 
 //Artboard
@@ -219,7 +225,7 @@
     	@extend .clr;
     	padding: 1em 0;
     	.controlgroup {
-    		@include gallery( 4 of 12);
+    		// @include gallery( 4 of 12);
     	}
     }
 }

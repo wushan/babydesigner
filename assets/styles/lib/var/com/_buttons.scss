@@ -86,6 +86,36 @@ button {
         }
       }
     }
+    &.green {
+      background-color: $green;
+      .icon {
+        background-color: darken($green, 10%);
+      }
+      &:hover {
+        background-color: darken($green, 10%); 
+      }
+      &:active {
+        background-color: darken($green, 15%);
+        .icon {
+          background-color: darken($green, 15%);
+        }
+      }
+    }
+    &.red {
+      background-color: $red;
+      .icon {
+        background-color: darken($red, 10%);
+      }
+      &:hover {
+        background-color: darken($red, 10%); 
+      }
+      &:active {
+        background-color: darken($red, 15%);
+        .icon {
+          background-color: darken($red, 15%);
+        }
+      }
+    }
   }
 }
 

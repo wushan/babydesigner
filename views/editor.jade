@@ -18,16 +18,26 @@ block body
 			.easy-setting
 				.privacy-setting
 					.toggle-component
-						input#privacysetting(type='checkbox', name='privacysetting')
-						label(for='privacysetting')
-							.ball
+						if (currentArtboard.public)
+							input#privacysetting(type='checkbox', name='privacysetting' checked)
+							label(for='privacysetting')
+								.ball
+						else
+							input#privacysetting(type='checkbox', name='privacysetting')
+							label(for='privacysetting')
+								.ball
 				.save
 					a.btn.btn-withicon.blue(href='javascript:;', data-action='saveJSON')
 						.icon
 							img(src='/images/icons/icon-save.svg')
 						span SAVE
-			.current-preset
-				|	Current Preset : #{currentArtboard.subcategory.slug} / #{currentArtboard.subcategory.size}
+				a.btn.btn-withicon.red(href='/user')
+					.icon
+						img(src='/images/icons/icon-close.svg')
+					span Leave
+			if currentArtboard.subcategory
+				.current-preset
+					|	Current Preset : #{currentArtboard.subcategory.slug} / #{currentArtboard.subcategory.size}
 
 		//Artboard
 		include ../assets/templates/artboard
@@ -67,7 +77,7 @@ block body
 								a.edit.js-save-json(href='javascript:;') JSON
 
 		//CanvasSetting (Stand Alone Now)
-		include ../assets/templates/canvassettings
+		include editor/canvassettings
 		#loader
 			.loader-inner
 				img(src='/images/components/load.svg')
@@ -118,7 +128,6 @@ block pagescripts
 		var categorylist = !{JSON.stringify(categorylist)};
 		var selectedCate;
 		$('#category-selector').on('change', function(){
-
 			selectedCate = $(this).val();
 			console.log( selectedCate );
 			for (var i = 0; i < categorylist.length; i ++) {
@@ -133,3 +142,6 @@ block pagescripts
 				$('#subcategory-selector').append('<option value=' + subcategory[i].id + '>' + subcategory[i].slug + ' ( ' + subcategory[i].size + ' )</option>');
 			}
 		}
+		$('.js-closepreset').on('click', function(){
+			$('#presets').removeClass('active');
+		});
