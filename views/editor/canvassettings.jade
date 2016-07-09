@@ -15,7 +15,7 @@
 					.select-wrapper
 						select#subcategory-selector
 							each size in categorylist[0].sizes
-								option(value=size.id)=size.slug + ' ( ' + size.size + ' )'
+								option(value=size.id, data-size=size.size)=size.slug + ' ( ' + size.size + ' )'
 			.controlgroup.centered
 				a.btn.confirmation.js-closepreset(href='javascript:;', data-action='saveJSON') Blank
 		.preset-list

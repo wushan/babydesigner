@@ -35,7 +35,7 @@ module.exports = {
                 return res.negotiate(err);
               }
               
-              if ( workfound.length < 1 ) {
+              if ( !workfound ) {
                 sails.log('This work is not belongs to the requester.')
                 //Find if it is public
                 Works.findOne({workid: queryID}).exec(function (err, work){
@@ -49,7 +49,7 @@ module.exports = {
                         //Create A new Work, load the data from request.
                         var newWorkID = shortid.generate();
 
-                        Works.create({author: req.user.id, data: work.data, workid: newWorkID, worksize: work.worksize}).exec(function createCB(err, created){
+                        Works.create({author: req.user.id, data: work.data, workid: newWorkID, worksize: work.worksize, category: work.category, subcategory: work.subcategory }).exec(function createCB(err, created){
                             if (err) {
                                 return res.negotiate(err);
                             }

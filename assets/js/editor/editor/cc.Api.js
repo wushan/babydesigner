@@ -6,7 +6,9 @@ CanvasComposer.Interface = {
   	var currentCanvas = JSON.stringify(canvas);
     var canvasThumb = canvas.toDataURL('png');
     var currentWorkID = $('#canadEditor').data('workid');
-    var canvassize = [canvas.getWidth(), canvas.getHeight()];
+    // var sizeS = $('#subcategory-selector option:selected').data('size');
+    // console.log(sizeS);
+    var canvassize = $('#subcategory-selector option:selected').data('size');
     var privacy = $('#privacysetting').prop("checked");
     var category = $('#category-selector').val();
     var subcategory = $('#subcategory-selector').val();

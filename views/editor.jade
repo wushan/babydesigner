@@ -139,7 +139,8 @@ block pagescripts
 		function selectionRenew(subcategory) {
 			$('#subcategory-selector').empty();
 			for (var i = 0; i < subcategory.length; i ++) {
-				$('#subcategory-selector').append('<option value=' + subcategory[i].id + '>' + subcategory[i].slug + ' ( ' + subcategory[i].size + ' )</option>');
+				console.log(subcategory[i].size);
+				$('#subcategory-selector').append('<option value="' + subcategory[i].id + '" data-size=["' + subcategory[i].size + '"]>' + subcategory[i].slug + ' ( ' + subcategory[i].size + ' )</option>');
 			}
 		}
 		$('.js-closepreset').on('click', function(){
