@@ -35,9 +35,8 @@ block body
 					.icon
 						img(src='/images/icons/icon-close.svg')
 					span Leave
-			if currentArtboard.subcategory
-				.current-preset
-					|	Current Preset : #{currentArtboard.subcategory.slug} / #{currentArtboard.subcategory.size}
+			
+			#current-preset
 
 		//Artboard
 		include ../assets/templates/artboard
@@ -114,14 +113,15 @@ block pagescripts
 			workData: !{JSON.stringify(currentArtboard.data)}
 
 		};
-		var worksizeArray = '#{currentArtboard.worksize}';
-		var worksize = worksizeArray.split(',');
-		console.log(typeof worksize[0]);
-		console.log(worksize[1]);
-		console.log(data.workData);
+		console.log('#{currentArtboard.workwidth}');
+		//- var worksizeArray = '#{currentArtboard.worksize}';
+		//- var worksize = worksizeArray.split(',');
+		//- console.log(typeof worksize[0]);
+		//- console.log(worksize[1]);
+		//- console.log(data.workData);
 		CanvasComposer.init(data.workData,{
-			'width': worksize[0],
-			'height': worksize[1]
+			'width': '#{currentArtboard.workwidth}',
+			'height': '#{currentArtboard.workheight}'
 		});
 
 		//bindEvent
@@ -139,10 +139,6 @@ block pagescripts
 		function selectionRenew(subcategory) {
 			$('#subcategory-selector').empty();
 			for (var i = 0; i < subcategory.length; i ++) {
-				console.log(subcategory[i].size);
-				$('#subcategory-selector').append('<option value="' + subcategory[i].id + '" data-size=["' + subcategory[i].size + '"]>' + subcategory[i].slug + ' ( ' + subcategory[i].size + ' )</option>');
+				$('#subcategory-selector').append('<option value="' + subcategory[i].id + '" data-width=' + subcategory[i].width + ' data-height=' + subcategory[i].height + '>' + subcategory[i].slug + ' ( ' + subcategory[i].width + ' x ' + subcategory[i].height + ' )</option>');
 			}
 		}
-		$('.js-closepreset').on('click', function(){
-			$('#presets').removeClass('active');
-		});

@@ -59,6 +59,28 @@ CanvasComposer.Menu = function(){
     saveJSON: function(event) {
       CanvasComposer.Interface.save();
       console.log('exed');
+    },
+    update: function(event) {
+      //Update Canvas Size
+      var height = $('#subcategory-selector option:selected').data('height'),
+          width = $('#subcategory-selector option:selected').data('width');
+        //Set Canvas Size
+      canvas.setHeight(height);
+      canvas.setWidth(width);
+      canvas.renderAll();
+        //Update Current Canvas Info
+        var slug = $('#subcategory-selector option:selected').text();
+        slug = slug.split('(');
+
+        $('#current-preset').data({
+          'width': width,
+          'height': height
+        }).html('Current Preset: ' + slug[0] + ' / ' + width + ' x ' + height);
+
+        //Auto Save
+        CanvasComposer.Interface.save();
+      // Close Presets Dialog
+      $('#presets').removeClass('active');
     }
   };
 

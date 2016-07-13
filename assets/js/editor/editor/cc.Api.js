@@ -8,7 +8,8 @@ CanvasComposer.Interface = {
     var currentWorkID = $('#canadEditor').data('workid');
     // var sizeS = $('#subcategory-selector option:selected').data('size');
     // console.log(sizeS);
-    var canvassize = $('#subcategory-selector option:selected').data('size');
+    var canvaswidth = $('#subcategory-selector option:selected').data('width');
+    var canvasheight = $('#subcategory-selector option:selected').data('height');
     var privacy = $('#privacysetting').prop("checked");
     var category = $('#category-selector').val();
     var subcategory = $('#subcategory-selector').val();
@@ -16,7 +17,7 @@ CanvasComposer.Interface = {
   	$.ajax({
   		url: '/works',
   		method: 'PUT',
-  		data: {author: user, data: currentCanvas, thumbnail: canvasThumb , public: privacy, worksize: canvassize, workid: currentWorkID, category: category, subcategory: subcategory},
+  		data: {author: user, data: currentCanvas, thumbnail: canvasThumb , public: privacy, workwidth: canvaswidth, workheight: canvasheight, workid: currentWorkID, category: category, subcategory: subcategory},
   		success: function(res){
         console.log(res);
   			$('#message').html('Saved !');

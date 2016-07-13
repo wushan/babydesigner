@@ -15,10 +15,14 @@ module.exports = {
   		type: 'string',
   		required: true
   	},
-  	size: {
-  		type: 'array',
+  	width: {
+  		type: 'string',
   		required: true
   	},
+    height: {
+      type: 'string',
+      required: true
+    },
     works: {
       collection: 'works',
       via: 'subcategory'

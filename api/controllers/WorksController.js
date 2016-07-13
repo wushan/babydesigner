@@ -18,10 +18,11 @@ function writeFile(path, contents, cb) {
 }
 module.exports = {
 	public: function(req, res){
-		Works.find({public: true}).populate('author').exec(function (err, data){
+		Works.find({public: true}).populate('author').populate('subcategory').exec(function (err, data){
 		  if (err) {
 		    return res.negotiate(err);
 		  }
+		  sails.log(data);
 		  if (req.isAuthenticated()) {
 		  	authorized = true;
 		  	return res.view('worksPublic', {user: req.user, publicworks: data, authorized: authorized});
@@ -48,7 +49,7 @@ module.exports = {
 		  sails.log('file writed');
 		});
 
-		Works.update({author: req.user.id, workid: req.body.workid },{data: req.body.data, thumbnail: savePath, public: req.body.public, category: req.body.category, subcategory: req.body.subcategory, worksize: req.body.worksize}).exec(function afterwards(err, updated){
+		Works.update({author: req.user.id, workid: req.body.workid },{data: req.body.data, thumbnail: savePath, public: req.body.public, category: req.body.category, subcategory: req.body.subcategory, workwidth: req.body.workwidth, workheight: req.body.workheight }).exec(function afterwards(err, updated){
 		  if (err) {
 		    // handle error here- e.g. `res.serverError(err);`
 		    return res.serverError(err);

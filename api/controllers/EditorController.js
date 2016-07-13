@@ -30,7 +30,7 @@ module.exports = {
             // is mine -> load
 
             //Find If User had permission to edit this work
-            Works.findOne({author: req.user.id, workid: queryID}).populate('subcategory').exec(function (err, workfound){
+            Works.findOne({author: req.user.id, workid: queryID}).populate('category').populate('subcategory').exec(function (err, workfound){
               if (err) {
                 return res.negotiate(err);
               }

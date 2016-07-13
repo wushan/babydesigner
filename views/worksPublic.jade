@@ -13,9 +13,8 @@ block body
 								a(href='/editor/' + work.workid)
 									img(src='/' + work.thumbnail)
 							.caption
-								.author=work.author.username
-								.created=work.createdAt
-								.updated=work.updatedAt
-								.public=work.public
-								.workid=work.workid
+								p=work.subcategory.slug
+								.author
+									|	author / 
+									a(href='/user/'+ work.author.username)=work.author.username
 								// .data=work.data

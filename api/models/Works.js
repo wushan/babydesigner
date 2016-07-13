@@ -32,16 +32,21 @@ module.exports = {
   		required: true,
   		unique: true
   	},
-  	worksize: {
-  		type: 'array',
-  		defaultsTo: [640,480]
+  	workwidth: {
+  		type: 'string',
+  		defaultsTo: '640'
   	},
+    workheight: {
+      type: 'string',
+      defaultsTo: '480'
+    },
     worktitle: {
       type: 'string',
       defaultsTo: 'untitled'
     },
     category: {
-      model: 'category'
+      model: 'category',
+      defaultsTo: 1
     },
     subcategory: {
       model: 'size'

@@ -2,11 +2,18 @@
 $(document).ready(function(){
   $('.user-dropdown > a').on('click', function(){
   	$(this).toggleClass('active');
-  })
+  });
+  //Image Error Handle
+  jQuery("img").one('error', function () {
+      jQuery(this).attr("src", "/images/components/thumbnail-placeholder.svg"); //.unbind("error") is useless here
+  }).each(function () {
+      if (this.complete && !this.naturalHeight && !this.naturalWidth) {
+          $(this).triggerHandler('error');
+      }
+  });
 });
 
 //Socket
-
 io.socket.on('connect', function socketConnected() {
 	console.log('xxx');
 });

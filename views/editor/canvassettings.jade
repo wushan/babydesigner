@@ -7,17 +7,20 @@
 					.select-wrapper
 						select#category-selector
 							each category in categorylist
-								option(value=category.id)=category.name
+								if category.id == currentArtboard.category.id
+									option(value=category.id selected)=category.name
+								else
+									option(value=category.id)=category.name
 			
 			.controlgroup
 				label Sub
 				.controls
 					.select-wrapper
+						//這邊刪掉，改成取得上面的 selected 後再 ajax 拿對應的資料過來 select
 						select#subcategory-selector
-							each size in categorylist[0].sizes
-								option(value=size.id, data-size=size.size)=size.slug + ' ( ' + size.size + ' )'
+							
 			.controlgroup.centered
-				a.btn.confirmation.js-closepreset(href='javascript:;', data-action='saveJSON') Blank
+				a.btn.confirmation(href='javascript:;', data-action='update') Blank
 		.preset-list
 			each i in Array(20)
 				.preset
