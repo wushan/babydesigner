@@ -102,9 +102,11 @@ header.home {
 		span {
 			font-weight: 700;
 		}
-		& + small {
-			font-size: 1em;
+		small {
+			font-size: .3em;
 			color: rgba($white, .5);
+			display: block;
+		    margin: 1em 0;
 		}
 	}
 	a {
