@@ -36,7 +36,10 @@ block body
 						img(src='/images/icons/icon-close.svg')
 					span Leave
 			
-			#current-preset
+			if currentArtboard.subcategory
+				#current-preset
+					|	Current Preset : #{currentArtboard.subcategory.slug} / #{currentArtboard.subcategory.width} x #{currentArtboard.subcategory.height}
+
 
 		//Artboard
 		include ../assets/templates/artboard
@@ -127,6 +130,27 @@ block pagescripts
 		//bindEvent
 		var categorylist = !{JSON.stringify(categorylist)};
 		var selectedCate;
+		//subcategory state
+		$(window).load(function(){
+			$.ajax({
+				url: '/category/' + $('#category-selector option:selected').val(),
+				method: 'GET',
+				success: function(cate) {
+					for (var i = 0; i < cate.sizes.length; i ++) {
+						if (cate.sizes[i].id == '#{currentArtboard.subcategory.id}') {
+							$('#subcategory-selector').append('<option value="' + cate.sizes[i].id + '" data-width=' + cate.sizes[i].width + ' data-height=' + cate.sizes[i].height + ' selected>' + cate.sizes[i].slug + ' ( ' + cate.sizes[i].width + ' x ' + cate.sizes[i].height + ' )</option>');
+
+							 //Set Canvas tip tags
+							    $('.sizeTag .tag.width span').html(cate.sizes[i].width);
+							 //Set Canvas tip tags
+							    $('.sizeTag .tag.height span').html(cate.sizes[i].height);
+						} else {
+							$('#subcategory-selector').append('<option value="' + cate.sizes[i].id + '" data-width=' + cate.sizes[i].width + ' data-height=' + cate.sizes[i].height + '>' + cate.sizes[i].slug + ' ( ' + cate.sizes[i].width + ' x ' + cate.sizes[i].height + ' )</option>');
+						}
+					}
+				}
+			})
+		});
 		$('#category-selector').on('change', function(){
 			selectedCate = $(this).val();
 			console.log( selectedCate );

@@ -68,6 +68,7 @@ CanvasComposer.Menu = function(){
       canvas.setHeight(height);
       canvas.setWidth(width);
       canvas.renderAll();
+      CanvasComposer.initCanvas.fit();
         //Update Current Canvas Info
         var slug = $('#subcategory-selector option:selected').text();
         slug = slug.split('(');
@@ -79,6 +80,10 @@ CanvasComposer.Menu = function(){
 
         //Auto Save
         CanvasComposer.Interface.save();
+        //Set Canvas tip tags
+        $('.sizeTag .tag.width span').html(width);
+        //Set Canvas tip tags
+        $('.sizeTag .tag.height span').html(height);
       // Close Presets Dialog
       $('#presets').removeClass('active');
     }

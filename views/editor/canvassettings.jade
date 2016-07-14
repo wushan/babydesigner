@@ -18,6 +18,9 @@
 					.select-wrapper
 						//這邊刪掉，改成取得上面的 selected 後再 ajax 拿對應的資料過來 select
 						select#subcategory-selector
+							//- each size in categorylist[0].sizes
+							//- 	option(value=size.id, data-size=size.size)=size.slug + ' ( ' + size.size + ' )'
+
 							
 			.controlgroup.centered
 				a.btn.confirmation(href='javascript:;', data-action='update') Blank
