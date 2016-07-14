@@ -39,7 +39,11 @@ block body
 			if currentArtboard.subcategory
 				#current-preset
 					|	Current Preset : #{currentArtboard.subcategory.slug} / #{currentArtboard.subcategory.width} x #{currentArtboard.subcategory.height}
-
+				script.
+					var currentSubcategory = '#{currentArtboard.subcategory.id}';
+			else
+				script.
+					var currentSubcategory;
 
 		//Artboard
 		include ../assets/templates/artboard
@@ -117,11 +121,7 @@ block pagescripts
 
 		};
 		console.log('#{currentArtboard.workwidth}');
-		//- var worksizeArray = '#{currentArtboard.worksize}';
-		//- var worksize = worksizeArray.split(',');
-		//- console.log(typeof worksize[0]);
-		//- console.log(worksize[1]);
-		//- console.log(data.workData);
+
 		CanvasComposer.init(data.workData,{
 			'width': '#{currentArtboard.workwidth}',
 			'height': '#{currentArtboard.workheight}'
@@ -130,6 +130,7 @@ block pagescripts
 		//bindEvent
 		var categorylist = !{JSON.stringify(categorylist)};
 		var selectedCate;
+
 		//subcategory state
 		$(window).load(function(){
 			$.ajax({
@@ -137,7 +138,7 @@ block pagescripts
 				method: 'GET',
 				success: function(cate) {
 					for (var i = 0; i < cate.sizes.length; i ++) {
-						if (cate.sizes[i].id == '#{currentArtboard.subcategory.id}') {
+						if (cate.sizes[i].id == currentSubcategory) {
 							$('#subcategory-selector').append('<option value="' + cate.sizes[i].id + '" data-width=' + cate.sizes[i].width + ' data-height=' + cate.sizes[i].height + ' selected>' + cate.sizes[i].slug + ' ( ' + cate.sizes[i].width + ' x ' + cate.sizes[i].height + ' )</option>');
 
 							 //Set Canvas tip tags
