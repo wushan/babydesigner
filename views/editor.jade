@@ -113,14 +113,11 @@ block pagescripts
 	script(src="/js/editor/editor/cc.Api.js")
 	script(src="/js/editor/vendor/moments.js")
 	script.
-		var ddd = !{JSON.stringify(currentArtboard)};
 
-		console.log(ddd);
 		var data = {
 			workData: !{JSON.stringify(currentArtboard.data)}
 
 		};
-		console.log('#{currentArtboard.workwidth}');
 
 		CanvasComposer.init(data.workData,{
 			'width': '#{currentArtboard.workwidth}',
@@ -149,7 +146,11 @@ block pagescripts
 							$('#subcategory-selector').append('<option value="' + cate.sizes[i].id + '" data-width=' + cate.sizes[i].width + ' data-height=' + cate.sizes[i].height + '>' + cate.sizes[i].slug + ' ( ' + cate.sizes[i].width + ' x ' + cate.sizes[i].height + ' )</option>');
 						}
 					}
+					updatePresetList();
+					
 				}
+			}).fail(function(err){
+				alert(err);
 			})
 		});
 		$('#category-selector').on('change', function(){
@@ -160,10 +161,32 @@ block pagescripts
 					return selectionRenew(categorylist[i].sizes);
 				};
 			}
+			updatePresetList();
 		});
+
+		$('#subcategory-selector').on('change', function(){
+			updatePresetList();
+		});
+
 		function selectionRenew(subcategory) {
 			$('#subcategory-selector').empty();
 			for (var i = 0; i < subcategory.length; i ++) {
 				$('#subcategory-selector').append('<option value="' + subcategory[i].id + '" data-width=' + subcategory[i].width + ' data-height=' + subcategory[i].height + '>' + subcategory[i].slug + ' ( ' + subcategory[i].width + ' x ' + subcategory[i].height + ' )</option>');
 			}
+		}
+		function updatePresetList(){
+			//Get Works From subcategory
+			$.ajax({
+				url: '/size/' + $('#subcategory-selector').val(),
+				method: 'GET',
+				success: function(subcate){
+					console.log(subcate.works);
+					if (subcate.works.length > 0) {
+						$('.preset-list').empty();
+						for (var i = 0; i < subcate.works.length; i++ ) {
+							$('.preset-list').append('<div class=preset><a href=/editor/' + subcate.works[i].workid + '><div class=thumbnail><img src=/' + subcate.works[i].thumbnail + '></div></a></div>')
+						}
+					}
+				}
+			});
 		}

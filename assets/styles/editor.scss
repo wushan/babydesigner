@@ -183,30 +183,38 @@
 }
 //Presets
 #presets {
-	background-color: rgba($black, .8);
+	background-color: rgba($gray, .5);
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
-    bottom: 0;
+    height: 0;
     box-sizing: border-box;
     overflow: hidden;
-    color: $white;
     border-radius: 6px;
-    display: none;
     @extend .transition;
     &.active {
     	display: block;
+    	bottom: 0;
+    	height: 100%;
+    	.presets-inner {
+    		top: 0;
+    	}
     }
     .presets-inner {
-    	height: 80%;
+    	@extend .transition;
+    	transition-delay: 100ms;
+    	height: 300px;
     	width: 80%;
     	margin: auto;
     	position: absolute;
-    	top: 0;
-    	bottom: 0;
+    	top: -300px;
     	left: 0;
     	right: 0;
+    	background-color: $white;
+    	padding: 1em;
+    	border-radius: 0 0 6px 6px;
+    	box-shadow: 0 0 6px 0 $black;
     }
     a {
     	display: block;
@@ -225,7 +233,10 @@
     	@extend .clr;
     	padding: 1em 0;
     	.controlgroup {
-    		// @include gallery( 4 of 12);
+    		@include span(5 of 12);
+    		&:last-child {
+    			@include span( 2 of 12 last);
+    		}
     	}
     }
 }
