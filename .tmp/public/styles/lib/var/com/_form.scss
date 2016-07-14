@@ -1,0 +1,191 @@
+//Toggle Component
+.toggle-component {
+  width: 150px;
+  text-align: right;
+  input {
+    display: none;
+    &:checked {
+      &+ {
+        label {
+          background-color: $green;
+          &:before {
+            content: 'PUBLIC';
+          }
+          .ball {
+            left: 28px;
+          }
+        }
+      }
+    }
+  }
+  label {
+    @extend .transition;
+    display: inline-block;
+    vertical-align: middle;
+    height: 30px;
+    background-color: $darkgray;
+    border-radius: 15px;
+    padding: 0 .5em;
+    line-height: 30px;
+    width: 40px;
+    position: relative;
+    cursor: pointer;
+    &:before {
+      content: 'PRIVATE';
+      display: inline-block;
+      vertical-align: middle;
+      position: absolute;
+      right: 100%;
+      margin-right: 1em;
+    }
+    .ball {
+      @extend .transition;
+      width: 24px;
+      height: 24px;
+      background-color: $white;
+      border-radius: 50%;
+      position: absolute;
+      left: 3px;
+      top: 3px;
+    }
+  }
+}
+//ControlGroup
+.controlgroup {
+  margin-bottom: .5em;
+  @extend .clr;
+  label {
+    float: left;
+    text-align: right;
+    box-sizing: border-box;
+    padding-right: 1em;
+    display: block;
+    line-height: 44px;
+    width: 90px;
+  }
+  input {
+    margin-bottom: .3em;
+  }
+  .controls {
+    width: calc( 100% - 90px );
+    margin-left: 90px;
+  }
+  
+}
+textarea {
+  width: 100%;
+  border: 1px solid $gray;
+  box-sizing: border-box;
+  height: 44px;
+  background-color: $smokygray;
+  padding: 1em;
+  outline: none;
+  min-height: 200px;
+  &:focus {
+    border: 1px solid $main-dark;
+    background-color: $main-dark;
+    color: $white;
+  }
+}
+input,input[type=search] {
+  width: 100%;
+  border: 1px solid $gray;
+  box-sizing: border-box;
+  height: 44px;
+  background-color: $white;
+  padding: 0 1em;
+  outline: none;
+  border-radius: 6px;
+  &:focus {
+    border: 1px solid $gray;
+    background-color: $smokygray;
+    color: $black;
+  }
+  &.calc {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc( 100% - 60px );
+  }
+  &#CAPTCHA {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc( 100% - 93px );
+  }
+  &:read-only {
+    background-color: $gray;
+  }
+}
+//Select
+.controlgroup {
+  select {
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: window;
+    border: 1px solid $gray;
+    color: $black;
+    border-radius: 6px;
+  }
+  select::-ms-expand {
+    display: none;
+  }
+  @-moz-document url-prefix() {
+    .select-wrapper {
+      //background-color: #ffffff;
+      background-image: url("../images/components/select-arrow.png");
+      background-position: 97% center;
+      background-repeat: no-repeat;
+      background-color: $white;
+      select {
+        width: 110%;
+        background-image: url("../images/components/select-arrow.png");
+        background-position: 88% center;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+  select {
+    background-color: transparent;
+    background-image: url("../images/components/select-arrow.png");
+    background-position: 97% center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    height: 44px;
+    padding: .3em .7em;
+    background-color: $white;
+    &:focus {
+      outline: none;
+    }
+  }
+  .select-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    border: 0;
+    outline: none;
+    background-color: $white;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    border-radius: 6px;
+    &:focus {
+
+    }
+  }
+}
+
+//Form
+form {
+  .form-tips {
+    text-align: center;
+    font-size: .9em;
+    color: $darkgray;
+    padding: 1em 0 0 0;
+  }
+}
+//Placehoder
+::-webkit-input-placeholder { /* WebKit browsers */ color: $gray; }
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ color: $gray; opacity: 1; }
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */ color: $gray; opacity: 1; }
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */ color: $gray; }

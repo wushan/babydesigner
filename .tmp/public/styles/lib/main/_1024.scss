@@ -1,0 +1,17 @@
+@include susy-breakpoint(1024px) {
+	#member {
+		.work-list {
+			ul {
+				.work-sizer {
+					width: 23%;
+				}
+				.work-gutter {
+					width: 2.6667%;
+				}
+				li {
+					width: 23%;
+				}
+			}
+		}
+	}
+}

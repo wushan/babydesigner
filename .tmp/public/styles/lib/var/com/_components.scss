@@ -1,0 +1,32 @@
+//Container
+.container {
+	@extend .clr;
+	.main {
+		
+	}
+	.sidebar {
+		
+	}
+	@include breakpoint(1024px) {
+		.main {
+			@include span(9 of 12 last);
+		}
+		.sidebar {
+			@include span(3 of 12);
+		}
+	}
+}
+
+.restrict {
+	max-width: 1170px;
+	margin: 0 auto;
+}
+.restrict-small {
+	max-width: 560px;
+	margin: 0 auto;
+}
+
+.restrict-tiny {
+	max-width: 360px;
+	margin: 0 auto;
+}

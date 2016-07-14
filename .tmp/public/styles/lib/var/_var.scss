@@ -1,0 +1,29 @@
+//Basic Colors // Do Not Modify
+$white: #ffffff;
+$black: #000000;
+
+$gray: #cccccc;
+$smokygray: #f2f2f2;
+$lightgray: #eeeeee;
+$darkgray: #4A4A4A;
+$darkestgray: #3e3e3e;
+
+//Set Main Color
+$main: #1565c0;
+$yellow: #ffd150;
+$red: #BF0000;
+$blue: #3780ED;
+$orange: #F5A623;
+$green: #7ED321;
+
+//Condition
+$confirmation: #50E3C2;
+$confirmation-text: #0E8268;
+//
+$main-dark: darken($main, 20%);
+$main-light: lighten($main, 20%);
+
+
+
+//Fonts
+$sans-serif: "proxima-nova", "source-han-sans-traditional", "Helvetica Neue",Arial,"Heiti TC","LiHei Pro","Microsoft Jhenghei", sans-serif;

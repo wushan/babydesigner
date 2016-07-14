@@ -1,0 +1,34 @@
+#presets.floating-menu
+	.presets-inner
+		.preset-filter
+			.controlgroup
+				label Category
+				.controls
+					.select-wrapper
+						select#category-selector
+							each category in categorylist
+								option(value=category.id)=category.name
+			
+			.controlgroup
+				label Sub
+				.controls
+					.select-wrapper
+						select#subcategory-selector
+							each size in categorylist[0].sizes
+								option(value=size.id)=size.slug + ' ( ' + size.size + ' )'
+			.controlgroup.centered
+				a.btn.confirmation.js-closepreset(href='javascript:;', data-action='saveJSON') Blank
+		.preset-list
+			each i in Array(20)
+				.preset
+					a(href='javascript:;')
+						.thumbnail
+							img(src='http://unsplash.it/400x300')
+
+if poppresets
+	script.
+		var presets = document.getElementById('presets');
+		console.log(presets);
+		presets.classList.add('active');
+
+

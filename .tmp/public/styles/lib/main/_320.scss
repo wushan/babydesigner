@@ -1,0 +1,172 @@
+//main cibtebt
+main {
+	.main-inner {
+		
+	}
+	section {
+		padding: 2em 1em;
+	}
+}
+
+//Login PAge
+.loggin-wrapper {
+	.loggin-inner {
+		position: relative;
+		top: -6em;
+		background-color: $white;
+		border-radius: 6px;
+		padding: 1em;
+		box-shadow: 0 1px 3px rgba($black, .33);
+	}
+}
+
+#works {
+	.work-list {
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+			@extend .clr;
+			li {
+				@include gallery( 3 of 12 );
+				.thumbnail {
+					border: 1px solid $gray;
+					background-image: url('../images/components/transparent.png');
+					img {
+						width: 100%;
+					}
+				}
+				a {
+					color: $blue;
+				}
+			}
+		}
+	}
+}
+
+#member {
+	.sidebar {
+		text-align: center;
+		color: $gray;
+	}
+	.avatar {
+		max-width: 200px;
+		margin: 0 auto;
+		display: inline-block;
+		border-radius: 50%;
+		overflow: hidden;
+		border: 10px solid $gray;
+	}
+	.username {
+		h1 {
+			color: $black;
+		}
+	}
+	.contact {
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+			li {
+				a {
+					color: $darkgray;
+					display: block;
+				}
+			}
+		}
+	}
+	.description {
+		h4 {
+			font-weight: 700;
+			color: $black;
+		}
+
+	}
+	.work-list {
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+			@extend .clr;
+			.work-sizer {
+				width: 100%;
+			}
+			li {
+				width: 100%;
+				margin-bottom: 2.6667%;
+				display: block;
+				border: 1px solid $smokygray;
+				box-sizing: border-box;
+				overflow: hidden;
+				@extend .transition;
+				&:hover {
+					box-shadow: 0 4px 6px -3px rgba($black,.33);
+					.caption {
+						opacity: 1;
+						top: 0;
+						bottom: 0;
+					}
+					.work-privacy {
+						opacity: 1;
+					}
+				}
+				.caption {
+					opacity: 0;
+					@extend .transition;
+					position: absolute;
+					top: 100%;
+					right: 0;
+					left: 0;
+					color: $white;
+					font-size: 0;
+					text-align: center;
+					pointer-events: none;
+					cursor: pointer;
+					&:before {
+						content: '';
+						display: inline-block;
+						vertical-align: middle;
+						height: 100%;
+						width: 0;
+					}
+					.caption-inner {
+						background-color: rgba($black, .8);
+						display: inline-block;
+						vertical-align: middle;
+						font-size: .9rem;
+						padding: 0 .5em;
+					}
+				}
+			}
+		}
+		.thumbnail {
+			background-image: url('../images/components/transparent.png');
+		}
+		.work-privacy {
+			opacity: .33;
+			position: absolute;
+			right: 1em;
+			top: 1em;
+			img {
+				width: 24px;
+			}
+		}
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+}
+
+footer {
+	.footer-inner {
+		padding: 1em;
+		text-align: center;
+		color: $darkgray;
+		border-top: 1px solid $lightgray;
+		.copyrights {
+			font-size: .9em;
+			margin-top: 1em;
+		}
+	}
+}
