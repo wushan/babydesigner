@@ -1,5 +1,6 @@
 var passport = require('passport'),
 LocalStrategy = require('passport-local').Strategy,
+FacebookStrategy = require('passport-facebook').Strategy,
 bcrypt = require('bcrypt');
 
 passport.serializeUser(function(user, done) {
@@ -38,6 +39,24 @@ passport.use(new LocalStrategy({
             message: 'Logged In Successfully'
           });
         });
+    });
+  }
+));
+
+passport.use(new FacebookStrategy({
+    clientID: '263307857379117',
+    clientSecret: 'b0389d80cf1466cbbe771f91593972bf',
+    callbackURL: "http://localhost:1337/auth/facebook/callback",
+    profileFields: ['id', 'emails', 'name']
+  },
+  function(accessToken, refreshToken, profile, done) {
+    
+    User.findOrCreate({email: profile.emails[0].value }, function(err, user) {
+      if (err) { return done(err); }
+      sails.log(user);
+      return done(null, user, {
+        message: 'Logged In Successfully'
+      });
     });
   }
 ));
