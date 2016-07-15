@@ -50,11 +50,15 @@ module.exports = {
     },
     facebookAuth: function(req, res, next) {
       passport.authenticate('facebook', { scope: ['email', 'user_about_me']})(req, res, next);
-      },
+    },
      
     facebookCallback: function(req, res, next) {
         passport.authenticate('facebook', function(err, user) {
-          res.json(user);
+          req.logIn(user, function(err) {
+                if (err) res.send(err);
+                //Redirect to Home
+                res.redirect('/');
+            });
         })(req, res, next);
     }
 };
