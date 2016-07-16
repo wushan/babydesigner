@@ -16,9 +16,10 @@ function writeFile(path, contents, cb) {
     fs.writeFile(path, contents, cb);
   });
 }
+
 module.exports = {
 	public: function(req, res){
-		Works.find({public: true}).populate('author').populate('subcategory').exec(function (err, data){
+		Works.find({ where: { public:true }, sort: 'updatedAt DESC' }).populate('author').populate('subcategory').exec(function (err, data){
 		  if (err) {
 		    return res.negotiate(err);
 		  }

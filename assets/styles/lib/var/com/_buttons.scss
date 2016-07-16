@@ -116,6 +116,36 @@ button {
         }
       }
     }
+    &.google {
+      background-color: $google;
+      .icon {
+        background-color: darken($google, 10%);
+      }
+      &:hover {
+        background-color: darken($google, 10%); 
+      }
+      &:active {
+        background-color: darken($google, 15%);
+        .icon {
+          background-color: darken($google, 15%);
+        }
+      }
+    }
+    &.facebook {
+      background-color: $facebook;
+      .icon {
+        background-color: darken($facebook, 10%);
+      }
+      &:hover {
+        background-color: darken($facebook, 10%); 
+      }
+      &:active {
+        background-color: darken($facebook, 15%);
+        .icon {
+          background-color: darken($facebook, 15%);
+        }
+      }
+    }
   }
 }
 

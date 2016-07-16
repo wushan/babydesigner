@@ -60,5 +60,18 @@ module.exports = {
                 res.redirect('/');
             });
         })(req, res, next);
+    },
+    googleAuth: function(req, res, next) {
+      passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email']})(req, res, next);
+    },
+     
+    googleCallback: function(req, res, next) {
+        passport.authenticate('google', function(err, user) {
+          req.logIn(user, function(err) {
+                if (err) res.send(err);
+                //Redirect to Home
+                res.redirect('/');
+            });
+        })(req, res, next);
     }
 };

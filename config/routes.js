@@ -44,6 +44,8 @@ module.exports.routes = {
   
   'get /auth/facebook': 'AuthController.facebookAuth',
   'get /auth/facebook/callback': 'AuthController.facebookCallback',
+  'get /auth/google': 'AuthController.googleAuth',
+  'get /auth/google/callback': 'AuthController.googleCallback',
 
   '/logout': 'AuthController.logout',
 

@@ -1,6 +1,7 @@
 var passport = require('passport'),
 LocalStrategy = require('passport-local').Strategy,
 FacebookStrategy = require('passport-facebook').Strategy,
+GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
 bcrypt = require('bcrypt');
 
 passport.serializeUser(function(user, done) {
@@ -51,6 +52,23 @@ passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     
+    User.findOrCreate({email: profile.emails[0].value }, function(err, user) {
+      if (err) { return done(err); }
+      sails.log(user);
+      return done(null, user, {
+        message: 'Logged In Successfully'
+      });
+    });
+  }
+));
+
+
+passport.use(new GoogleStrategy({
+    clientID: '807484066323-fkblho3s7mcln3a1eu7jehnhcd7oaoqv.apps.googleusercontent.com',
+    clientSecret: 'Zikl8yTLDKBJQ2UJ4xzGhqTI',
+    callbackURL: "http://localhost:1337/auth/google/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
     User.findOrCreate({email: profile.emails[0].value }, function(err, user) {
       if (err) { return done(err); }
       sails.log(user);
