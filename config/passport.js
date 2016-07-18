@@ -47,7 +47,7 @@ passport.use(new LocalStrategy({
 passport.use(new FacebookStrategy({
     clientID: '263307857379117',
     clientSecret: 'b0389d80cf1466cbbe771f91593972bf',
-    callbackURL: "http://localhost:1337/auth/facebook/callback",
+    callbackURL: "http://draftty.com/auth/facebook/callback",
     profileFields: ['id', 'emails', 'name']
   },
   function(accessToken, refreshToken, profile, done) {
@@ -66,7 +66,7 @@ passport.use(new FacebookStrategy({
 passport.use(new GoogleStrategy({
     clientID: '807484066323-fkblho3s7mcln3a1eu7jehnhcd7oaoqv.apps.googleusercontent.com',
     clientSecret: 'Zikl8yTLDKBJQ2UJ4xzGhqTI',
-    callbackURL: "http://localhost:1337/auth/google/callback"
+    callbackURL: "http://draftty.com/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOrCreate({email: profile.emails[0].value }, function(err, user) {
