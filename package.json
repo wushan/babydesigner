@@ -30,6 +30,7 @@
     "include-all": "~0.1.6",
     "mkdirp": "^0.5.1",
     "node-base64-image": "^1.0.1",
+    "node-fetch": "^1.5.3",
     "passport": "~0.2.1",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth": "^1.0.0",
@@ -43,6 +44,8 @@
     "sails-mysql": "^0.12.2",
     "shortid": "^2.2.6",
     "skipper": "^0.6.1",
+    "unsplash-api": "^1.2.0",
+    "unsplash-js": "^4.2.0",
     "writefile": "^0.2.8"
   },
   "scripts": {

@@ -63,6 +63,9 @@ module.exports.routes = {
   'get /works/public': 'WorksController.public',
   'get /works/:workid': 'WorksController.getWorkView',
 
+  //Unsplash api
+  'get /unsplash': 'UnsplashController.getImage',
+
   //Static Pages
   'get /annoucement': {
     view: 'announcement'
