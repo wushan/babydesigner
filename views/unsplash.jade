@@ -8,5 +8,10 @@ block hero
 block body
 	h1 Unsplash Demo
 	#imagePlace
+		ul
+			each image in imageList
+				li
+					img(src=image.urls.regular)
+
 block pagescripts
 	

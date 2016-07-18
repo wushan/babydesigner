@@ -79,39 +79,6 @@ CanvasComposer.Artboard = {
     //Programmatically Select Newly Added Object
     canvas.setActiveObject(text);    
   },
-  
-  addMedia : function(objImage) {
-    //Check if it is an Slide Array
-    if (objImage.length > 1) {
-      var imageSet = objImage;
-      //If objImage is an Array
-      CanvasComposer.Artboard.Multimedia.slider(imageSet);
-    } else if (objImage.length === 1){
-      //Add Image or Video ((Single))
-      //extension
-      var extension = objImage[0].src.split('.').pop();
-      var media;
-      var youtubeId = validateYouTubeUrl(objImage[0].src);
-      if (youtubeId != false) {
-        //If It is from Youtube
-        var thumbnail = getThumbnails(youtubeId, function(thumb){
-          //Add Single Image
-          CanvasComposer.Artboard.Multimedia.video(thumb, youtubeId);
-        });
-      } else {
-        if (extension.match(/^(gif|png|jpg|jpeg|tiff|svg)$/)) {
-          //Add Single Image
-          CanvasComposer.Artboard.Multimedia.image(objImage[0].src);
-          console.log(objImage[0].src);
-        } else if (extension.match(/^(mp4|avi|ogg|ogv|webm)$/)) {
-          //Add Single Video
-          CanvasComposer.Artboard.Multimedia.video(objImage[0].src);
-        } else {
-          console.log('不支援此檔案格式，請重試');
-        }
-      }
-    }
-  },
   dispose : function() {
     var obj;
     for (var i=0; i<canvas._objects.length; i++) {

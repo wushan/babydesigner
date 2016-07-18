@@ -54,9 +54,13 @@ block body
 					li
 						a.basic.js-add-rect(href="javascript:;" title="新增矩形", data-action='addRect')
 							i.fa.fa-object-group.fa-lg
+					
 					li
 						a.basic.js-add-circle(href="javascript:;" title="新增圓形", data-action='addCircle')
 							i.fa.fa-circle-thin.fa-lg
+					li
+						a.basic.js-add-image(href="javascript:;" title="新增圖片", data-action='addImage')
+							i.fa.fa-image.fa-lg
 					li
 						a.basic.js-add-text(href="javascript:;" title="新增文字", data-action='addText')
 							i.fa.fa-font.fa-lg
@@ -84,11 +88,16 @@ block body
 
 		//CanvasSetting (Stand Alone Now)
 		include editor/canvassettings
+		//ImageLibrary
+		#imageLibrary
+			ul
+		
+
 		#loader
 			.loader-inner
 				img(src='/images/components/load.svg')
 				p Initializing
-
+block footer
 block pagescripts
 	script(src="/js/editor/vendor/fabric.js")
 	script(src="/js/editor/editor/extensions/cc.Extensions.js")
@@ -139,9 +148,9 @@ block pagescripts
 							$('#subcategory-selector').append('<option value="' + cate.sizes[i].id + '" data-width=' + cate.sizes[i].width + ' data-height=' + cate.sizes[i].height + ' selected>' + cate.sizes[i].slug + ' ( ' + cate.sizes[i].width + ' x ' + cate.sizes[i].height + ' )</option>');
 
 							 //Set Canvas tip tags
-							    $('.sizeTag .tag.width span').html(cate.sizes[i].width);
+								$('.sizeTag .tag.width span').html(cate.sizes[i].width);
 							 //Set Canvas tip tags
-							    $('.sizeTag .tag.height span').html(cate.sizes[i].height);
+								$('.sizeTag .tag.height span').html(cate.sizes[i].height);
 						} else {
 							$('#subcategory-selector').append('<option value="' + cate.sizes[i].id + '" data-width=' + cate.sizes[i].width + ' data-height=' + cate.sizes[i].height + '>' + cate.sizes[i].slug + ' ( ' + cate.sizes[i].width + ' x ' + cate.sizes[i].height + ' )</option>');
 						}
@@ -190,3 +199,17 @@ block pagescripts
 				}
 			});
 		}
+
+
+	///////
+	script.
+		$.ajax({
+			url: '/unsplash',
+			method: 'GET',
+			success: function(imagelist) {
+				for (var i=0; i<imagelist.length; i++) {
+					$('#imageLibrary ul').append('<li><a href=javascript:; data-full=' + imagelist[i].urls.full + ' data-id=' + imagelist[i].id + '><img src=' + imagelist[i].urls.regular + '></a><div class=caption><a href=' + imagelist[i].user.portfolio_url + '>credit / ' + imagelist[i].user.name + '</a></div></li>');
+				}
+			}
+		})
+			

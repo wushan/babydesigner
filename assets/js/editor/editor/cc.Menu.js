@@ -7,6 +7,11 @@ CanvasComposer.Menu = function(){
     addCircle: function (event) {
                   CanvasComposer.Artboard.addCircle();
                 },
+    addImage: function (event) {
+                  // CanvasComposer.Artboard.addImage();
+                  // Open Media panel
+                  $('#imageLibrary').toggleClass('active');
+                },
     addText: function (event) {
                   CanvasComposer.Artboard.addText();
                 },
