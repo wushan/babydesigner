@@ -74,7 +74,7 @@ this["JST"][".tmp/public/templates/library.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '\n<li><img src="&lt;%= urls.regular %&gt;"/></li>';
+__p += '';
 
 }
 return __p

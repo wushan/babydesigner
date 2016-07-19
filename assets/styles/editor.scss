@@ -256,13 +256,15 @@
 	background-color: $darkgray;
 	box-shadow: 2px 2px 0 $black;
 	ul {
+		display: block;
 		margin: 0;
 		padding: 0;
 		list-style-type: none;
 		@extend .clr;
 		li {
-			@include gallery(6 of 12 .5);
-			position: relative;
+			// @include gallery(6 of 12 .5);
+			float:left;
+			width: 40%;
 			margin-bottom: .5em;
 			a {
 				display: block;
