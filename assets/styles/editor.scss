@@ -263,13 +263,18 @@
 		@extend .clr;
 		li {
 			// @include gallery(6 of 12 .5);
-			float:left;
-			width: 40%;
+			position: relative;
 			margin-bottom: .5em;
 			a {
 				display: block;
 			}
 		}
+	}
+	.item, .item-sizer {
+		width: 48%;
+	}
+	.item-gutter {
+		width: 4%;
 	}
 	.caption {
 		position: absolute;

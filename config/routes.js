@@ -69,7 +69,11 @@ module.exports.routes = {
   //Static Pages
   'get /annoucement': {
     view: 'announcement'
-  }
+  },
+
+  //Backend
+  'get /backend': 'AdminController.auth',
+  'post /backend/login': 'AdminController.login'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

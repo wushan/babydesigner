@@ -1,5 +1,7 @@
 CanvasComposer.Interface = {
   save: function(){
+    $('#message').html('Saving...');
+    $('#message').fadeIn();
     //Detach All
     canvas.deactivateAll().renderAll();
     //Save
@@ -21,9 +23,7 @@ CanvasComposer.Interface = {
   		success: function(res){
         console.log(res);
   			$('#message').html('Saved !');
-	  		$('#message').fadeIn().promise().done(function(){
-	  			$(this).fadeOut('slow');
-	  		});
+	  		$('#message').fadeOut('slow');
   		}
   	}).fail(function(err){
       console.log(err);

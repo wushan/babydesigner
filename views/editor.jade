@@ -90,8 +90,7 @@ block body
 		include editor/canvassettings
 		//ImageLibrary
 		#imageLibrary
-			ul
-				li
+			input#imageUploader(type='file')
 		
 
 		#loader
@@ -200,40 +199,3 @@ block pagescripts
 				}
 			});
 		}
-
-
-	///////
-	script(src="/js/vendor/imagesLoaded.js")
-	script(src="/js/vendor/masonry.js")
-	script.
-		var $workMasonry = $('#imageLibrary ul').masonry({
-			// set itemSelector so .grid-sizer is not used in layout
-			itemSelector: 'li',
-			percentPosition: true,
-			resize: false
-		});
-		$workMasonry.imagesLoaded().progress( function() {
-			$workMasonry.masonry('layout');
-		});
-		var resizeTimer;
-		$(window).on('resize', function(e) {
-
-			clearTimeout(resizeTimer);
-			resizeTimer = setTimeout(function() {
-				$workMasonry.masonry('layout');
-			}, 250);
-
-		});
-		$.ajax({
-			url: '/unsplash',
-			method: 'GET',
-			success: function(imagelist) {
-				$('#imageLibrary ul').empty();
-				for (var i=0; i<imagelist.length; i++) {
-					$('#imageLibrary ul').append('<li><a href=javascript:; data-full=' + imagelist[i].urls.full + ' data-id=' + imagelist[i].id + '><img src=' + imagelist[i].urls.regular + '></a><div class=caption><a href=' + imagelist[i].user.portfolio_url + '>credit / ' + imagelist[i].user.name + '</a></div></li>');
-					$workMasonry.masonry('layout');
-				}
-			}
-		});
-
-		
