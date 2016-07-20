@@ -1,16 +1,58 @@
 extends ../layout
-block hero
-	h1
-		|	Dashboard
-		small
-			| Don't have an account yet ? 
-			a(href='javascript:;') Register for free !
+//- block hero
+//- 	h1
+//- 		|	Dashboard
+//- 		small
+//- 			| Don't have an account yet ? 
+//- 			a(href='javascript:;') Register for free !
 block body
 	.container.restrict
-		h2 Dashboard
-		h4 Total Works
-		h4 Public Works
-		h4 Total FileSize
-		h2 Category Settings
-		h2 Subcategory Settings
+		h1 Dashboard
+		section#work-summary
+			.block
+				h1
+					|	919
+					span Work Created
+			.block
+				h1
+					|	919
+					span Public Work
+			.block
+				h1
+					|	Free
+					span Disk Spaces
+		h1 Category Settings
+		section
+			h3 Add New Category
+			form(action='')
+				.controlgroup
+					label Name
+					.controls
+						input(type='text', placeholder='Category Name')
+				.call-action
+					button.btn.confirmation.full(type='submit') Add
+		h1 Subcategory Settings
+		section
+			h3 Add New SubCategory
+			form(action='')
+				.controlgroup
+					label Parent
+					.controls
+						.select-wrapper
+							select
+								option Advertisement
+				.controlgroup
+					label Name
+					.controls
+						input(type='text', placeholder='Subcategory slug. eg. Twitter Post')
+				.controlgroup
+					label Width
+					.controls
+						input(type='text', placeholder='width, eg. 320')
+				.controlgroup
+					label Height
+					.controls
+						input(type='text', placeholder='height, eg. 320')
+				.call-action
+					button.btn.confirmation.full(type='submit') Add
 				

@@ -43,5 +43,14 @@ module.exports = {
     logout: function(req, res) {
         req.logout();
         res.redirect('/');
+    },
+    getWorkCount: function(req,res) {
+        Works.count().exec(function countCB(err, found) {
+          if (err) {
+            return res.negotiate(err);
+          }
+
+          // return found;
+        });
     }
 };
