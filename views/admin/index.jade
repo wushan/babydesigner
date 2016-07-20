@@ -1,0 +1,52 @@
+extends ./layout
+//- block hero
+//- 	h1
+//- 		|	Dashboard
+//- 		small
+//- 			| Don't have an account yet ? 
+//- 			a(href='javascript:;') Register for free !
+block body
+	.container.restrict
+		h1 Dashboard
+		section#work-summary
+			.block
+				h1#worksCount
+					span #{worksCount}
+					span Work Created
+			.block
+				h1#worksPublicCount
+					span #{worksPublicCount}
+					span Public Work
+			.block
+				h1
+					|	Free
+					span Disk Spaces
+block pagescripts
+	script.
+		var currentNum = parseInt($('#worksCount > span:first-child').html());
+		var currentPublicNum = parseInt($('#worksPublicCount > span:first-child').html());
+		var socket = io.connect();
+		socket.on('connect', function socketConnected() {
+
+		  typeof console !== 'undefined' &&
+		  console.log(
+		    'Socket is now connected and globally accessible as `socket`.\n' +
+		    'e.g. to send a GET request to Sails via Socket.io, try: \n' +
+		    '`socket.get("/foo", function (response) { console.log(response); })`'
+		  );
+
+		  // Attach a listener which fires every time the server publishes a message:
+		  socket.on('message', function newMessageFromSails ( message ) {
+
+		    typeof console !== 'undefined' &&
+		    console.log('New message received from Sails ::\n', message);
+		    console.log(typeof message.type);
+		    if (message.type === "new") {
+		    	$('#worksCount > span:first-child').html(currentNum++);
+		    } else if (message.type === "public"){
+			    $('#worksPublicCount > span:first-child').html(currentPublicNum++);
+		    }
+
+		  });
+		});
+		

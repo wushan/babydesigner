@@ -29,6 +29,7 @@ module.exports = {
 		  	return res.view('worksPublic', {user: req.user, publicworks: data, authorized: authorized});
 		  } else {
 		  	authorized = false;
+		  	// return res.send({user: req.user, publicworks: data, authorized: authorized});
 		  	return res.view('worksPublic', {user: req.user, publicworks: data, authorized: authorized});
 		  }
 		});

@@ -170,3 +170,21 @@ footer {
 		}
 	}
 }
+
+//Backend Styles
+#work-summary {
+	@extend .clr;
+	.block {
+		@include gallery(4 of 12);
+		h1 {
+			text-align: center;
+			font-size: 3em;
+			span {
+				display: block;
+				&:last-child {
+					font-size: .5em;
+				}
+			}
+		}
+	}
+}

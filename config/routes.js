@@ -72,8 +72,14 @@ module.exports.routes = {
   },
 
   //Backend
-  'get /backend': 'AdminController.auth',
-  'post /backend/login': 'AdminController.login'
+  'get /admin': 'AdminController.auth',
+  'get /admin/login': 'AdminController.auth',
+  'post /admin/login': 'AdminController.login',
+  'get /admin/categories': 'AdminController.getCategories',
+  'post /admin/categories': 'AdminController.addCategories',
+  'post /admin/categories:cateid/subcategory': 'AdminController.addSubcategories',
+  'get /admin/dashboard': 'AdminController.getDashboard'
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

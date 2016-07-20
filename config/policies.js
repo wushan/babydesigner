@@ -59,6 +59,11 @@ module.exports.policies = {
   },
   'EditorController': {
     '*': 'isAuthenticated'
+  },
+  'AdminController': {
+    '*': 'isMaster',
+    'auth': true,
+    'login': true
   }
 
 };

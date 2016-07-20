@@ -17,10 +17,10 @@ module.exports = {
     auth: function(req,res) {
         if (req.isAuthenticated() && req.user.group == 'admin') {
             authorized = true;
-            return res.view('backend/index');
+            return res.redirect('/admin/dashboard');
         } else {
             authorized = false;
-            return res.view('backend/login');
+            return res.view('admin/login', {authorized:authorized});
         }
     },
     login: function(req, res) {
@@ -34,7 +34,7 @@ module.exports = {
             req.logIn(user, function(err) {
                 if (err) res.send(err);
                 //Redirect to Home
-                res.redirect('/backend');
+                res.redirect('/admin/dashboard');
             });
 
         })(req, res);
@@ -44,13 +44,24 @@ module.exports = {
         req.logout();
         res.redirect('/');
     },
-    getWorkCount: function(req,res) {
+    getDashboard: function (req,res) {
         Works.count().exec(function countCB(err, found) {
           if (err) {
             return res.negotiate(err);
           }
-
+          Works.count({public:true}).exec(function countCB(err, publicfound) {
+              return res.view('admin/index', {worksCount: found, worksPublicCount: publicfound});
+          });
           // return found;
         });
+    },
+    getCategories: function( req, res ) {
+        return res.view('admin/categories');
+    },
+    addCategories: function( req, res ) {
+        
+    },
+    addSubcategories: function( req, res ) {
+        
     }
 };

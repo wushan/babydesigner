@@ -54,6 +54,20 @@ module.exports = {
   	likes: {
   		type: 'number'
   	}
+  },
+  afterCreate: function(work, cb) {
+    sails.log(work.public);
+    //Push a message to frontend.
+    sails.sockets.blast('message', {"type":"new"});
+    cb();
+  },
+  afterUpdate: function(updatedRecord, cb) {
+    if (updatedRecord.public == true) {
+      sails.sockets.blast('message', {"type":"public"});
+      cb();
+    } else {
+      cb();
+    }
   }
 };
 

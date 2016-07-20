@@ -1,0 +1,132 @@
+doctype html
+html
+	head
+		if locals.title
+			title= title
+		else
+			title Draftty - Admin
+
+		// Viewport mobile tag for sensible mobile support
+		meta(charset='utf-8')
+		meta(name='KeyWords', content='')
+		meta(name='Description', content='')
+		meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1")
+
+		//-
+			Stylesheets and Preprocessors
+			==============================
+
+			You can always bring in CSS files manually with `<link>` tags, or asynchronously
+			using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
+			of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+			By default, stylesheets from your `assets/styles` folder are included
+			here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
+			are supported. In production, your styles will be minified and concatenated into
+			a single file.
+
+			To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+			For example, here are a few things you could do:
+
+					+ Change the order of your CSS files
+					+ Import stylesheets from other directories
+					+ Use a different or additional preprocessor, like SASS, SCSS or Stylus
+
+		// STYLES
+		link(rel="stylesheet", href="/styles/importer.css")
+		// STYLES END
+
+		block styles
+
+	body
+		<!--[if lt IE 9]>
+		.old_browser
+			.old_browser_inner
+				.oops OOPS!
+				h1 您的瀏覽器版本太舊了！
+				p
+					| 請更新至 Internet Explorer 9 以上版本或選用更現代化的瀏覽器，
+					br
+					br
+					| 使用老舊版本的瀏覽器瀏覽本網站將可能有無法預測的錯誤，請儘快更新。
+					br
+					br
+					| 建議您使用 
+					a(href='http://www.google.com/chrome/', target='_blank')  Google Chrome 瀏覽器
+					br
+					br
+				p Copyright 2016 / All rights reserved.
+		<![endif]-->
+		#wrapper
+			block header
+				header
+					.header-inner
+						.navigation-wrapper
+							include partials/navigation
+							
+						section#heroContent
+							.heroContent-inner.container.restrict
+								block hero
+							
+			main#main
+				.main-inner
+					block body
+			block footer
+				footer
+					.footer-inner
+						//- include partials/navigation-footer
+						//footer navigation
+						.copyrights Copyright 2016 © Posterbay. Allrights reserved. Proudly presents by Walkinghome Studio.
+		//-
+			Client-side Templates
+			========================
+
+			HTML templates are important prerequisites of modern, rich client applications.
+			To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
+			that you load these templates client-side.
+
+			By default, your Gruntfile is configured to automatically load and precompile
+			client-side JST templates in your `assets/templates` folder, then
+			include them here automatically (between TEMPLATES and TEMPLATES END).
+
+			To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+			For example, here are a few things you could do:
+
+					+ Import templates from other directories
+					+ Use a different template engine (handlebars, jade, dust, etc.)
+					+ Internationalize your client-side templates using a server-side
+						stringfile before they're served.
+
+		// TEMPLATES
+		script(type="text/javascript", src="/jst.js")
+		// TEMPLATES END
+
+		//-
+			Client-side Javascript
+			========================
+
+			You can always bring in JS files manually with `script` tags, or asynchronously
+			on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+			take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+			By default, files in your `assets/js` folder are included here
+			automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+			CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+			and concatenated into a single file.
+
+			To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+			For example, here are a few things you could do:
+
+					+ Change the order of your scripts
+					+ Import scripts from other directories
+					+ Use a different preprocessor, like TypeScript
+
+		// SCRIPTS
+		script(src="/js/dependencies/sails.io.js")
+		script(src="/js/dependencies/dist/jquery.js")
+		script(src="/js/dependencies/underscore.js")
+		script(src="/js/dependencies/backbone.js")
+		script(src="/js/main.js")
+		// SCRIPTS END
+		block pagescripts
+			//- script(src='http://localhost:35729/livereload.js?snipver=1')

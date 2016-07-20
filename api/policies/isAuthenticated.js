@@ -22,22 +22,22 @@ module.exports = function(req, res, next) {
         {
             //Use this:
             // Initialize Passport
-            // sails.config.passport.initialize(req, res, function () {
-            //     // Use the built-in sessions
-            //     sails.config.passport.session(req, res, function () {
-            //         // Make the user available throughout the frontend
-            //         // res.locals.user = req.user;
-            //         //the user should be deserialized by passport now;
-            //         return res.send('aligo');
-            //         next();
-            //     });
-            // });
+            sails.config.passport.initialize(req, res, function () {
+                // Use the built-in sessions
+                sails.config.passport.session(req, res, function () {
+                    // Make the user available throughout the frontend
+                    res.locals.user = req.user;
+                    //the user should be deserialized by passport now;
+                    // return res.send('aligo');
+                    next();
+                });
+            });
 
 
-            //Or this if you dont care about deserializing the user:
-            req.user = req.session.passport.user;
-            // return next();
-            return res.send(req.session);
+            // //Or this if you dont care about deserializing the user:
+            // req.user = req.session.passport.user;
+            // // return next();
+            // return res.send(req.session);
 
 
         }

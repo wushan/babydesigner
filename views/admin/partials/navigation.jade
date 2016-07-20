@@ -1,0 +1,20 @@
+#brand
+	a(href='/')
+		img(src='/images/components/draftty-logo.svg')
+nav.main-navigation
+	ul
+		li
+			a(href='/admin/dashboard') Dashboard
+		li
+			a(href='/admin/categories') Categories
+
+.navigation-buttons
+	.user-dropdown
+		a(href='javascript:;')
+			img(src='http://unsplash.it/40x40')
+			.name #{req.user.username}
+		ul
+			li
+				a(href='/user') Profile
+			li
+				a(href='/logout') Logout
