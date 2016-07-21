@@ -26,7 +26,7 @@ CanvasComposer.Interface = {
 	  		$('#message').fadeOut('slow');
   		}
   	}).fail(function(err){
-      console.log(err);
+      $('#message').html('Error' + err.status + ', try again.')
     });
   }
 };

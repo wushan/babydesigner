@@ -56,7 +56,10 @@ module.exports = {
         });
     },
     getCategories: function( req, res ) {
-        return res.view('admin/categories');
+        Category.find().populate('sizes').exec(function (err, data){
+            sails.log(data);
+            return res.view('admin/categories', {categories: data});
+        });
     },
     addCategories: function( req, res ) {
         

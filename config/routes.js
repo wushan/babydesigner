@@ -78,7 +78,18 @@ module.exports.routes = {
   'get /admin/categories': 'AdminController.getCategories',
   'post /admin/categories': 'AdminController.addCategories',
   'post /admin/categories:cateid/subcategory': 'AdminController.addSubcategories',
-  'get /admin/dashboard': 'AdminController.getDashboard'
+  'get /admin/dashboard': 'AdminController.getDashboard',
+  
+  //Cate
+  'post /category': 'CategoryController.newCategory',
+  'put /category': 'CategoryController.updateCategory',
+  'get /category': 'CategoryController.getCategory',
+
+  //SubCate
+  'post /size': 'SizeController.newSize',
+  'put /size': 'SizeController.updateSize',
+  'get /size': 'SizeController.getSize'
+
 
   /***************************************************************************
   *                                                                          *

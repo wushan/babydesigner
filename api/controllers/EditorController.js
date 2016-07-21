@@ -72,7 +72,7 @@ module.exports = {
                     } else {
                         //Load the Work
                         Category.find().populate('sizes').exec(function (err, categorylist) {
-                            sails.log(categorylist);
+                            sails.log(workfound);
                             return res.view('editor', {user: req.user, currentArtboard: workfound, authorized: authorized, poppresets: true, categorylist: categorylist});
                         });
                     }

@@ -10,35 +10,74 @@ block body
 		h1 Category Settings
 		section
 			h3 Add New Category
-			form(action='')
+			form#category-form
 				.controlgroup
 					label Name
 					.controls
-						input(type='text', placeholder='Category Name')
+						input(name='categoryname' type='text', placeholder='Category Name')
 				.call-action
 					button.btn.confirmation.full(type='submit') Add
+			.cate-list
+				ul
+					each category in categories
+						li
+							h3=category.name
+							ul
+								each size in category.sizes
+									li=size.slug
+
 		h1 Subcategory Settings
 		section
 			h3 Add New SubCategory
-			form(action='')
+			form#subcategory-form(action='')
 				.controlgroup
 					label Parent
 					.controls
 						.select-wrapper
-							select
-								option Advertisement
+							select(name='parent')
+								each category in categories
+									option(value=category.id)=category.name
 				.controlgroup
 					label Name
 					.controls
-						input(type='text', placeholder='Subcategory slug. eg. Twitter Post')
+						input(type='text', name='subcategoryname', placeholder='Subcategory slug. eg. Twitter Post')
 				.controlgroup
 					label Width
 					.controls
-						input(type='text', placeholder='width, eg. 320')
+						input(type='text', name='width', placeholder='width, eg. 320')
 				.controlgroup
 					label Height
 					.controls
-						input(type='text', placeholder='height, eg. 320')
+						input(type='text', name='height', placeholder='height, eg. 320')
 				.call-action
 					button.btn.confirmation.full(type='submit') Add
-				
+			.subcate-list
+
+block pagescripts
+	script.
+		$('#category-form').on('submit', function(e){
+			e.preventDefault();
+			var data = $(this).serialize();
+			console.log(data);
+			$.ajax({
+				url: '/category',
+				method: 'POST',
+				data: data,
+				success: function(res) {
+					console.log(res);
+				}
+			});
+		});
+		$('#subcategory-form').on('submit', function(e){
+			e.preventDefault();
+			var data = $(this).serialize();
+			console.log(data);
+			$.ajax({
+				url: '/size',
+				method: 'POST',
+				data: data,
+				success: function(res) {
+					console.log(res);
+				}
+			});
+		});

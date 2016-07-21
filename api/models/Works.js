@@ -45,8 +45,7 @@ module.exports = {
       defaultsTo: 'untitled'
     },
     category: {
-      model: 'category',
-      defaultsTo: 1
+      model: 'category'
     },
     subcategory: {
       model: 'size'

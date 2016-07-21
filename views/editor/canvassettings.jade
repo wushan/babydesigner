@@ -7,8 +7,11 @@
 					.select-wrapper
 						select#category-selector
 							each category in categorylist
-								if category.id == currentArtboard.category.id
-									option(value=category.id selected)=category.name
+								if (currentArtboard.category)
+									if category.id == currentArtboard.category.id
+										option(value=category.id selected)=category.name
+									else
+										option(value=category.id)=category.name
 								else
 									option(value=category.id)=category.name
 			

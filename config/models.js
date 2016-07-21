@@ -18,8 +18,8 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
   // connection: 'localDiskDb',
-  // connection: 'someMongodbServer',
-  connection: 'VultrMysqlServer',
+  connection: 'someMongodbServer',
+  // connection: 'VultrMysqlServer',
   /***************************************************************************
   *                                                                          *
   * How and whether Sails will attempt to automatically rebuild the          *
@@ -28,6 +28,6 @@ module.exports.models = {
   * See http://sailsjs.org/#!/documentation/concepts/ORM/model-settings.html  *
   *                                                                          *
   ***************************************************************************/
-  migrate: 'safe'
+  migrate: 'alter'
 
 };
