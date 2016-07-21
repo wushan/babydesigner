@@ -40,9 +40,9 @@ module.exports = {
 	updateWork: function(req,res) {
 		var base64 = req.body.thumbnail;
 		var buf = base64.split(',')[1];
-		//Write to somewhere
+		// Write to somewhere
 		sails.log(req.body);
-		//Update the record and write the thumbnail
+		// Update the record and write the thumbnail
 		var savePath = "preview/" + req.body.workid + ".png";
 		writeFile(".tmp/public/preview/" + req.body.workid + ".png", buf, 'base64', function(err){
 		  if(err) {
