@@ -6,6 +6,7 @@
   "keywords": [],
   "dependencies": {
     "autoprefixer": "^6.3.6",
+    "aws-sdk": "^2.4.9",
     "bcrypt": "~0.8.0",
     "cssgrace": "^3.0.0",
     "cssnano": "^3.7.1",

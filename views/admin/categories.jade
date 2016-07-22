@@ -25,6 +25,11 @@ block body
 							ul
 								each size in category.sizes
 									li=size.slug
+										|  ( 
+										span=size.width
+										|	 x 
+										span=size.height
+										|  )
 
 		h1 Subcategory Settings
 		section

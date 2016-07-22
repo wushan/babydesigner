@@ -13,7 +13,8 @@ block body
 								a(href='/editor/' + work.workid)
 									img(src='/' + work.thumbnail)
 							.caption
-								p=work.subcategory.slug
-								.author
-									|	author / 
-									a(href='/user/'+ work.author.username)=work.author.username
+								if work.subcategory
+									p=work.subcategory.slug
+									.author
+										|	author / 
+										a(href='/user/'+ work.author.username)=work.author.username

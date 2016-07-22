@@ -36,7 +36,7 @@ block body
 										.thumbnail
 											a(href='/editor/' + work.workid)
 												if work.thumbnail
-													img(src='/' + work.thumbnail)
+													img(src=work.thumbnail)
 												else
 													img(src='/images/components/transparent-placeholder.png')
 										.caption
