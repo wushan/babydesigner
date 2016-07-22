@@ -17,11 +17,11 @@ module.exports = {
 	createUser: function(req,res) {
 		var userData = req.body;
 
-		//Use Email Account name as a Default username
-		sails.log(req.body.email.split("@")[0]);
-		userData.username = req.body.email.split("@")[0];
-		sails.log(userData);
 		User.create(userData).exec(function createCB(err, created){
+			if (err) {
+				sails.log(err);
+				return res.badRequest(err);
+			}
             //Automatic Login After Registered
             passport.authenticate('local', function(err, user, info) {
 	            sails.log(user);
@@ -34,7 +34,7 @@ module.exports = {
 	            req.logIn(user, function(err) {
 	                if (err) res.send(err);
 	                //Redirect to Home
-	                return res.redirect('/');
+	                res.ok();
 	                // return res.send({
 	                //     message: info.message,
 	                //     user: user

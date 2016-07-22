@@ -136,7 +136,7 @@ block pagescripts
 		//bindEvent
 		var categorylist = !{JSON.stringify(categorylist)};
 		var selectedCate;
-
+		$('.btn-update').addClass('disabled');
 		//subcategory state
 		$(window).load(function(){
 			$.ajax({
@@ -156,7 +156,6 @@ block pagescripts
 						}
 					}
 					updatePresetList();
-					
 				}
 			}).fail(function(err){
 				alert(err);
@@ -184,6 +183,7 @@ block pagescripts
 			}
 		}
 		function updatePresetList(){
+			$('.btn-update').addClass('disabled');
 			//Get Works From subcategory
 			$.ajax({
 				url: '/size/' + $('#subcategory-selector').val(),
@@ -193,9 +193,10 @@ block pagescripts
 					if (subcate.works.length > 0) {
 						$('.preset-list').empty();
 						for (var i = 0; i < subcate.works.length; i++ ) {
-							$('.preset-list').append('<div class=preset><a href=/editor/' + subcate.works[i].workid + '><div class=thumbnail><img src=/' + subcate.works[i].thumbnail + '></div></a></div>')
+							$('.preset-list').append('<div class=preset><a href=/editor/' + subcate.works[i].workid + '><div class=thumbnail><img src=' + subcate.works[i].thumbnail + '></div></a></div>')
 						}
 					}
+					$('.btn-update').removeClass('disabled');
 				}
 			});
 		}

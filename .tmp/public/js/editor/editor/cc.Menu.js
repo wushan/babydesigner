@@ -10,7 +10,9 @@ CanvasComposer.Menu = function(){
     addImage: function (event) {
                   // CanvasComposer.Artboard.addImage();
                   // Open Media panel
-                  $('#imageLibrary').toggleClass('active');
+                  $('#imageLibrary').fadeToggle().promise().done(function(){
+                    $(this).toggleClass('active');
+                  });
                 },
     addText: function (event) {
                   CanvasComposer.Artboard.addText();

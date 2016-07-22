@@ -8,13 +8,33 @@ block body
 		.loggin-inner.restrict-tiny
 			form.signin-form(method="POST" action="/user")
 				.controlgroup
-					input(type="email" name="email", placeholder="E-mail")
+					input(type="email" name="email", placeholder="E-mail" required)
 				.controlgroup
-					input(type="password" name="password", placeholder="Custom password")
+					input(type="text" name="username", placeholder="Username" required)
+				.controlgroup
+					input(type="password" name="password", placeholder="Custom password" required)
+				.notification.error.error-message
 				.call-action
 					button.btn.full.confirmation(type="submit") Sign Up
 					.form-tips
 						|	Please read our 
 						a(href='javascript:;') TOU ( Term of Use ) 
 						|	before sign up.
-			
+block pagescripts
+	script.
+		$('.signin-form').on('submit', function(event){
+			event.preventDefault();
+			var data = $(this).serialize();
+			$.ajax({
+				url: '/user',
+				method: 'POST',
+				data: data,
+				success: function(res) {
+					window.location.replace('/');
+				}
+			}).fail(function(err){
+				console.log(err);
+				console.log(err.responseJSON.details);
+				$('.error-message').html(err.responseJSON.details).addClass('active');
+			});
+		});

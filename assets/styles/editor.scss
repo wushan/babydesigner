@@ -243,18 +243,20 @@
 #imageLibrary {
 	position: fixed;
 	left: 100px;
-	top: 0;
-	bottom: 0;
+	top: 50%;
 	width: 320px;
 	margin: auto;
 	border-radius: 12px;
 	z-index: 99;
-	height: 80%;
 	padding: 1em;
 	overflow-y: scroll;
 	box-sizing: border-box;
 	background-color: $darkgray;
 	box-shadow: 2px 2px 0 $black;
+	display: none;
+	&.active {
+		display: block;
+	}
 	ul {
 		display: block;
 		margin: 0;
