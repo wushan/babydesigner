@@ -11,7 +11,7 @@ block body
 						li
 							.thumbnail
 								a(href='/editor/' + work.workid)
-									img(src='/' + work.thumbnail)
+									img(src=work.thumbnail)
 							.caption
 								if work.subcategory
 									p=work.subcategory.slug
