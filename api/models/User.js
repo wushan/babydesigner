@@ -16,12 +16,10 @@ module.exports = {
         },
         password: {
             type: 'string',
-            minLength: 6,
-            required: true
+            minLength: 6
         },
         username: {
             type: 'string',
-            required: true,
             unique: true
         },
         //PermissonGroup
