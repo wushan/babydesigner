@@ -254,10 +254,10 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 */
 
 .sp-container {
-    border-radius: 0;
+    border-radius: 6px;
     background-color: #ECECEC;
-    border: solid 1px #f0c49B;
     padding: 0;
+    box-shadow: 0 0 12px rgba(0,0,0,0.66);
 }
 .sp-container, .sp-container button, .sp-container input, .sp-color, .sp-hue, .sp-clear {
     font: normal 12px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
@@ -368,20 +368,18 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     overflow:hidden;
     cursor:pointer;
     padding: 0 .2em;
-    height: 30px;
+    height: 44px;
     box-sizing: border-box;
     display:inline-block;
     *zoom: 1;
     *display: inline;
     border: solid 1px $gray;
     background-color: $white;
-    border-radius: 3px;
+    border-radius: 6px;
     color: #333;
     vertical-align: middle;
 }
 .sp-replacer:hover, .sp-replacer.sp-active {
-    border-color: #F0C49B;
-    color: #111;
 }
 .sp-replacer.sp-disabled {
     cursor:default;
@@ -389,18 +387,19 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     color: silver;
 }
 .sp-dd {
-    height: 28px;
-    line-height: 28px;
+    height: 44px;
+    line-height: 44px;
     float: right;
-    font-size:10px;
+    font-size: 12px;
+    margin-right: 10px;
 }
 .sp-preview {
     position:relative;
-    width: 50%;
-    height: 20px;
-    border: solid 1px #222;
+    width: 70%;
+    height: 36px;
     margin: 3px 5px 3px 0;
-    border-radius: 3px;
+    border-radius: 6px;
+    overflow: hidden;
     float:left;
     z-index: 0;
 }

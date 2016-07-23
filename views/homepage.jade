@@ -19,15 +19,19 @@ block hero
 				//- button.btn.full.confirmation(type='submit') SIGN UP
 		h4 Login via
 		.controlgroup
-			a.btn.btn-withicon.facebook(href='/auth/facebook', data-action='saveJSON')
+			a.btn.btn-withicon.facebook(href='/auth/facebook')
 				.icon
 					img(src='/images/icons/icon-facebook.svg')
 				span FACEBOOK
-			a.btn.btn-withicon.google(href='/auth/google', data-action='saveJSON')
+			//- a.btn.btn-withicon.google(href='/auth/google', data-action='saveJSON')
+			//- 	.icon
+			//- 		img(src='/images/icons/icon-googleplus.svg')
+			//- 	span GOOGLE+
+			a.btn.btn-withicon.red(href='/signup')
 				.icon
-					img(src='/images/icons/icon-googleplus.svg')
-				span GOOGLE+
-			a.btn.bordered(href='/signup') REGISTER AN ACCOUNT
+					img(src='/images/icons/icon-facebook.svg')
+				span REGISTER
+
 block body
 	section
 		.container.restrict.centered
