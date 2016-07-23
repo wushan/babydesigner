@@ -8,12 +8,12 @@ var passport = require('passport'),
 var verifyHandler = function(req, token, tokenSecret, profile, done) {
 
   process.nextTick(function() {
-    var url = 'https://graph.facebook.com/v2.4/me?access_token=%s&fields=id,name,email,first_name,last_name,gender';
+    var url = 'https://graph.facebook.com/v2.4/me?access_token=%s&fields=id,name,email,first_name,last_name,gender, picture';
     url = url.replace('%s', token);
 
     var options = {method: 'GET', url: url, json: true};
     request(options, function (err, response) {
-      sails.log(response);
+      sails.log(response.body.picture);
       if (err) {
         return done(null, null);
       }
@@ -23,9 +23,16 @@ var verifyHandler = function(req, token, tokenSecret, profile, done) {
               res.send(err);
           }
           if (record) {
-            return done(null, record);
+            //Update Avatar and token
+            User.update({email: response.body.email, facebookid:response.body.id},{avatar:response.body.picture.data.url}).exec(function afterwards(err, updated){
+              if (err) {
+                // handle error here- e.g. `res.serverError(err);`
+                return;
+              }
+              return done(null, record);
+            });
           } else {
-            User.create({email: response.body.email, facebookid: response.body.id, password: token, username: response.body.email.split("@")[0]}).exec(function createCB(err, created){
+            User.create({email: response.body.email, facebookid: response.body.id, password: token, username: response.body.email.split("@")[0], avatar: response.body.picture.url }).exec(function createCB(err, created){
               return done(null, created);
             });
           }

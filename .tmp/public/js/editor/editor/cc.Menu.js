@@ -13,6 +13,17 @@ CanvasComposer.Menu = function(){
                   $('#imageLibrary').fadeToggle().promise().done(function(){
                     $(this).toggleClass('active');
                   });
+                  $(document).mouseup(function (e){
+                    var container = $('#imageLibrary');
+
+                    if (!container.is(e.target) // if the target of the click isn't the container...
+                        && container.has(e.target).length === 0) // ... nor a descendant of the container
+                    {
+                        container.fadeOut().promise().done(function(){
+                          container.removeClass('active')
+                        });
+                    }
+                });
                 },
     addText: function (event) {
                   CanvasComposer.Artboard.addText();
