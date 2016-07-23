@@ -87,6 +87,52 @@ textarea {
     color: $white;
   }
 }
+input[type=file] {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  &+label {
+    cursor: pointer;
+    position: relative;
+    display: block;
+    float: none;
+    width: 100%;
+    line-height: inherit;
+    .filename {
+        width: 100%;
+        display: inline-block;
+        vertical-align: middle;
+        border: 1px solid #cccccc;
+        box-sizing: border-box;
+        height: 36px;
+        line-height: 36px;
+        background-color: #ffffff;
+        padding: 0 .4em;
+        outline: none;
+        border-radius: 3px;
+    }
+    span {
+      border-radius: 0 3px 3px 0;
+      color: white;
+      background-color: #3c434c;
+      height: 36px;
+      line-height: 36px;
+      padding: 0 1em;
+      display: inline-block;
+      vertical-align: middle;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+    * {
+      pointer-events: none;
+    }
+  }
+}
 input,input[type=search] {
   width: 100%;
   border: 1px solid $gray;

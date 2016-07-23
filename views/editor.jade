@@ -90,8 +90,10 @@ block body
 		include editor/canvassettings
 		//ImageLibrary
 		#imageLibrary
-			input#imageUploader(type='file')
-		
+			input#imageUploader(type='file' name='file')
+			label(for="file")
+				.filename
+				span Choose a file
 
 		#loader
 			.loader-inner
