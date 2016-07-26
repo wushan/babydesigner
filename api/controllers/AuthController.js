@@ -54,16 +54,18 @@ module.exports = {
      
     facebookCallback: function(req, res, next) {
         passport.authenticate('facebook', function(err, user) {
-          // res.json(user);
-        req.logIn(user, function(err) {
-            if (err) res.send(err);
-            //Redirect to Home
-            res.redirect('/');
-            // return res.send({
-            //     message: info.message,
-            //     user: user
-            // });
-        });
+            if (err) {
+                sails.log(err);
+            }
+            req.logIn(user, function(err) {
+                if (err) res.send(err);
+                //Redirect to Home
+                res.redirect('/');
+                // return res.send({
+                //     message: info.message,
+                //     user: user
+                // });
+            });
         })(req, res, next);
     },
     googleAuth: function(req, res, next) {

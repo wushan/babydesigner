@@ -5,6 +5,7 @@ GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
 bcrypt = require('bcrypt');
 
 passport.serializeUser(function(user, done) {
+    sails.log(user);
     done(null, user.id);
 });
 
