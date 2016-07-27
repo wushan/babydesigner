@@ -193,6 +193,7 @@
     overflow: hidden;
     border-radius: 6px;
     @extend .transition;
+    z-index: 2;
     &.active {
     	display: block;
     	bottom: 0;
@@ -225,8 +226,16 @@
     	height: calc( 100% - 90px );
     	overflow-y: scroll;
     	.preset {
+    		background-image: url('/images/components/transparent.png');
     		@include gallery( 1 of 5 .1 );
     		margin-bottom: 1em;
+    		.thumbnail {
+    			border: 1px solid $smokygray;
+				box-sizing: border-box;
+    			&:hover {
+					box-shadow: 0 4px 6px -3px rgba($black,.33);
+				}
+    		}
     	}
     }
     .preset-filter {
@@ -343,6 +352,20 @@
 //Loader
 #loading {
 	display: none;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 9;
+	.uil-ring-alt {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+	}
 }
 #loader {
 	position: fixed;

@@ -52,7 +52,11 @@ module.exports = {
                     }
                 } else {
                     sails.log('作品(屬於)請求者');
-                    return res.view('editor', {user: req.user, currentArtboard: work, authorized: authorized, poppresets: true});
+                    if (work.category) {
+                        return res.view('editor', {user: req.user, currentArtboard: work, authorized: authorized, poppresets: false});
+                    } else {
+                        return res.view('editor', {user: req.user, currentArtboard: work, authorized: authorized, poppresets: true});
+                    }
                 }
             });
         }

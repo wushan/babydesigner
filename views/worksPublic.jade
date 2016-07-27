@@ -5,16 +5,52 @@ block body
 	//- p #{publicworks}
 	section#works
 		.restrict
-			.work-list
+			.work-list.masonry-list
 				ul
+					li.work-sizer
+					li.work-gutter
 					each work in publicworks
-						li
+						li.work
 							.thumbnail
 								a(href='/editor/' + work.workid)
-									img(src=work.thumbnail)
+									if work.thumbnail
+										img(src=work.thumbnail)
+									else
+										img(src='/images/components/transparent-placeholder.png')
 							.caption
-								if work.subcategory
-									p=work.subcategory.slug
+								.caption-inner
+									.title=work.worktitle
 									.author
-										|	author / 
-										a(href='/user/'+ work.author.username)=work.author.username
+										|	from : 
+										=work.author.username
+
+							.work-privacy
+								if work.public
+									i.fa.fa-eye
+								else
+									i.fa.fa-eye
+block pagescripts
+	script(src="/js/vendor/imagesLoaded.js")
+	script(src="/js/vendor/masonry.js")
+	script.
+		var $workMasonry = $('.masonry-list').masonry({
+			// set itemSelector so .grid-sizer is not used in layout
+			itemSelector: '.work',
+			gutter: '.work-gutter',
+			// use element for option
+			columnWidth: '.work-sizer',
+			percentPosition: true,
+			resize: false
+		});
+		$workMasonry.imagesLoaded().progress( function() {
+			$workMasonry.masonry('layout');
+		});
+		var resizeTimer;
+		$(window).on('resize', function(e) {
+
+			clearTimeout(resizeTimer);
+			resizeTimer = setTimeout(function() {
+				$workMasonry.masonry('layout');
+			}, 250);
+
+		});

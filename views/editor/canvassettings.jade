@@ -15,17 +15,15 @@
 				label Sub
 				.controls
 					.select-wrapper
-						select#subcategory-selector
+						if currentArtboard.subcategory
+							select#subcategory-selector(data-init-cate="#{currentArtboard.subcategory.id}")
+						else
+							select#subcategory-selector
 
 							
 			.controlgroup.centered
-				a.btn.confirmation.btn-update(href='javascript:;', data-action='update') Blank
+				a.btn.basic.btn-update(href='javascript:;', data-action='update') USE
 		.preset-list
-			each i in Array(20)
-				.preset
-					a(href='javascript:;')
-						.thumbnail
-							img(src='http://unsplash.it/400x300')
 
 if poppresets
 	script.

@@ -13,7 +13,7 @@ block body
 			.presets
 				a.btn.btn-withicon.orange(href='javascript:;', data-action='presets')
 					.icon
-						img(src='/images/icons/icon-preset.svg')
+						.fa.fa-clone.fa-lg
 					span PRESETS
 			.easy-setting
 				.privacy-setting
@@ -29,11 +29,11 @@ block body
 				.save
 					a.btn.btn-withicon.blue(href='javascript:;', data-action='saveJSON')
 						.icon
-							img(src='/images/icons/icon-save.svg')
+							i.fa.fa-floppy-o.fa-lg
 						span SAVE
 				a.btn.btn-withicon.red(href='/user')
 					.icon
-						img(src='/images/icons/icon-close.svg')
+						i.fa.fa-sign-out.fa-lg
 					span Leave
 			
 			if currentArtboard.subcategory
@@ -46,7 +46,7 @@ block body
 					var currentSubcategory;
 
 		//Artboard
-		include ../assets/templates/artboard
+		include editor/artboard
 		//Menu
 		#menu
 			.menu-inner
