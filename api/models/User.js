@@ -41,6 +41,9 @@ module.exports = {
             collection: 'works',
             via: 'author'
         },
+        avatar: {
+            type: 'string'
+        },
         toJSON: function() {
             var obj = this.toObject();
             delete obj.password;
