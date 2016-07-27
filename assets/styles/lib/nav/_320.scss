@@ -29,6 +29,12 @@ header.home {
 	vertical-align: middle;
 	margin-right: 5px;
 	position: relative;
+	.avatar {
+		display: inline-block;
+		vertical-align: middle;
+		width: 40px;
+		margin: 0 auto;
+	}
 	.name {
 		margin-left: .5em;
 		display: inline-block;

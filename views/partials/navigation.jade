@@ -16,9 +16,11 @@ nav.main-navigation
 		.user-dropdown
 			a(href='javascript:;')
 				if user.avatar
-					img(src=user.avatar)
+					.avatar
+						img(src=user.avatar)
 				else
-					img(src='http://unsplash.it/40x40')
+					.avatar
+						img(src='http://unsplash.it/40x40')
 				if user
 					.name #{user.username}
 			ul

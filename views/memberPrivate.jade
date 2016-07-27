@@ -7,7 +7,10 @@ block body
 			.container.restrict
 				.sidebar
 					.avatar
-						img(src='http://unsplash.it/400x400')
+						if user.avatar
+							img(src=user.avatar)
+						else
+							img(src='http://unsplash.it/400x400')
 					.username
 						h1 #{user.username}
 					.contact
