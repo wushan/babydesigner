@@ -25,60 +25,36 @@ module.exports = {
         if (req.isAuthenticated()) {
             var queryID = req.param('workid');
             var authorized = true;
-            // Query rule
-            // is public -> copy
-            // is mine -> load
-
-            //Find If User had permission to edit this work
-            Works.findOne({author: req.user.id, workid: queryID}).populate('category').populate('subcategory').exec(function (err, workfound){
+            //Find Work via queryID
+            Works.findOne({workid: queryID}).populate('category').populate('subcategory').exec(function (err, work){
                 if (err) {
-                    return res.negotiate(err);
+                    return negotiate(err);
                 }
-              
-                if ( !workfound ) {
-                    sails.log('This work is not belongs to the requester.')
-                    //Find if it is public
-                    Works.findOne({workid: queryID}).exec(function (err, work){
-                        if (err) {
-                            return res.negotiate(err);
-                        }
-                        sails.log(work.public);
-                        if (work.public == true) {
-                            //If this is public work, load it
-                            sails.log('this is a public work');
-                            //Create A new Work, load the data from request.
-                            var newWorkID = shortid.generate();
-
-                            Works.create({author: req.user.id, data: work.data, workid: newWorkID, workwidth: work.workwidth, workheight: work.workheight, category: work.category, subcategory: work.subcategory }).exec(function createCB(err, created){
-                                if (err) {
-                                    return res.negotiate(err);
-                                }
-                                // return res.view('editor', {currentArtboard: created});
-                                return res.redirect('/editor/' + newWorkID);
-                            });
-
-                        } else {
-                            //If requesting a private work, return forbidden
-                            sails.log('this is a private work');
-                            return res.forbidden();
-                        }
-                    });
-                } else {
-                    if (workfound.data.objects.length > 0) {
-                        //Load the Work
-                        Category.find().populate('sizes').exec(function (err, categorylist) {
-                            return res.view('editor', {user: req.user, currentArtboard: workfound, authorized: authorized, categorylist: categorylist});
+                sails.log('作品存在');
+                if (work.author !== req.user.id) {
+                    sails.log('作品不屬於請求者');
+                    if (work.public) {
+                        sails.log('公開作品');
+                        sails.log('建立新紀錄，重新導向');
+                        var newWorkID = shortid.generate();
+                        sails.log('新作品ID:' + newWorkID);
+                        Works.create({author: req.user.id, data: work.data, workid: newWorkID, workwidth: work.workwidth, workheight: work.workheight, category: work.category, subcategory: work.subcategory }).exec(function createCB(err, created){
+                            if (err) {
+                                return res.negotiate(err);
+                            }
+                            // return res.view('editor', {currentArtboard: created});
+                            return res.redirect('/editor/' + newWorkID);
                         });
+
                     } else {
-                        //Load the Work
-                        Category.find().populate('sizes').exec(function (err, categorylist) {
-                            sails.log(workfound);
-                            return res.view('editor', {user: req.user, currentArtboard: workfound, authorized: authorized, poppresets: true, categorylist: categorylist});
-                        });
+                        sails.log('不公開作品');
+                        return res.forbidden();
                     }
+                } else {
+                    sails.log('作品(屬於)請求者');
+                    return res.view('editor', {user: req.user, currentArtboard: work, authorized: authorized, poppresets: true});
                 }
             });
-
         }
     }
 };
