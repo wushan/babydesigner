@@ -95,6 +95,12 @@ module.exports = {
 		  }
 		  return res.view('showwork', {user: req.user, authorized: authorized, work: data});
 		});
+	},
+	getWorkbySize: function( req, res) {
+		var sizeid = req.param('sizeid');
+		Works.find({ where: { public:true, subcategory: sizeid }, sort: 'updatedAt DESC' }).exec(function (err, data){
+			return res.json(data);
+		});
 	}
 };
 

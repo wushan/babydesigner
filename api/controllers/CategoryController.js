@@ -21,6 +21,12 @@ module.exports = {
 		Category.find().exec(function (err, data){
 			return res.json(data);
 		});
+	},
+	getSpecificCategory: function(req,res) {
+		var queryID = req.param('cateid');
+		Category.findOne({id: queryID}).populate('sizes').exec(function (err, data){
+			return res.json(data);
+		});
 	}
 };
 

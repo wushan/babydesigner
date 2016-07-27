@@ -5,15 +5,11 @@
 				label Category
 				.controls
 					.select-wrapper
-						select#category-selector
-							each category in categorylist
-								if (currentArtboard.category)
-									if category.id == currentArtboard.category.id
-										option(value=category.id selected)=category.name
-									else
-										option(value=category.id)=category.name
-								else
-									option(value=category.id)=category.name
+						if currentArtboard.category
+							select#category-selector(data-init-cate="#{currentArtboard.category.id}")
+						else
+							select#category-selector(data-init-cate="1")
+							
 			
 			.controlgroup
 				label Sub

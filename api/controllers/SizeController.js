@@ -19,7 +19,9 @@ module.exports = {
 
 	},
 	getSize: function(req,res) {
-
+		Size.find().exec(function (err, data){
+			return res.json(data);
+		});
 	}
 };
 

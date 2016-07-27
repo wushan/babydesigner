@@ -62,6 +62,7 @@ module.exports.routes = {
   'get /works': 'WorksController.redirectToPublic',
   'get /works/public': 'WorksController.public',
   'get /works/:workid': 'WorksController.getWorkView',
+  'get /works/size/:sizeid': 'WorksController.getWorkbySize',
 
   //Unsplash api
   'get /unsplash': 'UnsplashController.getImage',
@@ -84,6 +85,7 @@ module.exports.routes = {
   'post /category': 'CategoryController.newCategory',
   'put /category': 'CategoryController.updateCategory',
   'get /category': 'CategoryController.getCategory',
+  'get /category/:cateid': 'CategoryController.getSpecificCategory',
 
   //SubCate
   'post /size': 'SizeController.newSize',
