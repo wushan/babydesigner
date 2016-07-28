@@ -10,7 +10,10 @@ block body
 						if user.avatar
 							img(src=user.avatar)
 						else
-							img(src='http://unsplash.it/400x400')
+							img(src='http://unsplash.it/200/200')
+							form#avatarUpload.centered
+								input#avatarSource(type='file', name='avatarSource')
+								label#avatarLabel.btn.basic(for='avatarSource') Upload
 					.username
 						h1 #{user.username}
 					.contact
@@ -79,3 +82,50 @@ block pagescripts
 			}, 250);
 
 		});
+
+		(function(){
+			var form = $('#avatarUpload');
+			var fileSelect = $('#avatarSource');
+			var label = $('#avatarLabel');
+			//avatar
+			fileSelect.on('change', function(e){
+				
+				e.preventDefault();
+				//Disable Label
+				label.html('Uploading...');
+
+				var files = $(this).context.files;
+				console.log(files);
+				// Create a new FormData object.
+				var formData = new FormData();
+
+				for (var i = 0; i < files.length; i++) {
+				  var file = files[i];
+				  console.log(file);
+				  // Check the file type.
+				  //- if (!file.type.match('image.*')) {
+				  //-   continue;
+				  //- }
+
+				  // Add the file to the request.
+				  formData.append('photos[]', file, file.name);
+				}
+				console.log(formData);
+
+				$.ajax({
+					url: '/user',
+					method: 'PUT',
+					data: formData,
+					cache: false,
+			        dataType: 'json',
+			        processData: false,
+			        contentType: false,
+					success: function(data, textStatus, jqXHR) {
+						console.log('uploading');
+					}
+				}).fail(function(jqXHR, textStatus, errorThrown){
+					console.log('upload Err');
+					//- console.log(err);
+				})
+			})
+		}());

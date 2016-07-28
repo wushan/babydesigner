@@ -35,6 +35,7 @@ module.exports.routes = {
   '/': 'HomeController.getHome',
   //User
   'post /user': 'UserController.createUser',
+  'put /user': 'UserController.updateUser',
   'get /user': 'UserController.redirectUser',
   'get /user/:username': 'UserController.getUserHome',
 

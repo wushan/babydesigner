@@ -44,6 +44,9 @@ module.exports = {
 	        })(req, res);
         });
 	},
+	updateUser: function(req,res) {
+		sails.log(req.file());
+	},
 	getUserHome: function(req,res){
 		var username = req.param('username');
 		var authorized;
