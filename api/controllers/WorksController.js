@@ -10,7 +10,7 @@ var fs = require('fs');
 var getDirName = require('path').dirname;
 var AWS = require('aws-sdk');
 AWS.config.loadFromPath('./s3_config.json');
-var s3Bucket = new AWS.S3( { params: {Bucket: 'draftty'} } );
+var s3Bucket = new AWS.S3( { params: {Bucket: 'draftty'} });
 
 function writeFile(path, contents, cb) {
   mkdirp(getDirName(path), function (err) {

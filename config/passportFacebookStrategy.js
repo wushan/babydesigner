@@ -4,6 +4,10 @@ var passport = require('passport'),
     FacebookStrategy = require('passport-facebook').Strategy,
     request = require('request');
 
+var AWS = require('aws-sdk');
+AWS.config.loadFromPath('./s3_config.json');
+var s3Bucket = new AWS.S3( { params: {Bucket: 'draftty'} });
+var https = require('https');
 
 var verifyHandler = function(req, token, tokenSecret, profile, done) {
 
@@ -20,6 +24,29 @@ var verifyHandler = function(req, token, tokenSecret, profile, done) {
       if (err) {
         return done(null, null);
       }
+      // sails.log(response.body.id);
+      //Request avatar file and send to S3
+      
+      https.get(response.body.picture.data.url, function onResponse(res) {
+        if (res.statusCode >= 300) {
+              return callback(new Error('error ' + res.statusCode + ' retrieving ' + url));
+        }
+        
+        s3Bucket.upload({
+          Key: 'avatar-' + response.body.id,
+          Body: res,
+          ContentType: 'image/jpeg'
+        },function(err,done){
+            if (err) {
+              sails.log(err);
+            }
+            sails.log('done');
+        })
+      })
+      .on('error', function onError(err) {
+          return callback(err);
+      });
+      var savePath = "https://" + s3Bucket.config.endpoint + "/" + s3Bucket.config.params.Bucket + '/avatar-' + response.body.id;
 
       User.findOne({email: response.body.email, facebookid:response.body.id}).exec(function (err, record) {
           if (err) {
@@ -28,7 +55,7 @@ var verifyHandler = function(req, token, tokenSecret, profile, done) {
           }
           if (record) {
             //Update Avatar and token
-            User.update({email: response.body.email, facebookid:response.body.id},{avatar:response.body.picture.data.url}).exec(function afterwards(err, updated){
+            User.update({email: response.body.email, facebookid:response.body.id},{avatar: savePath}).exec(function afterwards(err, updated){
               if (err) {
                 // handle error here- e.g. `res.serverError(err);`
                 return;
@@ -36,7 +63,7 @@ var verifyHandler = function(req, token, tokenSecret, profile, done) {
               done(null, updated[0]);
             });
           } else {
-            User.create({email: response.body.email, facebookid: response.body.id, password: token, username: response.body.email.split("@")[0], avatar: response.body.picture.url }).exec(function createCB(err, created){
+            User.create({email: response.body.email, facebookid: response.body.id, password: token, username: response.body.email.split("@")[0], avatar: savePath }).exec(function createCB(err, created){
               if (err) {
                 sails.log(err);
               }

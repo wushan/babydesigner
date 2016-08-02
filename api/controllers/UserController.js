@@ -100,10 +100,11 @@ module.exports = {
 				} else {
 					authorized = false;
 				}
+				sails.log(data);
 				return res.view('memberPublic', {
 					authorized: authorized,
-					user: req.user,
-					works: data //Return all works belongs to the user.
+					user: data,
+					works: data.works //Return all works belongs to the user.
 				});
 			});
 		}
