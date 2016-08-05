@@ -115,7 +115,7 @@
         "group": "admin",
         "description": "did not have one ... yet.",
         "createdAt": "2016-07-26T16:48:38.945Z",
-        "updatedAt": "2016-08-02T16:24:59.510Z",
+        "updatedAt": "2016-08-05T14:39:51.875Z",
         "id": 1
       },
       {
@@ -125,8 +125,9 @@
         "group": "default",
         "description": "did not have one ... yet.",
         "createdAt": "2016-07-27T06:24:15.010Z",
-        "updatedAt": "2016-07-27T06:24:15.010Z",
-        "id": 2
+        "updatedAt": "2016-08-05T17:11:49.478Z",
+        "id": 2,
+        "avatar": "https://draftty.s3-ap-northeast-1.amazonaws.com/6a88a5a4-917a-4cb2-b8f6-69772098a640.png"
       }
     ],
     "works": [

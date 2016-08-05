@@ -31,15 +31,26 @@ main {
 	}
 	.avatar {
 		position: relative;
-		max-width: 200px;
+		width: 200px;
+		height: 200px;
 		margin: 0 auto;
 		display: inline-block;
 		border-radius: 50%;
 		overflow: hidden;
 		border: 10px solid $gray;
 		text-align: center;
+		background-position: center center;
+		background-size: cover;
+		&:hover {
+			form {
+				display: inline-block;
+				#avatarLabel {
+					display: block;
+				}
+			}
+		}
 		form {
-			display: inline-block;
+			display: none;
 			vertical-align: middle;
 			position: absolute;
 			top: 0;

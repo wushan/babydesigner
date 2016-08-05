@@ -33,7 +33,12 @@ header.home {
 		display: inline-block;
 		vertical-align: middle;
 		width: 40px;
+		height: 40px;
 		margin: 0 auto;
+		border-radius: 50%;
+		overflow: hidden;
+		background-size: cover;
+		background-position: center center;
 	}
 	.name {
 		margin-left: .5em;

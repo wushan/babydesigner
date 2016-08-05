@@ -5,6 +5,9 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 var passport = require('passport');
+var AWS = require('aws-sdk');
+AWS.config.loadFromPath('./s3_config.json');
+var s3Bucket = new AWS.S3( { params: {Bucket: 'draftty'} });
 module.exports = {
 	redirectUser: function(req,res) {
 		if (req.isAuthenticated()) {
@@ -45,7 +48,39 @@ module.exports = {
         });
 	},
 	updateUser: function(req,res) {
-		sails.log(req.file());
+		const options =
+	      { // This is the usual stuff
+	        adapter: require('skipper-better-s3')
+	      , key: 'AKIAJ5TSVV4QHLUQ3VBQ'
+	      , secret: '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'
+	      , bucket: 'draftty'
+	      , region: 'ap-northeast-1'  // Optional - default is 'us-standard'
+	        // Let's use the custom s3params to upload this file as publicly
+	        // readable by anyone
+	      , s3params: {
+	      		ACL: 'public-read'
+	        }
+	        // And while we are at it, let's monitor the progress of this upload
+	      , onProgress: progress => sails.log.verbose('Upload progress:', progress)
+	      }
+	    if (req.file('avatarSource')) {
+	    	//Upload to S3
+			req.file('avatarSource').upload(options, (err, files) => {
+			  if (err) return res.serverError(err);
+			  sails.log(files);
+			  //Update User
+			  User.update({id: req.user.id},{avatar: files[0].extra.Location}).exec(function afterwards(err, updated){
+	             if (err) {
+	                // handle error here- e.g. `res.serverError(err);`
+	                return;
+	             }
+	             return res.json(files);
+	           });
+			})
+	    } else {
+
+	    }
+	    
 	},
 	getUserHome: function(req,res){
 		var username = req.param('username');

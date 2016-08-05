@@ -6,14 +6,18 @@ block body
 		section#member
 			.container.restrict
 				.sidebar
-					.avatar
-						if user.avatar
-							img(src=user.avatar)
-						else
-							img(src='http://unsplash.it/200/200')
-							form#avatarUpload.centered
+					if user.avatar
+						.avatar(style="background-image: url('#{user.avatar}');")
+							form#avatarUpload.centered(enctype="multipart/form-data")
 								input#avatarSource(type='file', name='avatarSource')
 								label#avatarLabel.btn.basic(for='avatarSource') Upload
+					else
+						.avatar(style="background-image: url('http://unsplash.it/200/200');")
+							form#avatarUpload.centered(enctype="multipart/form-data")
+								input#avatarSource(type='file', name='avatarSource')
+								label#avatarLabel.btn.basic(for='avatarSource') Upload
+
+					
 					.username
 						h1 #{user.username}
 					.contact
@@ -93,39 +97,26 @@ block pagescripts
 				e.preventDefault();
 				//Disable Label
 				label.html('Uploading...');
-
-				var files = $(this).context.files;
-				console.log(files);
-				// Create a new FormData object.
-				var formData = new FormData();
-
-				for (var i = 0; i < files.length; i++) {
-				  var file = files[i];
-				  console.log(file);
-				  // Check the file type.
-				  //- if (!file.type.match('image.*')) {
-				  //-   continue;
-				  //- }
-
-				  // Add the file to the request.
-				  formData.append('photos[]', file, file.name);
-				}
-				console.log(formData);
+				var formData = new FormData($('#avatarUpload')[0]);
+				
 
 				$.ajax({
 					url: '/user',
 					method: 'PUT',
 					data: formData,
-					cache: false,
-			        dataType: 'json',
-			        processData: false,
-			        contentType: false,
-					success: function(data, textStatus, jqXHR) {
-						console.log('uploading');
+					async: false,
+				    cache: false,
+				    contentType: false,
+				    processData: false,
+					success: function(data) {
+						console.log('upload success');
+						console.log(data[0].extra.Location);
+						$('.avatar').css('background-image', 'url(' + data[0].extra.Location + ')');
+						label.html('done');
 					}
-				}).fail(function(jqXHR, textStatus, errorThrown){
-					console.log('upload Err');
-					//- console.log(err);
+				}).fail(function(err){
+					console.log(err);
+					label.html('failed');
 				})
 			})
 		}());
